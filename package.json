@@ -1,7 +1,7 @@
 {
   "name": "xtyle",
-  "version": "1.0.2",
-  "description": "CSS in JS",
+  "version": "1.0.4",
+  "description": "Inject (HTML, CSS and JavaScript)",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "author": "hlop3z",
