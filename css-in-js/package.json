@@ -1,7 +1,7 @@
 {
   "name": "xtyle",
-  "version": "1.0.5",
-  "description": "Micro Framework",
+  "version": "1.0.4",
+  "description": "Inject (HTML, CSS and JavaScript)",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "author": "hlop3z",
@@ -15,8 +15,8 @@
     "url": "git+https://github.com/hlop3z/xtyle.git"
   },
   "keywords": [
-    "framework",
-    "xtyle"
+    "css",
+    "stylesheet"
   ],
   "bugs": {
     "url": "https://github.com/hlop3z/xtyle/issues"
