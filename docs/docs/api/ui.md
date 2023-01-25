@@ -11,10 +11,10 @@ export default {
 
 ## **`router`**
 
-| Property       | Description                              |
-| -------------- | ---------------------------------------- |
-| **`go(path)`** | Navigate to another **`View`**           |
-| **`redraw`**   | Global Static Objects (**Non-Reactive**) |
+| Property       | Description                        |
+| -------------- | ---------------------------------- |
+| **`go(path)`** | **Navigate** to another **`View`** |
+| **`redraw`**   | **Re-Render** current **`View`**   |
 
 ```js
 export default {

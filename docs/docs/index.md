@@ -10,7 +10,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Xtyle | App</title>
-    <script src="https://cdn.jsdelivr.net/gh/hlop3z/xtyle@main/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hlop3z/xtyle@main/dist/v2.0.0.min.js"></script>
   </head>
 
   <body>
