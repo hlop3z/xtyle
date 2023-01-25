@@ -2,7 +2,7 @@
 
 > Create **Reusable** Components
 
-## Demo (**HTML**)
+## Demo | **HTML**
 
 ```html
 <!DOCTYPE html>

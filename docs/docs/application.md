@@ -1,6 +1,8 @@
 # Application
 
-## Demo (**HTML**)
+> Create **Views** with your **Components**
+
+## Demo | **HTML**
 
 ```html
 <!DOCTYPE html>
