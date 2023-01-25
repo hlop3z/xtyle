@@ -1,9 +1,9 @@
 {
   "name": "xtyle",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "Micro Framework",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/index.min.js",
+  "module": "./dist/index.min.mjs",
   "author": "hlop3z",
   "license": "MIT",
   "scripts": {
@@ -27,7 +27,7 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.js"
+      "import": "./dist/index.min.js"
     }
   },
   "dependencies": {

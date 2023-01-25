@@ -1,4 +1,18 @@
-import Core from "./component";
+import h from "./component";
+import app from "./router";
 
+/*
+window.$____XPRIVATEDICTX____$ = {
+  router: {},
+  components: {},
+  static: {},
+  vars: {},
+  methods: {},
+};
+
+*/
 // h, mount, router, reactive, go, redraw
-export default Core;
+export default {
+  h,
+  app,
+};

@@ -1,5 +1,153 @@
 import reactive from "./reactive.js";
-import VDom from "./virtual-dom.js";
+import diff from "./diff.js";
+import h from "./hyperscript.js";
+
+function mountToRoot(root, velement) {
+  if ("string" === typeof root) {
+    const parentNode = document.querySelector(root);
+    const vnode = velement.render();
+    velement.$el = vnode;
+    parentNode.appendChild(vnode);
+  } else {
+    const vnode = velement.render();
+    velement.$el = vnode;
+    root.appendChild(vnode);
+  }
+}
+
+export class Component {
+  constructor(setup) {
+    // Core
+    this.$el = null;
+    this.$root = null;
+    this.$parent = null;
+
+    // Attach Component
+    const { admin, component, internalObject, init } = setup;
+
+    // BIND To Each Other
+    this.__dict__ = admin;
+    admin.vdom = this;
+
+    // Create Internal Object
+    Object.defineProperty(internalObject, "$el", {
+      get: () => {
+        return this.$el;
+      },
+    });
+    Object.defineProperty(internalObject, "$parent", {
+      get: () => {
+        return this.$parent;
+      },
+    });
+    Object.defineProperty(internalObject, "$gui", {
+      get: () => {
+        return window.$____XPRIVATEDICTX____$.components;
+      },
+    });
+    Object.defineProperty(internalObject, "$ui", {
+      get: () => {
+        return window.$____XPRIVATEDICTX____$;
+      },
+    });
+
+    // Attach Sync To Parent
+    Object.keys(component.sync).forEach((childKey) => {
+      const parentKey = component.sync[childKey];
+      Object.defineProperty(internalObject, childKey, {
+        get: () => {
+          return this.$parent.data[parentKey];
+        },
+        set: (value) => {
+          this.$parent.data = (draft) => {
+            draft[parentKey] = value;
+          };
+        },
+      });
+    });
+
+    // EMIT from Child to Parent
+    internalObject.$emit = (action, value = null) => {
+      if (this.$parent) {
+        if (action.startsWith("update:")) {
+          const [ignore, key] = action.split(":");
+          this.$parent.data = (draft) => {
+            draft[key] = value;
+          };
+        } else if (action.startsWith("update")) {
+          this.$parent.data = (draft) => {
+            Object.keys(value).forEach((key) => {
+              draft[key] = value[key];
+            });
+          };
+        } else {
+          const { getInternalObject } = this.$parent;
+          if (getInternalObject[action]) {
+            getInternalObject[action](value);
+          }
+        }
+      }
+    };
+
+    // Attach Method & View
+    component.methods(internalObject);
+    this.view = component.view(internalObject);
+    this.getInternalObject = internalObject;
+
+    // Run Init - Should Run (Once ONLY)
+    init(() => {
+      // Attach Global Reactives
+      const globalKeys = component.follow ? component.follow : [];
+      if (globalKeys.length > 0) {
+        window.addEventListener("xtyleGlobalsUpdate", (event) => {
+          const { namespace } = event.detail;
+          if (globalKeys.includes(namespace)) {
+            this.render();
+          }
+        });
+      }
+    });
+
+    // Run Mounted
+    const mounted = component.mounted.bind(internalObject);
+    mounted();
+  }
+
+  get data() {
+    return this.__dict__.state;
+  }
+
+  set data(method) {
+    return this.__dict__.update(method);
+  }
+
+  render() {
+    let newData = h(...this.view())(this);
+    const current = diff(this.$el, newData);
+    this.$el = current;
+    return current;
+  }
+
+  mount(root = null) {
+    /**
+     * Mount { Virtual-DOM } to { document.<node> }
+     * @param  {String | Object} root A String for { querySelector } or an { Element-Object }
+     */
+    if (this.$root) {
+      mountToRoot(this.$root, this);
+    } else {
+      this.$root = root;
+      mountToRoot(root, this);
+    }
+  }
+
+  unmount() {
+    /**
+     * Un-Mount { Virtual-DOM } from { document.<node> }
+     */
+    this.$el.remove();
+  }
+}
 
 const checkTypeName = {
   [String]: "String",
@@ -76,18 +224,21 @@ function methodBind(element, vnode) {
   return vnode;
 }
 
-function coreBind(element, vnode) {
-  vnode.____VIEW____ = element.view.bind(vnode);
-  return vnode;
+function viewBind(element, vnode) {
+  return element.view.bind(vnode);
 }
 
 function ComponentBase(options) {
   const element = {
+    follow: options.follow || [],
+    sync: options.sync || {},
     props: options.props || {},
     data: options.data || {},
     methods: options.methods || {},
     view: options.view || function () {},
     components: options.components || {},
+    mounted: options.mounted || function () {},
+    init: options.init || function () {},
   };
 
   // INIT
@@ -102,17 +253,23 @@ function ComponentBase(options) {
   // Building Tools
   elementProps.props = (props) => createProps(element, props);
   elementProps.methods = (vnode) => methodBind(element, vnode);
-  elementProps.events = (vnode) => coreBind(element, vnode);
+  elementProps.view = (vnode) => viewBind(element, vnode);
+  elementProps.follow = element.follow;
+  elementProps.sync = element.sync;
+  elementProps.mounted = element.mounted;
+  elementProps.init = element.init;
   return elementProps;
 }
 
 function defineComponent(setup) {
   const component = ComponentBase(setup);
+  let init = false;
 
   // Real Component
-  function Component(componentProps) {
+  function createComponent(inputProps) {
+    const componentProps = inputProps ? inputProps : {};
     const props = component.props(componentProps);
-    const data = reactive.model(props);
+    const admin = reactive.model(props);
 
     // Create Internal Reactives
     const internalObject = {};
@@ -121,182 +278,50 @@ function defineComponent(setup) {
     function setProperty(key) {
       Object.defineProperty(internalObject, key, {
         get: function () {
-          return data.state[key];
+          return admin.state[key];
         },
         set: function (value) {
-          data.update((draft) => (draft[key] = value));
+          admin.update((draft) => (draft[key] = value));
         },
       });
     }
 
-    // Props & Data (Keys)
+    // Attach Props & Data (Keys)
     component.__keys__.forEach((key) => {
       setProperty(key);
     });
 
-    Object.defineProperty(internalObject, "$el", {
-      get: function () {
-        if (data.vdom) {
-          return data.vdom.self.$el;
-        }
+    // Attach Slots
+    internalObject.$slot = (key, opts) => {
+      if (componentProps.$slot[key]) {
+        return componentProps.$slot[key](opts);
+      } else {
         return null;
-      },
-    });
-
-    // Attach Update Method
-    internalObject.$update = (method) => data.update(method);
-
-    // Attach Component
-    component.methods(internalObject);
-    component.events(internalObject);
-
-    // Virtual-DOM
-    const vdom = VDom(internalObject.____VIEW____());
-    vdom.$data = data;
-    data.vdom = {
-      view: () => vdom.update(...internalObject.____VIEW____()),
-      self: vdom,
+      }
     };
 
-    return vdom;
-  }
-  return Component;
-}
+    // Attach Update Method
+    internalObject.$update = (method) => admin.update(method);
 
-function mountComponent(root, componentSchema) {
-  const view = defineComponent(componentSchema);
-  const vdom = view();
-  vdom.mount(root);
-  return vdom;
-}
-
-function mountRouter(setup) {
-  const options = setup ? setup : {};
-  let root = options.root ? options.root : "#app";
-  let history = options.history ? options.history : false;
-  let routes = options.routes ? options.routes : {};
-  let vdom = null;
-  let route = null;
-
-  const Page404 = {
-    props: {
-      title: {
-        type: String,
-        default: "Oops!",
-      },
-    },
-    view() {
-      return [
-        "div",
-        {
-          style: "text-align: center",
-        },
-        [
-          [
-            "h1",
-            {
-              style: "font-size: 8.5em",
-            },
-            [this.title],
-          ],
-          ["h3", {}, "404 | Page not Found."],
-        ],
-      ];
-    },
-  };
-
-  if (!history) {
-    if (!window.location.hash) window.location.hash = "/";
-  }
-
-  // Router Go
-  const navigate = (path) => {
-    const event = window.event;
-    if (event) {
-      try {
-        if (event.preventDefault) {
-          event.preventDefault();
-        }
-        if (event.stopPropagation) {
-          event.stopPropagation();
-        }
-        if (event.stopImmediatePropagation) {
-          event.stopImmediatePropagation();
-        }
-      } catch (e) {
-        e;
+    const runOnce = (method) => {
+      if (init === false) {
+        init = true;
+        method();
+        component.init.bind(internalObject)();
       }
-    }
-    if (history) {
-      window.history.pushState({}, "", path);
-    } else {
-      window.location.hash = path;
-    }
-    handleLocation();
-  };
-
-  async function handleLocation() {
-    const path = history
-      ? window.location.pathname
-      : window.location.hash.slice(1);
-    route = routes[path] || routes[404] || Page404;
-
-    if (vdom) {
-      vdom.unmount();
-    }
-    vdom = mountComponent(root, route);
+    };
+    // Virtual-DOM
+    return new Component({ component, internalObject, admin, init: runOnce });
   }
-
-  function reDraw() {
-    if (vdom) {
-      vdom.unmount();
-    }
-    vdom = mountComponent(root, route);
-  }
-
-  window.onpopstate = handleLocation;
-  window.$________________PRIVATEDICT________________$ = {
-    navigate,
-    redraw: reDraw,
-  };
-
-  handleLocation();
+  return createComponent;
 }
 
-export default {
-  h: defineComponent,
-  mount: mountComponent,
-  router: mountRouter,
-  redraw: () => window.$________________PRIVATEDICT________________$.redraw(),
-  go: (path) =>
-    window.$________________PRIVATEDICT________________$.navigate(path),
-  reactive: function (data) {
-    if (data) {
-      const model = reactive.model(data);
+export function buildComponents(components) {
+  const componentLib = {};
+  components.forEach((item) => {
+    componentLib[item.name] = defineComponent(item);
+  });
+  return componentLib;
+}
 
-      // Activate ReDraw
-      model.redraw = true;
-
-      // Create Internal Reactives
-      const internalObject = {};
-
-      // Proxy
-      function setProperty(key) {
-        Object.defineProperty(internalObject, key, {
-          get: function () {
-            return model.state[key];
-          },
-          set: function (value) {
-            model.update((draft) => (draft[key] = value));
-          },
-        });
-      }
-      Object.keys(data).forEach((key) => {
-        setProperty(key);
-      });
-
-      return internalObject;
-    }
-    return {};
-  },
-};
+export default defineComponent;

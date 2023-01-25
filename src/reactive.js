@@ -53,9 +53,6 @@ class Reactive {
     this.original = defaultValue;
     this.current = defaultValue;
     this.vdom = null;
-    this.redraw = false;
-    this.$redraw = () =>
-      window.$________________PRIVATEDICT________________$.redraw();
   }
 
   get state() {
@@ -63,34 +60,15 @@ class Reactive {
   }
 
   set state(method) {
-    return this.update(method);
+    this.update(method);
   }
 
   update(method) {
     const { data, update } = produce(this.current, method);
     if (update) {
       this.current = data;
-      if (this.redraw) {
-        this.$redraw();
-      } else if (this.vdom) {
-        if (this.vdom.view) {
-          this.vdom.view();
-        }
-        if (this.vdom.self) {
-          if (this.vdom.self.parent) {
-            const vdom = this.vdom.self;
-            const parent = this.vdom.self.parent;
-            const watch = vdom.$watch;
-            const watchKeys = Object.keys(watch);
-            if (parent.$data && watchKeys.length > 0) {
-              parent.$data.update((draft) => {
-                watchKeys.forEach((key) => {
-                  draft[watch[key]] = this.current[key];
-                });
-              });
-            }
-          }
-        }
+      if (this.vdom) {
+        this.vdom.render();
       }
     }
   }
@@ -100,8 +78,8 @@ class Reactive {
   }
 }
 
-function reactive(originalData) {
-  return new Reactive(originalData);
+function reactive(key, originalData) {
+  return new Reactive(key, originalData);
 }
 
 export default {
@@ -110,33 +88,3 @@ export default {
   compare,
   merge: mergeObjects,
 };
-
-/* @ Demo
-
-const reactiveData = reactive({
-  name: "John Doe",
-  age: 30,
-  address: {
-    street: "123 Main St",
-    city: "Anytown",
-    state: "CA",
-  },
-});
-
-// DO Update
-const update = reactiveData.update((draft) => {
-  draft.name = "Jane Doe";
-  draft.age = 25;
-  draft.address.city = "New City";
-});
-
-// Log Update
-console.log(update); // true
-console.log(reactiveData.current);
-
-// DO Reset
-reactiveData.reset();
-
-// Log Reset
-console.log(reactiveData.current);
-  -----------*/
