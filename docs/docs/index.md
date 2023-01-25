@@ -1,17 +1,54 @@
-# Welcome to MkDocs
+# Component
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+> Create **Reusable** Components
 
-## Commands
+## Demo | **HTML**
 
-- `python -m pipenv run python -m mkdocs new [dir-name]` - Create a new project.
-- `python -m pipenv run python -m mkdocs serve` - Start the live-reloading docs server.
-- `python -m pipenv run python -m mkdocs build` - Build the documentation site.
-- `python -m pipenv run python -m mkdocs -h` - Print help message and exit.
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Xtyle | App</title>
+    <script src="https://cdn.jsdelivr.net/gh/hlop3z/xtyle@main/dist/index.min.js"></script>
+  </head>
 
-## Project layout
+  <body>
+    <div id="app"></div>
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+    <script>
+      const myComponent = xtyle.h({
+        props: {
+          title: {
+            type: String,
+            default: "Hello World",
+          },
+        },
+        data: {
+          show: true,
+        },
+        methods: {
+          toggle() {
+            this.show = !this.show;
+          },
+        },
+        view() {
+          return [
+            "div",
+            {
+              "@click": () => {
+                console.log(this.title);
+                this.toggle();
+                console.log(this.show);
+              },
+            },
+            [["h1", {}, ["Xtyle Project"]]],
+          ];
+        },
+      });
+      const component = myComponent();
+      component.mount("#app");
+    </script>
+  </body>
+</html>
+```

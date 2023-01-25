@@ -4,7 +4,7 @@ repo_url: https://github.com/hlop3z/xtyle
 copyright: Copyright © ByMe
 
 nav:
-  - Component: component.md
+  - Component: index.md
   - Application: application.md
   - API:
       - Application: api/application.md
