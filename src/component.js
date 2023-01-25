@@ -156,6 +156,7 @@ const checkTypeName = {
   [Array]: "Array",
   [null]: "NULL",
   [Object]: "Object",
+  [Boolean]: "Boolean",
   [undefined]: "UNDEFINED",
 };
 
@@ -164,6 +165,8 @@ const checkType = (value) => {
     return { name: checkTypeName[String], type: String };
   } else if (typeof value === "number") {
     return { name: checkTypeName[Number], type: Number };
+  } else if (typeof value === "boolean") {
+    return { name: checkTypeName[Boolean], type: Boolean };
   } else if (typeof value === "function") {
     return { name: checkTypeName[Function], type: Function };
   } else if (typeof value === "object") {
@@ -185,14 +188,14 @@ function createProps(component, userInput) {
   const propsKeys = Object.keys(component.props);
   propsKeys.forEach((item) => {
     let value = inputObject[item];
-    const currentTypes = component.props[item].type;
-    const expectedType = checkTypeName[currentTypes];
-    if (value) {
-      if (currentTypes === String) {
+    const currentType = component.props[item].type;
+    const expectedType = checkTypeName[currentType];
+    if (value && currentType !== Boolean) {
+      if (currentType === String) {
         value = value.toString();
       }
       const inputType = checkType(value);
-      const isValid = currentTypes === inputType.type;
+      const isValid = currentType === inputType.type;
       if (!isValid) {
         if (["Function", "Object", "Array"].includes(expectedType)) {
           value = component.props[item].default();
@@ -203,6 +206,9 @@ function createProps(component, userInput) {
           `prop: { ${item} } is not of the value { ${expectedType} }`
         );
       }
+    } else if (currentType === Boolean) {
+      const currentVal = value === undefined ? null : value;
+      value = currentVal;
     } else {
       if (["Function", "Object", "Array"].includes(expectedType)) {
         value = component.props[item].default();
