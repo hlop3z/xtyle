@@ -94,23 +94,24 @@ export class Component {
     this.view = component.view(internalObject);
     this.getInternalObject = internalObject;
 
-    // Run Init - Should Run (Once ONLY)
-    init(() => {
-      // Attach Global Reactives
-      const globalKeys = component.follow ? component.follow : [];
-      if (globalKeys.length > 0) {
-        window.addEventListener("xtyleGlobalsUpdate", (event) => {
-          const { namespace } = event.detail;
-          if (globalKeys.includes(namespace)) {
-            this.render();
-          }
-        });
-      }
-    });
+    // Attach Local Init - Should Run (Once ONLY)
+    this.$events = {};
+    this.$events.init = () =>
+      init(() => {
+        // Attach Global Reactives
+        const globalKeys = component.follow ? component.follow : [];
+        if (globalKeys.length > 0) {
+          window.addEventListener("xtyleGlobalsUpdate", (event) => {
+            const { namespace } = event.detail;
+            if (globalKeys.includes(namespace)) {
+              this.render();
+            }
+          });
+        }
+      });
 
-    // Run Mounted
-    const mounted = component.mounted.bind(internalObject);
-    mounted();
+    // Attach Local Mounted
+    this.$events.mounted = component.mounted.bind(internalObject);
   }
 
   get data() {
@@ -122,10 +123,14 @@ export class Component {
   }
 
   render() {
-    let newData = h(...this.view())(this);
-    const current = diff(this.$el, newData);
-    this.$el = current;
-    return current;
+    const view = this.view();
+    if (view) {
+      let newData = h(...view)(this);
+      this.$el = diff(this.$el, newData);
+    }
+    this.$events.init();
+    this.$events.mounted();
+    return this.$el;
   }
 
   mount(root = null) {

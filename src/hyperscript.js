@@ -26,6 +26,7 @@ const ALL_EVENTS = [
 ];
 
 function h(tagName, attributes, children) {
+  if (!tagName) return () => null;
   const node = document.createElement(tagName);
 
   function WrappParent(parent = null) {
@@ -69,7 +70,10 @@ function h(tagName, attributes, children) {
         if (child instanceof Component) {
           child.$root = node;
           child.$parent = parent;
-          node.appendChild(child.render());
+          const vnode = child.render();
+          if (vnode) {
+            node.appendChild(vnode);
+          }
         } else if (typeof child === "object") {
           node.appendChild(h(...child)());
         } else {
