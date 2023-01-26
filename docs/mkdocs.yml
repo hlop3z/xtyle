@@ -1,11 +1,12 @@
 site_name: Xtyle
 site_url: https://hlop3z.github.io/xtyle/
 repo_url: https://github.com/hlop3z/xtyle
-copyright: Copyright © ByMe
+copyright: Copyright © Hlop3z
 
 nav:
   - Component: index.md
   - Application: application.md
+  - Routes: routes.md
   - API:
       - Application: api/application.md
       - UI: api/ui.md
@@ -43,6 +44,7 @@ theme:
         name: Switch to light mode
 
 markdown_extensions:
+  - admonition
   - tables
   - pymdownx.highlight:
       anchor_linenums: true

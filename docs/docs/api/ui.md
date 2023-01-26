@@ -15,6 +15,7 @@ export default {
 | -------------- | ---------------------------------- |
 | **`go(path)`** | **Navigate** to another **`View`** |
 | **`redraw`**   | **Re-Render** current **`View`**   |
+| **`current`**  | **Current** active **`Path`**      |
 
 ```js
 export default {

@@ -1,6 +1,14 @@
-# Application
+# **Xtyle** | Application
 
-> Create **Views** with your **Components**
+!!! tip "Views"
+
+    Create **Views** with your **Components**
+
+## Browser Usage
+
+```html
+<script src="https://unpkg.com/xtyle@latest"></script>
+```
 
 ## Demo | **HTML**
 
@@ -10,7 +18,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Xtyle | App</title>
-    <script src="https://cdn.jsdelivr.net/gh/hlop3z/xtyle@main/dist/v2.0.0.min.js"></script>
+    <script src="https://unpkg.com/xtyle@latest"></script>
   </head>
 
   <body>
