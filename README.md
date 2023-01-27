@@ -24,4 +24,6 @@ npm install xtyle
    <a href="https://hlop3z.github.io/xtyle/" target="_blank">
    Docs
    </a>
+   <br>
+   <a href="https://github.com/hlop3z/xtyle-css" target="_blank">Xtyle - CSS</a>
 </p>
