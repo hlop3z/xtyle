@@ -30,7 +30,7 @@
       "import": "./dist/index.min.js"
     }
   },
-  "dependencies": {
+  "devDependencies": {
     "esbuild": "^0.15.11"
   }
 }
