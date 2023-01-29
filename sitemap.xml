@@ -2,32 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://hlop3z.github.io/xtyle/</loc>
-         <lastmod>2023-01-26</lastmod>
+         <lastmod>2023-01-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hlop3z.github.io/xtyle/application/</loc>
-         <lastmod>2023-01-26</lastmod>
+         <lastmod>2023-01-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hlop3z.github.io/xtyle/routes/</loc>
-         <lastmod>2023-01-26</lastmod>
+         <lastmod>2023-01-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hlop3z.github.io/xtyle/api/application/</loc>
-         <lastmod>2023-01-26</lastmod>
+         <lastmod>2023-01-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hlop3z.github.io/xtyle/api/component/</loc>
-         <lastmod>2023-01-26</lastmod>
+         <lastmod>2023-01-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hlop3z.github.io/xtyle/api/ui/</loc>
-         <lastmod>2023-01-26</lastmod>
+         <lastmod>2023-01-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://hlop3z.github.io/xtyle/jsx/</loc>
+         <lastmod>2023-01-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
