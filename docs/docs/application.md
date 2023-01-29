@@ -30,7 +30,7 @@
           return [
             "div",
             {
-              "@click": () => {
+              "x-on:click": () => {
                 this.$ui.router.go("/about");
               },
               style: "cursor:pointer; user-select:none;",
@@ -45,7 +45,7 @@
           return [
             "div",
             {
-              "@click": () => {
+              "x-on:click": () => {
                 this.$ui.router.go("/");
               },
               style: "cursor:pointer; user-select:none;",

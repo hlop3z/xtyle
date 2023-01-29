@@ -40,8 +40,8 @@ function h(tagName, attributes, children) {
         }
       }
       if (attr !== "key" && attr !== "show") {
-        if (attr.startsWith("@")) {
-          let eventType = attr.slice(1);
+        if (attr.startsWith("x-on:")) {
+          let eventType = attr.slice(5);
           // SET -> Events
           if (ALL_EVENTS.includes(eventType)) {
             node.addEventListener(eventType, attributes[attr]);

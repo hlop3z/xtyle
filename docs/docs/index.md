@@ -44,7 +44,7 @@
           return [
             "div",
             {
-              "@click": () => {
+              "x-on:click": () => {
                 console.log(this.title);
                 this.toggle();
                 console.log(this.show);
