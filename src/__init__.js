@@ -1,4 +1,5 @@
 import h from "./component";
+import { fragment } from "./hyperscript";
 import app from "./router";
 
 /*
@@ -15,4 +16,5 @@ window.$____XPRIVATEDICTX____$ = {
 export default {
   h,
   app,
+  f: fragment,
 };

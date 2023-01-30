@@ -7,11 +7,15 @@ function mountToRoot(root, velement) {
     const parentNode = document.querySelector(root);
     const vnode = velement.render();
     velement.$el = vnode;
-    parentNode.appendChild(vnode);
+    // parentNode.appendChild(vnode);
+    parentNode.replaceWith(vnode);
   } else {
+    const parentNode = root;
     const vnode = velement.render();
     velement.$el = vnode;
-    root.appendChild(vnode);
+    parentNode.appendChild(vnode);
+    // parentNode.appendChild(vnode);
+    parentNode.replaceWith(vnode);
   }
 }
 

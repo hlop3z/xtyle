@@ -27,10 +27,9 @@ const ALL_EVENTS = [
 
 function h(tagName, attributes, children) {
   if (!tagName) return () => null;
+  if (tagName === "template") return h(...children[0]);
   const node = document.createElement(tagName);
-
   function WrappParent(parent = null) {
-    // Attributes
     const dictSync = {};
     for (let attr in attributes) {
       if (attr === "show") {
@@ -42,7 +41,6 @@ function h(tagName, attributes, children) {
       if (attr !== "key" && attr !== "show") {
         if (attr.startsWith("x-on:")) {
           let eventType = attr.slice(5);
-          // SET -> Events
           if (ALL_EVENTS.includes(eventType)) {
             node.addEventListener(eventType, attributes[attr]);
           }
@@ -55,13 +53,10 @@ function h(tagName, attributes, children) {
             }
           }
         } else {
-          // SET -> Attrs
           node.setAttribute(attr, attributes[attr]);
         }
       }
     }
-
-    // Children
     if (!Array.isArray(children)) {
       children = [children];
     }
@@ -75,17 +70,66 @@ function h(tagName, attributes, children) {
             node.appendChild(vnode);
           }
         } else if (typeof child === "object") {
-          node.appendChild(h(...child)());
+          if (child[0] === "template") {
+            fragment(...child[2]).forEach((fragmented) => {
+              node.appendChild(fragmented);
+            });
+          } else {
+            node.appendChild(h(...child)());
+          }
         } else {
           node.appendChild(document.createTextNode(child));
         }
       }
     });
-
     return node;
   }
-
   return WrappParent;
 }
 
 export default h;
+
+function createFragment(item) {
+  if (typeof item !== "string" && item) {
+    const [tag, attributes, children] = item;
+    const node = document.createElement(tag);
+    if (attributes) {
+      for (let attr in attributes) {
+        if (attr === "show") {
+          if (attributes[attr] === false) {
+            node.hidden = true;
+            return node;
+          }
+        }
+        if (attr !== "key" && attr !== "show") {
+          if (attr.startsWith("x-on:")) {
+            let eventType = attr.slice(5);
+            if (ALL_EVENTS.includes(eventType)) {
+              node.addEventListener(eventType, attributes[attr]);
+            }
+          } else if (attr === "class") {
+            if (Array.isArray(attributes[attr])) {
+              node.setAttribute(attr, attributes[attr].join(" "));
+            } else {
+              if (attributes[attr]) {
+                node.setAttribute(attr, attributes[attr]);
+              }
+            }
+          } else {
+            node.setAttribute(attr, attributes[attr]);
+          }
+        }
+      }
+    }
+    children.forEach((child) => {
+      node.appendChild(createFragment(child));
+    });
+    return node;
+  } else {
+    return document.createTextNode(item);
+  }
+}
+
+export function fragment(...items) {
+  return items.map((item) => createFragment(item));
+}
