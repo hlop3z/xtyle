@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node ./esbuild.js"
+    "size": "gzip -c dist/index.min.js | wc -c",
+    "build": "node ./esbuild.js && npm run size"
   },
   "repository": {
     "type": "git",

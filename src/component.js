@@ -3,19 +3,22 @@ import diff from "./diff.js";
 import h from "./hyperscript.js";
 
 function mountToRoot(root, velement) {
+  let vnode = "";
+  let parentNode = null;
   if ("string" === typeof root) {
-    const parentNode = document.querySelector(root);
-    const vnode = velement.render();
+    parentNode = document.querySelector(root);
+    vnode = velement.render();
     velement.$el = vnode;
-    // parentNode.appendChild(vnode);
-    parentNode.replaceWith(vnode);
   } else {
-    const parentNode = root;
-    const vnode = velement.render();
+    parentNode = root;
+    vnode = velement.render();
     velement.$el = vnode;
-    parentNode.appendChild(vnode);
-    // parentNode.appendChild(vnode);
+  }
+  if (vnode === null) {
+    parentNode.replaceWith("");
+  } else {
     parentNode.replaceWith(vnode);
+    //parentNode.appendChild(vnode);
   }
 }
 
