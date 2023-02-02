@@ -1,5 +1,3 @@
-import { PrivateDict } from ".";
-
 function deepMerge(target, ...sources) {
   sources.forEach((source) => {
     for (let key in source) {
@@ -49,19 +47,16 @@ function produce(current, method) {
   return { data: next, update: !update };
 }
 
-class Dict {
+class Reactive {
   constructor(reactObject) {
     const defaultValue = { ...reactObject };
-    this.$original = defaultValue;
-    this.$current = defaultValue;
-    this.$render = null;
-    this.$parent = null;
-    this.$methods = {};
-    this.$vdom = null;
+    this.original = defaultValue;
+    this.current = defaultValue;
+    this.vdom = null;
   }
 
   get state() {
-    return this.$current;
+    return this.current;
   }
 
   set state(method) {
@@ -69,29 +64,26 @@ class Dict {
   }
 
   update(method) {
-    const { data, update } = produce(this.$current, method);
+    const { data, update } = produce(this.current, method);
     if (update) {
-      this.$current = data;
-      if (this.$render) {
-        this.$render();
+      this.current = data;
+      if (this.vdom) {
+        this.vdom.render();
       }
     }
-    return update;
   }
 
   reset() {
-    this.$current = this.$original;
-    if (this.$render) {
-      this.$render();
-    }
+    this.current = this.original;
   }
 }
 
-export function dict(originalData) {
-  return new Dict(originalData);
+function reactive(key, originalData) {
+  return new Reactive(key, originalData);
 }
 
 export default {
+  model: reactive,
   produce,
   compare,
   merge: mergeObjects,

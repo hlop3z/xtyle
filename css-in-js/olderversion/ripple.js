@@ -42,17 +42,17 @@ export function inject(props) {
 }
 
 const cssClass = {
-  container: "ripple-effect__container",
-  animation: "ripple-effect__animation",
-  enter: "ripple-effect__animation--enter",
-  visible: "ripple-effect__animation--visible",
-  start: "ripple-effect__animation--start",
-  end: "ripple-effect__animation--end",
-  style: `.ripple-effect__animation,.ripple-effect__container{color:inherit;position:absolute;top:0;left:0;pointer-events:none;overflow:hidden}.ripple-effect__container{border-radius:inherit;width:100%;height:100%;z-index:0;contain:strict}.ripple-effect__animation{border-radius:50%;background:currentColor;opacity:0;will-change:transform,opacity}.ripple-effect__animation--enter{transition:none}.ripple-effect__animation--start{transition:transform .25s cubic-bezier(.4, 0, .2, 1),opacity .1s cubic-bezier(.4, 0, .2, 1)}.ripple-effect__animation--end{transition:opacity .3s cubic-bezier(.4, 0, .2, 1)}`,
+  container: "v-ripple__container",
+  animation: "v-ripple__animation",
+  enter: "v-ripple__animation--enter",
+  visible: "v-ripple__animation--visible",
+  start: "v-ripple__animation--start",
+  end: "v-ripple__animation--end",
+  style: `.v-ripple__animation,.v-ripple__container{color:inherit;position:absolute;top:0;left:0;pointer-events:none;overflow:hidden}.v-ripple__container{border-radius:inherit;width:100%;height:100%;z-index:0;contain:strict}.v-ripple__animation{border-radius:50%;background:currentColor;opacity:0;will-change:transform,opacity}.v-ripple__animation--enter{transition:none}.v-ripple__animation--start{transition:transform .25s cubic-bezier(.4, 0, .2, 1),opacity .1s cubic-bezier(.4, 0, .2, 1)}.v-ripple__animation--end{transition:opacity .3s cubic-bezier(.4, 0, .2, 1)}`,
 };
 
 inject({
-  id: "ripple-effect",
+  id: "ripple-fx",
   code: cssClass.style,
 });
 
