@@ -1,62 +1,43 @@
-# **Xtyle** | Component
+# Welcome to **Xtyle**
 
-!!! tip "Components"
+A **minimalistic** framework. This framework is heavily inspired by 3 tools. **React, Vue** and **Mithril**
 
-    Create **Reusable** Components
+## **Tools** to Build . . .
 
-## Browser Usage
+- A **Router**
+- Reactive [**Component**(s)](component/)
+- **Directives**
+- Global **State**
+- Global **Static Variables**
 
-```html
-<script src="https://unpkg.com/xtyle@latest"></script>
+## Application **Setup**
+
+```js title="app.js"
+const app = xtyle.app({
+  history: false, // (1)
+  reactive: false, // (2)
+  routes: {}, // (3)
+  components: [], // (4)
+  methods: {}, // (5)
+  ctx: {}, // (6)
+  var: {}, // (7)
+});
 ```
 
-## Demo | **HTML**
+1. IF `true`, the **URLs** will not include the **`#`**
+2. IF `true`, the Application Component will **re-render** everytime you **change routes**.
+3. All **Views** you want the application to have
+4. All Global **Components**
+5. All Global **Methods**
+6. All Global **Static** `non-reactive` values
+7. All Global **vars** aka `reactive` values
 
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Xtyle | App</title>
-    <script src="https://unpkg.com/xtyle@latest"></script>
-  </head>
-
-  <body>
-    <div id="app"></div>
-
-    <script>
-      const myComponent = xtyle.h({
-        props: {
-          title: {
-            type: String,
-            default: "Hello World",
-          },
-        },
-        data: {
-          show: true,
-        },
-        methods: {
-          toggle() {
-            this.show = !this.show;
-          },
-        },
-        view() {
-          return [
-            "div",
-            {
-              "x-on:click": () => {
-                console.log(this.title);
-                this.toggle();
-                console.log(this.show);
-              },
-            },
-            [["h1", {}, ["Xtyle Project"]]],
-          ];
-        },
-      });
-      const component = myComponent();
-      component.mount("#app");
-    </script>
-  </body>
-</html>
-```
+| Property         | Type    | Description                                                                       |
+| ---------------- | ------- | --------------------------------------------------------------------------------- |
+| **`history`**    | Boolean | Use the hash (**`#`**) in the **`URLS`**? (**Yes: `false`**) and (**No: `true`**) |
+| **`reactive`**   | Boolean | **Re-render** everytime you **change routes**.                                    |
+| **`routes`**     | Object  | All **Views** you want the application to have                                    |
+| **`components`** | Array   | All Global **Components**                                                         |
+| **`methods`**    | Object  | All Global **Methods**                                                            |
+| **`ctx`**        | Object  | All Global **Static** `non-reactive` values                                       |
+| **`var`**        | Object  | All Global **vars** aka `reactive` values                                         |

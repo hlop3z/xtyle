@@ -14,14 +14,18 @@ export default {
 
 !!! info "Access"
 
-    You can **access** the current **`route`** via the **`$ui.router`**
+    You can **access** the current **`router`** via the **`this.$router`**
 
 ```js
 export default {
-  mounted: () => {
-    console.log(this.$ui.router.current);
+  mounted() {
+    console.log(this.$router);
   },
-  view: () => ["div", {}, ["Hello World"]],
+  slot: {
+    default() {
+      return ["div", {}, ["Hello World"]];
+    },
+  },
 };
 ```
 

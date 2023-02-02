@@ -67,9 +67,11 @@ function hyperScript(hscript, parent = null) {
     children.forEach((child) => {
       if (typeof child === "function") {
         const current = child(parent);
-        Object.keys(current.$uuid).forEach((key) => {
-          parent.$uuid[key] = current.$uuid[key];
-        });
+        if (parent) {
+          Object.keys(current.$uuid).forEach((key) => {
+            parent.$uuid[key] = current.$uuid[key];
+          });
+        }
         node.appendChild(current.vdom);
       } else if (Array.isArray(child)) {
         const current = child[0];
