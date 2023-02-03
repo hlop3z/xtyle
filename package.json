@@ -1,6 +1,6 @@
 {
   "name": "xtyle",
-  "version": "2.0.6",
+  "version": "2.0.8",
   "description": "Micro Framework",
   "main": "./dist/index.min.js",
   "module": "./dist/index.min.mjs",

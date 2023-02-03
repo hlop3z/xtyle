@@ -10,10 +10,12 @@ function mountToRoot(root, vnode) {
   if ("string" === typeof root) {
     parentNode = document.querySelector(root);
   }
-  while (parentNode.firstChild) {
-    parentNode.firstChild.remove();
+  if (parentNode && vnode) {
+    while (parentNode.firstChild) {
+      parentNode.firstChild.remove();
+    }
+    parentNode.appendChild(vnode);
   }
-  parentNode.appendChild(vnode);
   return parentNode;
 }
 
@@ -74,7 +76,7 @@ export const PrivateDict = {
   components: {},
   methods: {},
   ctx: {},
-  var: globalVars,
+  val: globalVars,
   router: null,
 };
 
@@ -130,6 +132,33 @@ function getPathRoute(routes, currentPath) {
   return "404";
 }
 
+const Page404 = dom({
+  props: {
+    title: "Oops",
+  },
+  slot: {
+    default() {
+      const { title } = this.state;
+      return [
+        "div",
+        {
+          style: "text-align: center",
+        },
+        [
+          [
+            "h1",
+            {
+              style: "font-size: 8.5em",
+            },
+            [title],
+          ],
+          ["h3", {}, ["404 | Page not Found."]],
+        ],
+      ];
+    },
+  },
+});
+
 class App {
   constructor(setup) {
     this.$setup = setup ? setup : {};
@@ -146,7 +175,7 @@ class App {
     // App Core
     const options = this.$setup;
     let history = options.history ? options.history : false;
-    let reactive = options.reactive ? options.reactive : false;
+    let reactive = options.reactive ? options.reactive : true;
     let routes = options.routes ? options.routes : {};
     let AppComponent = options.app ? dom(options.app) : null;
 
@@ -154,7 +183,7 @@ class App {
     let appComponents = options.components ? options.components : [];
     let appMethods = options.methods ? options.methods : {};
     let appStatic = options.ctx ? options.ctx : {};
-    let appVars = options.var ? options.var : {};
+    let appVars = options.val ? options.val : {};
     let appDirectives = options.directives ? options.directives : {};
 
     let vdom = null; //Allow Re-Render from Outside
@@ -197,6 +226,7 @@ class App {
         window.location.hash = path;
       }
       routerHandler();
+      window.onpopstate = routerHandler;
     };
 
     // Main Handler

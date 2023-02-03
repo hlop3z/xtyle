@@ -56,14 +56,13 @@ export function setAttributes(vdom, attributes, vnode = null) {
 }
 
 function hyperScript(hscript, parent = null) {
-  const [tag, attributes, children] = hscript;
+  let [tag, attributes, children] = hscript;
   const node = document.createElement(tag);
-
-  // Set Attributes
   setAttributes(node, attributes);
-
-  // Set Children
   if (children) {
+    if (!Array.isArray(children)) {
+      children = [children];
+    }
     children.forEach((child) => {
       if (typeof child === "function") {
         const current = child(parent);
@@ -76,14 +75,11 @@ function hyperScript(hscript, parent = null) {
       } else if (Array.isArray(child)) {
         const current = child[0];
         if (typeof current === "string") {
-          // Single Children
           node.appendChild(hyperScript(child));
         } else {
-          // Multi Children
           child.map((xchild) => node.appendChild(hyperScript(xchild)));
         }
       } else {
-        // Text Children
         if (typeof child === "string") {
           node.appendChild(document.createTextNode(child.toString()));
         } else {
@@ -92,7 +88,6 @@ function hyperScript(hscript, parent = null) {
       }
     });
   }
-
   return node;
 }
 

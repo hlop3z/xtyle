@@ -8,10 +8,6 @@ nav:
   - Component: component.md
   - Application: application.md
   - Routes: routes.md
-  - API:
-      - Application: api/application.md
-      - UI: api/ui.md
-      - Component: api/component.md
   - JSX:
       - Getting Started: jsx/index.md
 

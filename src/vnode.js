@@ -113,8 +113,8 @@ function initProps(schema) {
           }
         }
       });
-      schema.data = { ...schema.data, ...props.form };
     }
+    schema.data = { ...schema.data, ...props.form };
     const definedFollow = schema.follow || [];
     schema.follow = new Set([...definedFollow, ...globalKeys]);
   }
@@ -379,11 +379,10 @@ export class Component {
   }
 }
 
-export default function createElement(schema) {
+export default function createElement($schema) {
   return function component(kwargs) {
-    // Custom Props
+    const schema = Object.assign({}, $schema);
     initProps(schema)(kwargs);
-    // Init V-DOM
     return (parent, init = true) => new Component(schema, parent, init);
   };
 }
