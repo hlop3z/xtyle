@@ -234,6 +234,21 @@
   
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../component/" class="md-nav__link">
         Component
       </a>
     </li>
@@ -266,84 +281,6 @@
       <a href="../routes/" class="md-nav__link">
         Routes
       </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4">
-          API
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="API" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
-          <span class="md-nav__icon md-icon"></span>
-          API
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/application/" class="md-nav__link">
-        Application
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/ui/" class="md-nav__link">
-        UI
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/component/" class="md-nav__link">
-        Component
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -423,29 +360,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#demo-components" class="md-nav__link">
-    Demo | Components
+  <a href="#demo-application" class="md-nav__link">
+    Demo | Application
   </a>
-  
-    <nav class="md-nav" aria-label="Demo | Components">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#button" class="md-nav__link">
-    Button
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hello-world" class="md-nav__link">
-    Hello World
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -496,29 +413,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#demo-components" class="md-nav__link">
-    Demo | Components
+  <a href="#demo-application" class="md-nav__link">
+    Demo | Application
   </a>
-  
-    <nav class="md-nav" aria-label="Demo | Components">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#button" class="md-nav__link">
-    Button
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hello-world" class="md-nav__link">
-    Hello World
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -551,48 +448,146 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>npm run dev
 </code></pre></div>
 <p><img alt="Xtyle App" src="demo.png" /></p>
-<h2 id="demo-components">Demo | <strong>Components</strong></h2>
+<h2 id="demo-application">Demo | <strong>Application</strong></h2>
 <div class="admonition note">
-<p class="admonition-title">Note<p>It comes with two (2) components.</p>
+<p class="admonition-title">Note<p>It comes with four (4) parts. (<strong><code>App</code>, <code>View</code>, <code>Button</code>, <code>Page Name</code></strong>)</p>
 </p>
 </div>
-<h3 id="button">Button</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">h</span><span class="p">({</span><span class="w"></span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nx">props</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Count is&quot;</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="p">},</span><span class="w"></span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nx">count</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nx">methods</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nx">toggle</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="p">},</span><span class="w"></span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nx">view</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">on</span><span class="o">:</span><span class="nx">click</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">toggle</span><span class="p">}</span><span class="o">&gt;</span><span class="w"></span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span><span class="w"> </span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="p">.</span><span class="nx">toString</span><span class="p">()}</span><span class="w"></span>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">      </span><span class="o">&lt;</span><span class="err">/button&gt;</span><span class="w"></span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="p">});</span><span class="w"></span>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">App</label><label for="__tabbed_1_2">View</label><label for="__tabbed_1_3">Button</label><label for="__tabbed_1_4">Page Name</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Application</p>
+<div class="highlight"><span class="filename">./src/App.jsx</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">javascriptLogo</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./assets/logos/javascript.svg&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">import</span><span class="w"> </span><span class="nx">xtyleLogo</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./assets/logos/xtyle.svg&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nx">slot</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">default</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$route</span><span class="p">,</span><span class="w"> </span><span class="nx">$router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">$router</span><span class="p">.</span><span class="nx">route</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;404&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">$route</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">id</span><span class="o">=</span><span class="s2">&quot;app&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Xtyle</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">App</span><span class="o">&lt;</span><span class="err">/h1&gt;</span><span class="w"></span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">a</span><span class="w"></span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">            </span><span class="nx">href</span><span class="o">=</span><span class="s2">&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript&quot;</span><span class="w"></span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">            </span><span class="nx">target</span><span class="o">=</span><span class="s2">&quot;_blank&quot;</span><span class="w"></span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">          </span><span class="o">&gt;</span><span class="w"></span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">            </span><span class="o">&lt;</span><span class="nx">img</span><span class="w"></span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">              </span><span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">javascriptLogo</span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">              </span><span class="kd">class</span><span class="o">=</span><span class="s2">&quot;logo vanilla&quot;</span><span class="w"></span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">              </span><span class="nx">alt</span><span class="o">=</span><span class="s2">&quot;JavaScript logo&quot;</span><span class="w"></span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">            </span><span class="o">/&gt;</span><span class="w"></span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">          </span><span class="o">&lt;</span><span class="err">/a&gt;</span><span class="w"></span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">a</span><span class="w"> </span><span class="nx">href</span><span class="o">=</span><span class="s2">&quot;https://hlop3z.github.io/xtyle/&quot;</span><span class="w"> </span><span class="nx">target</span><span class="o">=</span><span class="s2">&quot;_blank&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">            </span><span class="o">&lt;</span><span class="nx">img</span><span class="w"> </span><span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">xtyleLogo</span><span class="p">}</span><span class="w"> </span><span class="kd">class</span><span class="o">=</span><span class="s2">&quot;logo&quot;</span><span class="w"> </span><span class="nx">alt</span><span class="o">=</span><span class="s2">&quot;Xtyle logo&quot;</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">          </span><span class="o">&lt;</span><span class="err">/a&gt;</span><span class="w"></span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">          </span><span class="p">{</span><span class="nx">$route</span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">        </span><span class="o">&lt;</span><span class="err">/div&gt;</span><span class="w"></span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">      </span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="p">};</span><span class="w"></span>
 </code></pre></div>
-<h3 id="hello-world">Hello World</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">h</span><span class="p">({</span><span class="w"></span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nx">view</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="w"></span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Xtyle</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">App</span><span class="o">&lt;</span><span class="err">/h1&gt;</span><span class="w"></span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="p">{</span><span class="nx">Button</span><span class="p">()}</span><span class="w"></span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="o">&lt;</span><span class="err">/div&gt;</span><span class="w"></span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">});</span><span class="w"></span>
+</div>
+<div class="tabbed-block">
+<p>View</p>
+<div class="highlight"><span class="filename">./src/views/sample.jsx</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">components</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;../components&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">pageName</span><span class="p">,</span><span class="w"> </span><span class="nx">xButton</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">components</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nx">tag</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;div&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nx">slot</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="k">default</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="w"></span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">          </span><span class="p">{</span><span class="nx">pageName</span><span class="p">()}</span><span class="w"></span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">br</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">ripple</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">on</span><span class="o">:</span><span class="nx">click</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">$router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)}</span><span class="o">&gt;</span><span class="w"></span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">            </span><span class="nx">Go</span><span class="w"> </span><span class="nx">Home</span><span class="w"></span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">          </span><span class="o">&lt;</span><span class="err">/button&gt;</span><span class="w"></span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">on</span><span class="o">:</span><span class="nx">click</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">$router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="s2">&quot;/2nd&quot;</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Go</span><span class="w"> </span><span class="nx">Second</span><span class="o">&lt;</span><span class="err">/button&gt;</span><span class="w"></span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">on</span><span class="o">:</span><span class="nx">click</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">$router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="s2">&quot;/3rd&quot;</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Go</span><span class="w"> </span><span class="nx">Third</span><span class="o">&lt;</span><span class="err">/button&gt;</span><span class="w"></span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"></span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">            </span><span class="nx">x</span><span class="o">-</span><span class="nx">on</span><span class="o">:</span><span class="nx">click</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"></span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">              </span><span class="nx">$router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="s2">&quot;/not/found/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">())</span><span class="w"></span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">            </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">          </span><span class="o">&gt;</span><span class="w"></span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">            </span><span class="nx">Page</span><span class="w"> </span><span class="nx">Not</span><span class="w"> </span><span class="nx">Found</span><span class="w"></span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">          </span><span class="o">&lt;</span><span class="err">/button&gt;</span><span class="w"></span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">br</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">          </span><span class="o">&lt;</span><span class="nx">br</span><span class="w"> </span><span class="o">/&gt;</span><span class="w"></span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">          </span><span class="p">{</span><span class="nx">xButton</span><span class="p">({</span><span class="w"> </span><span class="nx">isGlobal</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">})}</span><span class="w"></span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">          </span><span class="p">{</span><span class="nx">xButton</span><span class="p">({</span><span class="w"> </span><span class="nx">isGlobal</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">})}</span><span class="w"></span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">        </span><span class="o">&lt;</span><span class="err">/div&gt;</span><span class="w"></span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">      </span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">    </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="p">};</span><span class="w"></span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Component (Button)</p>
+<div class="highlight"><span class="filename">./src/components/x/button.jsx</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nx">tag</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;h3&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nx">slot</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="k">default</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">$router</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$router</span><span class="p">.</span><span class="nx">args</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;home&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">pageName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">current</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mf">0</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">current</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">pageName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; View&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">};</span><span class="w"></span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Component (Page Name)</p>
+<div class="highlight"><span class="filename">./src/components/page-name.jsx</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nx">tag</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;button&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nx">follow</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;counter&quot;</span><span class="p">],</span><span class="w"></span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nx">props</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nx">isGlobal</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nx">count</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="nx">attrs</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="s2">&quot;x-on:click&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">vnode</span><span class="p">,</span><span class="w"> </span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">isGlobal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vnode</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">counter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vnode</span><span class="p">.</span><span class="nx">$ui</span><span class="p">.</span><span class="nx">val</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isGlobal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">        </span><span class="nx">counter</span><span class="p">.</span><span class="nx">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">draft</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">          </span><span class="nx">draft</span><span class="p">.</span><span class="nx">count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">        </span><span class="p">};</span><span class="w"></span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">        </span><span class="nx">vnode</span><span class="p">.</span><span class="nx">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">draft</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">          </span><span class="nx">draft</span><span class="p">.</span><span class="nx">count</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">        </span><span class="p">};</span><span class="w"></span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">      </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">    </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">  </span><span class="nx">slot</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">    </span><span class="k">default</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">isGlobal</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isGlobal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">counter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">$ui</span><span class="p">.</span><span class="nx">val</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">counter</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s2">&quot;Global Count is: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">count</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w">      </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">count</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="s2">&quot;Local Count is: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">count</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">    </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="p">};</span><span class="w"></span>
+</code></pre></div>
+</div>
+</div>
+</div>
 
 
 
@@ -616,7 +611,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../api/component/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Component" rel="prev">
+        <a href="../routes/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Routes" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -625,7 +620,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Component
+              Routes
             </div>
           </div>
         </a>
