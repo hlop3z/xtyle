@@ -314,6 +314,7 @@ class App {
       @ Start Router
     */
     routerHandler();
+    window.redraw = routerHandler;
   }
 }
 
