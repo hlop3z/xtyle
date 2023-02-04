@@ -1,7 +1,7 @@
 const FILE = "./dist/index.min.js";
 const FILEMJS = "./dist/index.min.mjs";
 const MINIFY = true;
-const BANNER = `/*! @License MIT | Copyright (c) 2022 hlop3z */`;
+const BANNER = `/*! @License MIT | Copyright (c) 2023 hlop3z */`;
 
 require("esbuild").build({
   globalName: "Core",

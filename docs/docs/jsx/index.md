@@ -13,17 +13,43 @@ npm install
 npm run dev
 ```
 
-![Xtyle App](demo.png)
+<video width="100%" loop autoplay controls>
+  <source src="./app.mp4" type="video/mp4">
+</video>
 
 ## Demo | **Application**
 
 !!! note
 
-        It comes with four (4) parts. (**`App`, `View`, `Button`, `Page Name`**)
+        It comes with **five** (5) main **parts**. (**`Main`, `App`, `View`, `Button`, `Page Name`**)
+
+=== "Main"
+
+      Main (App)
+
+      ```js title="./src/main.js"
+      import "./assets/style.css";
+      import App from "./App";
+      import view from "./views";
+      import store from "./store"; // val
+      import globals from "./globals"; // ctx
+
+      const app = xtyle.app({
+        app: App,
+        val: store,
+        ctx: globals,
+        routes: {
+          "/": view.sample,
+          "/{name}": view.sample,
+        },
+      });
+
+      app.mount("#app");
+      ```
 
 === "App"
 
-      Application
+      Application (Object)
 
       ```js title="./src/App.jsx"
       import javascriptLogo from "./assets/logos/javascript.svg";
@@ -52,6 +78,13 @@ npm run dev
                 <a href="https://hlop3z.github.io/xtyle/" target="_blank">
                   <img src={xtyleLogo} class="logo" alt="Xtyle logo" />
                 </a>
+                <br />
+                <br />
+                <button x-ripple={{ color: "red", circle: true, center: true }}>
+                  X-Ripple
+                </button>
+                <br />
+                <br />
                 {$route}
               </div>
             );
@@ -62,7 +95,7 @@ npm run dev
 
 === "View"
 
-      View
+      View (Object)
 
       ```js title="./src/views/sample.jsx"
       import components from "../components";
@@ -103,27 +136,9 @@ npm run dev
 
 === "Button"
 
-      Component (Button)
+      Button (Component)
 
       ```js title="./src/components/x/button.jsx"
-      export default {
-        tag: "h3",
-        slot: {
-          default() {
-            const { $router } = this;
-            const current = $router.args.name || "home";
-            const pageName = current.charAt(0).toUpperCase() + current.slice(1);
-            return pageName + " View";
-          },
-        },
-      };
-      ```
-
-=== "Page Name"
-
-      Component (Page Name)
-
-      ```js title="./src/components/page-name.jsx"
       export default {
         tag: "button",
         follow: ["counter"],
@@ -159,6 +174,24 @@ npm run dev
             }
             const { count } = this.state;
             return "Local Count is: " + count;
+          },
+        },
+      };
+      ```
+
+=== "Page Name"
+
+      Page Name (Component)
+
+      ```js title="./src/components/page-name.jsx"
+      export default {
+        tag: "h3",
+        slot: {
+          default() {
+            const { $router } = this;
+            const current = $router.args.name || "home";
+            const pageName = current.charAt(0).toUpperCase() + current.slice(1);
+            return pageName + " View";
           },
         },
       };

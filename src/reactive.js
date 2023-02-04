@@ -1,5 +1,3 @@
-import { PrivateDict } from ".";
-
 function deepMerge(target, ...sources) {
   sources.forEach((source) => {
     for (let key in source) {
@@ -51,9 +49,8 @@ function produce(current, method) {
 
 class Dict {
   constructor(reactObject) {
-    const defaultValue = { ...reactObject };
-    this.$original = defaultValue;
-    this.$current = defaultValue;
+    this.$original = reactObject;
+    this.$current = reactObject;
     this.$render = null;
     this.$parent = null;
     this.$methods = {};
@@ -80,7 +77,7 @@ class Dict {
   }
 
   reset() {
-    this.$current = this.$original;
+    this.$current = Object.assign({}, this.$original);
     if (this.$render) {
       this.$render();
     }

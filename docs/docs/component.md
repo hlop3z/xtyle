@@ -59,3 +59,38 @@ export default xtyle.dom({
 | ------------- | ---------------------------------------------------------------------------------- |
 | **`init`**    | Runs **Onces** as long as the component is **not `re-render`** by the **`parent`** |
 | **`mounted`** | Runs when **Mounted & Updated**                                                    |
+
+## **Re**writable
+
+```js
+myComponent({
+  titlePROP: "Hello World",
+  $sync: {},
+  $slot: {},
+  $attrs: {},
+  $methods: {},
+  $mounted() {},
+});
+```
+
+### Internal **`Code`**
+
+```js
+switch (key) {
+  case "$sync":
+    schema.sync = { ...schema.sync, ...kwargs.$sync };
+    break;
+  case "$slot":
+    schema.slot = { ...schema.slot, ...kwargs.$slot };
+    break;
+  case "$attrs":
+    schema.attrs = { ...schema.attrs, ...kwargs.$attrs };
+    break;
+  case "$methods":
+    schema.methods = { ...schema.methods, ...kwargs.$methods };
+    break;
+  case "$mounted":
+    schema.mounted = kwargs.$mounted;
+    break;
+}
+```

@@ -10,7 +10,7 @@ export default {
   attrs: {
     "x-on:click": (vnode, event) => {
       const { isGlobal } = vnode.state;
-      const { counter } = vnode.$ui.val;
+      const { counter } = vnode.$store;
       if (isGlobal) {
         counter.state = (draft) => {
           draft.count += 1;
@@ -27,7 +27,7 @@ export default {
     default() {
       const { isGlobal } = this.state;
       if (isGlobal) {
-        const { counter } = this.$ui.val;
+        const { counter } = this.$store;
         const { count } = counter.state;
         return "Global Count is: " + count;
       }

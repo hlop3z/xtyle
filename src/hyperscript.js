@@ -1,7 +1,7 @@
-import { PrivateDict } from ".";
+import { PrivateGlobalDict } from ".";
 
 function setDirective(node, key, value) {
-  const directives = PrivateDict.directives;
+  const directives = PrivateGlobalDict.directives;
   const cleanName = key.slice(2);
   if (cleanName.startsWith("on:")) {
     const eventType = cleanName.split(":")[1];

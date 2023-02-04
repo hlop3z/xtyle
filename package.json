@@ -1,6 +1,6 @@
 {
   "name": "xtyle",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "Micro Framework",
   "main": "./dist/index.min.js",
   "module": "./dist/index.min.mjs",
@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "size": "gzip -c dist/index.min.js | wc -c",
-    "build": "node ./esbuild.js && npm run size"
+    "build": "node ./esbuild.js && npm run size",
+    "dev": "vite"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     }
   },
   "devDependencies": {
-    "esbuild": "^0.15.11"
+    "esbuild": "^0.15.11",
+    "vite": "^4.1.1"
   }
 }

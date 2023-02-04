@@ -5,6 +5,14 @@ import ripple from "./ripple";
 import namespace, { globalVars, dict } from "./namespace";
 import { inject } from "./ripple";
 
+function camelCase(text) {
+  return text
+    .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (e, r) =>
+      0 == +e ? "" : 0 === r ? e.toLowerCase() : e.toUpperCase()
+    )
+    .replace(/[^\w]+/g, "");
+}
+
 function mountToRoot(root, vnode) {
   let parentNode = root;
   if ("string" === typeof root) {
@@ -60,7 +68,7 @@ export const randomUUID = () =>
   );
 
 // window.$____XPRIVATEDICTX____$
-export const PrivateDict = {
+export const PrivateGlobalDict = {
   directives: {
     on(vnode, key, value) {
       const current = vnode.vdom ? vnode.vdom : vnode;
@@ -245,7 +253,7 @@ class App {
       }
       currentView = routes[routerPath] || routes[404] || Page404;
 
-      PrivateDict.router = {
+      PrivateGlobalDict.router = {
         route: routerPath,
         path: currentPath,
         args: pathParams,
@@ -278,9 +286,9 @@ class App {
     // Components
     const allComponents = {};
     appComponents.map((item) => {
-      allComponents[item.name] = dom(item);
+      allComponents[camelCase(item.name)] = dom(item);
     });
-    PrivateDict.components = allComponents;
+    PrivateGlobalDict.components = allComponents;
 
     // Namespaced Vars
     Object.keys(appVars).forEach((key) => {
@@ -288,13 +296,19 @@ class App {
     });
 
     // Static Vars
-    PrivateDict.ctx = Object.freeze(appStatic);
+    PrivateGlobalDict.ctx = Object.freeze(appStatic);
 
     // Directives
-    PrivateDict.directives = { ...appDirectives, ...PrivateDict.directives };
+    PrivateGlobalDict.directives = {
+      ...appDirectives,
+      ...PrivateGlobalDict.directives,
+    };
 
     // Methods
-    PrivateDict.methods = Object.freeze(appMethods);
+    Object.keys(appMethods).forEach((key) => {
+      appMethods[key] = appMethods[key].bind(PrivateGlobalDict);
+    });
+    PrivateGlobalDict.methods = Object.freeze(appMethods);
 
     /*
       @ Start Router
@@ -315,11 +329,3 @@ export default {
   inject,
   app: createApp,
 };
-
-/*
-const pageHome = xtyle.dom(schema);
-const theApp = pageHome()();
-
-// Mount
-theApp.mount("#app");
-*/

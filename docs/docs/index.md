@@ -1,14 +1,32 @@
 # Welcome to **Xtyle**
 
-A **minimalistic** framework. This framework is heavily inspired by 3 tools. **React, Vue** and **Mithril**
+A **minimalistic** framework. This framework is heavily inspired by 5 tools.
+
+!!! tip "Frameworks (3)"
+
+    -  React
+    -  Vue
+    -  Mithril
+
+!!! tip "Tools (2)"
+
+    -  Immer (**Produce**)
+    -  Material Design (**Ripple**) | **`x-ripple`**
+
+    **JSX** | Demo
+
+    ```html
+     <button x-ripple={}>Click Me</button>
+    ```
 
 ## **Tools** to Build . . .
 
-- A **Router**
-- Reactive [**Component**(s)](component/)
-- **Directives**
-- Global **State**
-- Global **Static Variables**
+- **`routes`** and **`history`** | A **Router**
+- **`components`** | Reactive & Reusable [**Component**(s)](component/)
+- **`directives`** | Global **Directives**
+- **`val`** | Global **State** Variables **`reactive`**
+- **`ctx`** | Global **Static** Variables **`non-reactive`**
+- **`app.use(plugin)`** | Reusable **Plugins**
 
 ## Application **Setup**
 
@@ -16,7 +34,7 @@ A **minimalistic** framework. This framework is heavily inspired by 3 tools. **R
 const app = xtyle.app({
   app: {}, // (1)
   history: false, // (2)
-  reactive: false, // (3)
+  reactive: true, // (3)
   routes: {}, // (4)
   components: [], // (5)
   directives: {}, // (6)

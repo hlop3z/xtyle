@@ -2,7 +2,7 @@ import h from "./hyperscript";
 import { dict } from "./reactive";
 import { setAttributes } from "./hyperscript";
 import { SimpleNamespace } from "./namespace";
-import { ROUTER_KEY, randomUUID, PrivateDict } from ".";
+import { ROUTER_KEY, randomUUID, PrivateGlobalDict } from ".";
 
 // Global Components
 export const globalComponents = {};
@@ -186,7 +186,8 @@ export class Component {
         delete globalComponents[key];
       });
       const state = { ...schema, data: theData.state };
-      const vdom = createElement(state)()(parent, false);
+      const vdom = new Component(state, parent, init);
+      vdom.$setup.data.$original = theData.$original;
       return vdom;
     };
 
@@ -311,12 +312,6 @@ export class Component {
     this.$uuid[ID] = reRender;
   }
 
-  get $router() {
-    return PrivateDict.router;
-  }
-  get $ui() {
-    return PrivateDict;
-  }
   get keys() {
     return this.$setup.keys;
   }
@@ -329,7 +324,27 @@ export class Component {
   get mount() {
     return this.$setup.mount;
   }
-  stateReset() {
+
+  // Tools
+  get $router() {
+    return PrivateGlobalDict.router;
+  }
+  get $ui() {
+    return PrivateGlobalDict;
+  }
+  get $gui() {
+    return PrivateGlobalDict.components;
+  }
+  get $store() {
+    return PrivateGlobalDict.val;
+  }
+  get $ctx() {
+    return PrivateGlobalDict.ctx;
+  }
+  get $methods() {
+    return PrivateGlobalDict.methods;
+  }
+  $reset() {
     return this.$setup.data.reset();
   }
   set state(method) {

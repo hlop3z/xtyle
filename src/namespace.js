@@ -33,6 +33,15 @@ export class SimpleNamespace {
       this.$original = defaultValue;
       this.$current = defaultValue;
       this.$namespace = name;
+      this.$methods = {};
+      // Init Methods
+      Object.keys(defaultValue).forEach((key) => {
+        if (typeof defaultValue[key] === "function") {
+          this.$methods[key] = defaultValue[key].bind(this);
+        }
+      });
+
+      // Attach to Globals
       const dict = this;
       globalVars.__keys__.add(name);
       Object.defineProperty(globalVars, name, {
@@ -48,7 +57,7 @@ export class SimpleNamespace {
   }
 
   get state() {
-    return this.$current;
+    return { ...this.$current, ...this.$methods };
   }
 
   set state(method) {
