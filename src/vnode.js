@@ -310,6 +310,7 @@ export class Component {
 
     this.$id = ID;
     this.$uuid[ID] = reRender;
+    this.ctx = {};
   }
 
   get keys() {
@@ -343,6 +344,9 @@ export class Component {
   }
   get $methods() {
     return PrivateGlobalDict.methods;
+  }
+  get $custom() {
+    return PrivateGlobalDict.globalVarsCustom;
   }
   $reset() {
     return this.$setup.data.reset();

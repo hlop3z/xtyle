@@ -4,6 +4,7 @@ import reactive from "./reactive";
 import ripple from "./ripple";
 import namespace, { globalVars, dict } from "./namespace";
 import { inject } from "./ripple";
+import h from "./hyperscript";
 
 function camelCase(text) {
   return text
@@ -87,6 +88,7 @@ export const PrivateGlobalDict = {
   ctx: {},
   val: globalVars,
   router: null,
+  globalVarsCustom: {},
 };
 
 /*
@@ -195,6 +197,7 @@ class App {
     let appVars = options.val ? options.val : {};
     let appDirectives = options.directives ? options.directives : {};
 
+    // Router Tools
     let vdom = null; //Allow Re-Render from Outside
     let currentView = null;
     let routerPath = null;
@@ -311,6 +314,9 @@ class App {
     });
     PrivateGlobalDict.methods = Object.freeze(appMethods);
 
+    // PrivateGlobalDict
+    PrivateGlobalDict.globalVarsCustom = options.custom || {};
+
     /*
       @ Start Router
     */
@@ -324,6 +330,7 @@ function createApp(setup) {
 }
 
 export default {
+  h,
   dom,
   ...reactive,
   namespace,
