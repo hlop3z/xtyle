@@ -48,6 +48,7 @@ const ALL_EVENTS = [
   "focus",
   "blur",
   "change",
+  "input",
   "submit",
   "resize",
   "scroll",
