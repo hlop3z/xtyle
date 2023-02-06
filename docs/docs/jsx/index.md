@@ -28,22 +28,28 @@ npm run dev
       Main (App)
 
       ```js title="./src/main.js"
-      import "./assets/style.css";
       import App from "./App";
-      import view from "./views";
-      import store from "./store"; // val
-      import globals from "./globals"; // ctx
+      import View from "./views";
 
+      // Plugin (Lib)
+      import Plugin from "./xlib";
+
+      // Setup
       const app = xtyle.app({
         app: App,
-        val: store,
-        ctx: globals,
         routes: {
-          "/": view.sample,
-          "/{name}": view.sample,
+          "/": View.sample,
+          "/{name}": View.sample,
         },
       });
 
+      // Install Plugin
+      app.use(Plugin, {
+        name: "xtyler",
+        debug: true,
+      });
+
+      // Mount App
       app.mount("#app");
       ```
 
@@ -98,15 +104,12 @@ npm run dev
       View (Object)
 
       ```js title="./src/views/sample.jsx"
-      import components from "../components";
-
-      const { pageName, xButton } = components;
-
       export default {
         tag: "div",
         slot: {
           default() {
             const { $router } = this;
+            const { pageName, xButton } = this.$gui;
             return (
               <div>
                 {pageName()}

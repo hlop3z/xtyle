@@ -154,6 +154,15 @@ function mergePlugins(obj1, obj2) {
   return obj1;
 }
 
+const injectCSS = (options) => {
+  if (options.code) {
+    inject({
+      id: options.name || randomUUID(),
+      code: options.code,
+    });
+  }
+};
+
 class App {
   constructor(setup) {
     this.$setup = setup ? setup : {};
@@ -163,7 +172,13 @@ class App {
       const mixin = (options) => {
         this.$setup = mergePlugins(this.$setup, options);
       };
-      plugin.install(mixin, options);
+      plugin.install(
+        {
+          mixin,
+          css: injectCSS,
+        },
+        options
+      );
     }
   }
   mount(root = "#app") {
@@ -321,4 +336,5 @@ export default {
   dict,
   inject,
   app: createApp,
+  uuid: randomUUID,
 };

@@ -1,12 +1,9 @@
-import components from "../components";
-
-const { pageName, xButton } = components;
-
 export default {
   tag: "div",
   slot: {
     default() {
       const { $router } = this;
+      const { pageName, xButton } = this.$gui;
       return (
         <div>
           {pageName()}

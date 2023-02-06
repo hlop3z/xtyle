@@ -13,8 +13,8 @@ app.use(pluginB);
 
 ```js
 const pluginA = {
-  install(mixin) {
-    mixin({
+  install(app, opts) {
+    app.mixin({
       directives: {
         css(vnode, value) {
           const self = vnode.vdom ? vnode.vdom : vnode;
@@ -30,8 +30,8 @@ const pluginA = {
 
 ```js
 const pluginB = {
-  install(mixin) {
-    mixin({
+  install(app, opts) {
+    app.mixin({
       directives: {
         extra: (vnode, value) => {
           const self = vnode.vdom ? vnode.vdom : vnode;

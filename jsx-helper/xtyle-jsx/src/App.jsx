@@ -11,7 +11,7 @@ export default {
         return $route;
       }
       return (
-        <div id="app">
+        <template>
           <h1>{title($ui.ctx.project.name)} | App</h1>
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
@@ -34,7 +34,7 @@ export default {
           <br />
           <br />
           {$route}
-        </div>
+        </template>
       );
     },
   },
