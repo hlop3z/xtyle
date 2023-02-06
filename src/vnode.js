@@ -121,6 +121,10 @@ function initProps(schema) {
   return createProps;
 }
 
+function GroupComponents(...items) {
+  return [[], ...items.map((item) => () => item)];
+}
+
 export class Component {
   constructor(schema, parent = {}, init = true) {
     // Create Root
@@ -159,6 +163,7 @@ export class Component {
     this.sync = {};
     this.init = init;
     this.$uuid = {};
+    this.ctx = {};
 
     // Bind Methods
     Object.entries(theMethods).forEach(([key, method]) => {
@@ -239,35 +244,43 @@ export class Component {
 
     // INIT Slots
     if (theSlots.length === 0) {
-      theAdmin.keys.push("default");
       const slot = "default";
       if (theElems[slot]) {
         const vnode = theElems[slot].bind(this)();
-        if (typeof vnode === "string") {
-          theAdmin.slot[slot] = document.createTextNode(vnode);
-        } else if (typeof vnode === "function") {
-          const current = vnode()(this);
-          theAdmin.slot[slot] = current.vdom;
-        } else if (vnode instanceof Component) {
-          theAdmin.slot[slot] = vnode.vdom;
-        } else {
-          theAdmin.slot[slot] = h(vnode);
+        if (vnode) {
+          theAdmin.keys.push("default");
+          if (typeof vnode === "string") {
+            theAdmin.slot[slot] = document.createTextNode(vnode);
+          } else if (typeof vnode === "function") {
+            const current = vnode()(this);
+            theAdmin.slot[slot] = current.vdom;
+          } else if (vnode instanceof Component) {
+            theAdmin.slot[slot] = vnode.vdom;
+          } else if (vnode instanceof Node) {
+            theAdmin.slot[slot] = vnode;
+          } else {
+            theAdmin.slot[slot] = h(vnode);
+          }
         }
       }
     } else {
       theSlots.forEach((slot) => {
         const setup = theElems[slot];
         if (setup) {
-          theAdmin.keys.push(slot);
           const vnode = setup.bind(this)();
-          if (typeof vnode === "function") {
-            const current = vnode()(this);
-            theAdmin.slot[slot] = current.vdom;
-          } else if (vnode instanceof Component) {
-            theAdmin.slot[slot] = vnode.vdom;
-          } else {
-            const instance = h(vnode, this);
-            theAdmin.slot[slot] = instance;
+          if (vnode) {
+            theAdmin.keys.push(slot);
+            if (typeof vnode === "function") {
+              const current = vnode()(this);
+              theAdmin.slot[slot] = current.vdom;
+            } else if (vnode instanceof Component) {
+              theAdmin.slot[slot] = vnode.vdom;
+            } else if (vnode instanceof Node) {
+              theAdmin.slot[slot] = vnode;
+            } else {
+              const instance = h(vnode, this);
+              theAdmin.slot[slot] = instance;
+            }
           }
         }
       });
@@ -310,7 +323,6 @@ export class Component {
 
     this.$id = ID;
     this.$uuid[ID] = reRender;
-    this.ctx = {};
   }
 
   get keys() {
@@ -347,6 +359,9 @@ export class Component {
   }
   get $custom() {
     return PrivateGlobalDict.globalVarsCustom;
+  }
+  $use(...components) {
+    return GroupComponents(...components);
   }
   $reset() {
     return this.$setup.data.reset();

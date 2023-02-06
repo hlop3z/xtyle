@@ -62,14 +62,24 @@ export default xtyle.dom({
 
 ## **Re**writable
 
+!!! warning "props"
+
+    **`Props`** are **rewritable** by default. But you can also change configurations from the pre-defined component(s).
+
+    - **`$sync`**
+    - **`$slot`**
+    - **`$attrs`**
+    - **`$methods`**
+    - **`$mounted`**
+
 ```js
 myComponent({
-  titlePROP: "Hello World",
   $sync: {},
   $slot: {},
   $attrs: {},
   $methods: {},
   $mounted() {},
+  titlePROP: "Hello World",
 });
 ```
 

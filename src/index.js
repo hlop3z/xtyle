@@ -1,10 +1,12 @@
-// import h from "./hyperscript";
-import dom from "./vnode";
+import h from "./hyperscript";
+import dom, { mountToRoot } from "./vnode";
 import reactive from "./reactive";
 import ripple from "./ripple";
 import namespace, { globalVars, dict } from "./namespace";
 import { inject } from "./ripple";
-import h from "./hyperscript";
+import allEvents from "./allEvents";
+
+export const ROUTER_KEY = "______xtyle-view-display-active-element______";
 
 function camelCase(text) {
   return text
@@ -14,7 +16,7 @@ function camelCase(text) {
     .replace(/[^\w]+/g, "");
 }
 
-function mountToRoot(root, vnode) {
+function mountRemoveFirstChild(root, vnode) {
   let parentNode = root;
   if ("string" === typeof root) {
     parentNode = document.querySelector(root);
@@ -27,34 +29,6 @@ function mountToRoot(root, vnode) {
   }
   return parentNode;
 }
-
-export const ROUTER_KEY = "______xtyle-view-display-active-element______";
-
-const ALL_EVENTS = [
-  "click",
-  "dblclick",
-  "mousedown",
-  "mouseup",
-  "contextmenu",
-  "mouseout",
-  "mousewheel",
-  "mouseover",
-  "touchstart",
-  "touchend",
-  "touchmove",
-  "touchcancel",
-  "keydown",
-  "keyup",
-  "keypress",
-  "focus",
-  "blur",
-  "change",
-  "input",
-  "submit",
-  "resize",
-  "scroll",
-  "hashchange",
-];
 
 window.x = function x(...args) {
   const [tag, attrs, ...children] = args;
@@ -74,7 +48,7 @@ export const PrivateGlobalDict = {
   directives: {
     on(vnode, key, value) {
       const current = vnode.vdom ? vnode.vdom : vnode;
-      if (ALL_EVENTS.includes(key)) {
+      if (allEvents.includes(key)) {
         current.addEventListener(key, value);
       }
     },
@@ -170,6 +144,16 @@ const Page404 = dom({
   },
 });
 
+function mergePlugins(obj1, obj2) {
+  for (let key in obj2) {
+    obj1[key] =
+      obj1[key] && obj1[key].toString() === "[object Object]"
+        ? mergePlugins(obj1[key], obj2[key])
+        : (obj1[key] = obj2[key]);
+  }
+  return obj1;
+}
+
 class App {
   constructor(setup) {
     this.$setup = setup ? setup : {};
@@ -177,7 +161,7 @@ class App {
   use(plugin, options = {}) {
     if (plugin.install) {
       const mixin = (options) => {
-        this.$setup = { ...this.$setup, ...options };
+        this.$setup = mergePlugins(this.$setup, options);
       };
       plugin.install(mixin, options);
     }
@@ -269,7 +253,7 @@ class App {
       // Mount | App
       if (reactive) {
         vdom = AppComponent()();
-        mountToRoot(root, vdom.vdom);
+        mountRemoveFirstChild(root, vdom.vdom);
       } else if (!vdom) {
         vdom = AppComponent()();
         vdom.mount(root);

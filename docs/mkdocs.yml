@@ -8,7 +8,16 @@ nav:
   - Component: component.md
   - Application: application.md
   - Routes: routes.md
-  - (API) Components: api.md
+  - Plugins: plugins.md
+  - Directives: directives.md
+  - Store: store.md
+  - Component(s):
+      - Slot(s): components/slot.md
+      - API: components/api.md
+      - Non-Reactive: components/non-reactive.md
+      - Reactive: components/reactive.md
+      - Advanced: components/advanced.md
+      - Complex: components/complex.md
   - JSX:
       - Getting Started: jsx/index.md
 
