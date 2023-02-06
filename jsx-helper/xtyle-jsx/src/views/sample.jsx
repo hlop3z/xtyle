@@ -1,11 +1,10 @@
 export default {
-  tag: "div",
   slot: {
     default() {
       const { $router } = this;
       const { pageName, xButton } = this.$gui;
       return (
-        <div>
+        <template>
           {pageName()}
           <br />
           <button x-ripple x-on:click={() => $router.go("/")}>
@@ -24,7 +23,7 @@ export default {
           <br />
           {xButton({ isGlobal: false })}
           {xButton({ isGlobal: true })}
-        </div>
+        </template>
       );
     },
   },

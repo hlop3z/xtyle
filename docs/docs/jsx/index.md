@@ -105,13 +105,12 @@ npm run dev
 
       ```js title="./src/views/sample.jsx"
       export default {
-        tag: "div",
         slot: {
           default() {
             const { $router } = this;
             const { pageName, xButton } = this.$gui;
             return (
-              <div>
+              <template>
                 {pageName()}
                 <br />
                 <button x-ripple x-on:click={() => $router.go("/")}>
@@ -130,7 +129,7 @@ npm run dev
                 <br />
                 {xButton({ isGlobal: false })}
                 {xButton({ isGlobal: true })}
-              </div>
+              </template>
             );
           },
         },
