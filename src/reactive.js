@@ -40,10 +40,14 @@ function compare(obj1, obj2) {
 }
 
 function produce(current, method) {
+  const original = JSON.parse(JSON.stringify(current));
   const draft = Object.assign({}, current);
   method(draft);
   const next = mergeObjects(current, draft, true);
-  const update = compare(current, next);
+  let update = compare(current, draft);
+  if (update) {
+    update = JSON.stringify(original) === JSON.stringify(draft);
+  }
   return { data: next, update: !update };
 }
 
