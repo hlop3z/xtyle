@@ -5,6 +5,7 @@ import ripple from "./ripple";
 import namespace, { globalVars, dict } from "./namespace";
 import { inject } from "./ripple";
 import allEvents from "./allEvents";
+import xhrRequest from "./xhr";
 
 export const ROUTER_KEY = "______xtyle-view-display-active-element______";
 
@@ -337,4 +338,5 @@ export default {
   inject,
   app: createApp,
   uuid: randomUUID,
+  request: xhrRequest,
 };
