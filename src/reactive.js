@@ -1,7 +1,7 @@
 function deepMerge(target, ...sources) {
   sources.forEach((source) => {
     for (let key in source) {
-      if (source[key] instanceof Object) {
+      if (source[key] instanceof Object && !Array.isArray(source[key])) {
         if (!target[key]) Object.assign(target, { [key]: {} });
         deepMerge(target[key], source[key]);
       } else {
