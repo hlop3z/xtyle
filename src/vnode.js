@@ -105,6 +105,9 @@ function initProps(schema) {
             case "$mounted":
               schema.mounted = kwargs.$mounted;
               break;
+            case "$created":
+              schema.created = kwargs.$created;
+              break;
           }
         } else {
           const isValid = props.keys.includes(key);
@@ -146,6 +149,7 @@ export class Component {
     const theSync = schema.sync || {};
     const theData = initData(schema);
     const theMount = schema.mounted || function () {};
+    const theCreation = schema.created || function () {};
     const theInit = schema.init || function () {};
     const toFollow = schema.follow;
 
@@ -241,6 +245,9 @@ export class Component {
         },
       });
     });
+
+    // Created
+    theCreation.bind(this)();
 
     // INIT Slots
     if (theSlots.length === 0) {

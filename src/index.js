@@ -249,8 +249,8 @@ class App {
         : window.location.hash.slice(1);
 
       // Get Route
-      routerPath = getPathRoute(routes, currentPath);
       const splitPath = currentPath.split("?");
+      routerPath = getPathRoute(routes, splitPath[0]);
       pathParams = extractPathArgs(routerPath, splitPath[0]);
       if (splitPath.length > 1) {
         searchQuery = extractSearchParams("?" + splitPath[1]);

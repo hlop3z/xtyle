@@ -96,6 +96,8 @@ function hyperScript(hscript, parent = null) {
           });
         }
         node.appendChild(child.vdom);
+      } else if (child instanceof Node) {
+        node.appendChild(child);
       } else if (Array.isArray(child)) {
         const current = child[0];
         if (typeof current === "string") {
