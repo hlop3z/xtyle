@@ -7,7 +7,7 @@
 </p>
 
 <p align="center" style="font-size: 1.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;" >
-     (<code>16kb</code> and <code>6.4kb</code> ~ gzip) | For Building GUI(s).
+     (<code>16kb</code> and <code>6.5kb</code> ~ gzip) | For Building GUI(s).
 </p>
 
 ```sh
