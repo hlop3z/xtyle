@@ -7,6 +7,7 @@ export default [
   "mouseout",
   "mousewheel",
   "mouseover",
+  "mouseenter",
   "touchstart",
   "touchend",
   "touchmove",
