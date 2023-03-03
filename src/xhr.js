@@ -1,4 +1,10 @@
-function makeXHRRequest(method, url, data, withCredentials = false) {
+function makeXHRRequest(
+  method,
+  url,
+  data,
+  withCredentials = false,
+  middleware = null
+) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open(method, url, true);
@@ -6,6 +12,9 @@ function makeXHRRequest(method, url, data, withCredentials = false) {
       xhr.withCredentials = true;
     }
     xhr.setRequestHeader("Content-Type", "application/json");
+    if (middleware) {
+      middleware(xhr);
+    }
     xhr.onreadystatechange = function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
@@ -24,6 +33,7 @@ export default function XHR(args = {}) {
     args.method.toUpperCase(),
     args.url,
     args.data || null,
-    args.withCredentials
+    args.withCredentials,
+    args.middleware || null
   );
 }
