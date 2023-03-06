@@ -198,6 +198,12 @@ class App {
     let appDirectives = options.directives ? options.directives : {};
 
     // Router Tools
+    let beforeRoute = options.beforeRoute
+      ? options.beforeRoute
+      : function () {};
+    let afterRoute = options.afterRoute ? options.afterRoute : function () {};
+
+    // Router Tools
     let vdom = null; //Allow Re-Render from Outside
     let currentView = null;
     let routerPath = null;
@@ -278,7 +284,15 @@ class App {
       // Mount | Current Route
       if (currentView) {
         const routerElement = document.querySelector("#" + ROUTER_KEY);
-        const routerView = currentView()();
+        let routerView = null;
+        if (beforeRoute) {
+          routerView = beforeRoute({
+            next: () => currentView()(),
+            go: (path) => navigate(path),
+          });
+        } else {
+          routerView = currentView()();
+        }
         mountToRoot(routerElement, routerView.vdom);
       }
     }
