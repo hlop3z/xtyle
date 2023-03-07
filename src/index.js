@@ -182,8 +182,30 @@ class App {
       );
     }
   }
+  get $router() {
+    return PrivateGlobalDict.router;
+  }
+  get $ui() {
+    return PrivateGlobalDict;
+  }
+  get $gui() {
+    return PrivateGlobalDict.components;
+  }
+  get $store() {
+    return PrivateGlobalDict.val;
+  }
+  get $ctx() {
+    return PrivateGlobalDict.ctx;
+  }
+  get $methods() {
+    return PrivateGlobalDict.methods;
+  }
+  get $custom() {
+    return PrivateGlobalDict.globalVarsCustom;
+  }
   mount(root = "#app") {
     // App Core
+    const self = this;
     const options = this.$setup;
     let history = options.history ? options.history : false;
     let reactive = options.reactive ? options.reactive : true;
@@ -198,10 +220,8 @@ class App {
     let appDirectives = options.directives ? options.directives : {};
 
     // Router Tools
-    let beforeRoute = options.beforeRoute
-      ? options.beforeRoute
-      : function () {};
-    let afterRoute = options.afterRoute ? options.afterRoute : function () {};
+    let beforeRoute = options.beforeRoute ? options.beforeRoute : null;
+    let afterRoute = options.afterRoute ? options.afterRoute : null;
 
     // Router Tools
     let vdom = null; //Allow Re-Render from Outside
@@ -284,16 +304,22 @@ class App {
       // Mount | Current Route
       if (currentView) {
         const routerElement = document.querySelector("#" + ROUTER_KEY);
-        let routerView = null;
+        let routerView = currentView()();
         if (beforeRoute) {
-          routerView = beforeRoute({
-            next: () => currentView()(),
-            go: (path) => navigate(path),
+          beforeRoute.bind(self)({
+            next: () => {
+              mountToRoot(routerElement, routerView.vdom);
+            },
+            redirect: (path) => navigate(path),
           });
         } else {
-          routerView = currentView()();
+          mountToRoot(routerElement, routerView.vdom);
         }
-        mountToRoot(routerElement, routerView.vdom);
+      }
+      if (afterRoute) {
+        afterRoute.bind(self)({
+          redirect: (path) => navigate(path),
+        });
       }
     }
 
