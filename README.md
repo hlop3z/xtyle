@@ -10,10 +10,6 @@
 <script src="https://unpkg.com/xtyle@latest"></script>
 ```
 
-```sh
-npm install xtyle
-```
-
 <p align="center" style="font-size: 2.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;" >
    Links 
    <br>
