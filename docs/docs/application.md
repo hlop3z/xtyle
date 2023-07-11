@@ -1,205 +1,190 @@
-# **Xtyle** | Application
+!!! Description
 
-!!! tip "Views"
+    The purpose of the Application **Configuration Layout** is to structure and organization the settings and parameters that control the main appearance of a software application. By following this design approach, developers can create a cohesive structure for organizing settings, making it easier to locate and modify specific options.
 
-    Create **Views** with your **Components**
+## Configuration Layout
 
-## Browser Usage
+```jsx
+const AppLayout = {
+  // Sizes
+  header: "50px",
+  footer: "50px",
+  right: "185px",
+  left: "185px",
+  leftMini: "60px",
+  rightMini: "60px",
 
-```html
-<script src="https://unpkg.com/xtyle@latest"></script>
+  // Layers
+  headerLayer: 2,
+  footerLayer: 2,
+  leftLayer: 1,
+  rightLayer: 1,
+};
+
+const Config = {
+  layout: AppLayout,
+  directives: {},
+  router: {},
+};
+
+xtyle.createApp(Config);
 ```
 
-<p align="center" style="font-size: 2.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;" >
-   Xtyle App 
-</p>
+### Sizing (Width & Height)
 
-<video width="100%" loop autoplay controls>
-  <source src="../img/app.mp4" type="video/mp4">
-</video>
+| Key             | Descriptions           |
+| --------------- | ---------------------- |
+| **`header`**    | Header's **height**    |
+| **`footer`**    | Footer's **height**    |
+| **`right`**     | Right's **width**      |
+| **`left`**      | Left's **width**       |
+| **`leftMini`**  | Left-Mini's **width**  |
+| **`rightMini`** | Right-Mini's **width** |
 
-## Demo | **HTML**
+### Layering (Z-Index)
+
+| Key               | Descriptions       |
+| ----------------- | ------------------ |
+| **`headerLayer`** | Header's **layer** |
+| **`footerLayer`** | Footer's **layer** |
+| **`leftLayer`**   | Left's **layer**   |
+| **`rightLayer`**  | Right's **layer**  |
+
+## Application
+
+!!! info "Slots (sections)"
+
+    - **`main`** `<Fragment x-slot="main" />`
+    - **`header`** `<Fragment x-slot="header" />`
+    - **`footer`** `<Fragment x-slot="footer" />`
+    - **`left`** `<Fragment x-slot="left" />`
+    - **`right`** `<Fragment x-slot="right" />`
+    - **`left-mini`** `<Fragment x-slot="left-mini" />`
+    - **`right-mini`** `<Fragment x-slot="right-mini" />`
+
+!!! info "Cliping"
+
+    Use **`clip-{side}`** to trim the element to fit, without overlapping with other elements.
+
+### Init
+
+- **`x-init`**
+
+```js
+function App() {
+  let admin = {};
+  return <xtyle.layout x-init={(self) => (admin = self)}></xtyle.layout>;
+}
+```
+
+### Main
+
+!!! info
+
+    - **`clip-top`**
+    - **`clip-bottom`**
+    - **`clip-left`**
+    - **`clip-right`**
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Config -->
-    <title>Xtyle App</title>
-    <!-- Xtyle JS -->
-    <script src="https://unpkg.com/xtyle@latest"></script>
-  </head>
-  <body>
-    <div id="app"></div>
+<Fragment x-slot="main" clip-top clip-bottom clip-left clip-right> </Fragment>
+```
 
-    <!-- Xtyle Code -->
-    <script>
-      // Inject CSS
-      xtyle.inject({
-        id: "xtyle-app",
-        code: `main { margin-top: 25%; } button { margin: 0 2px; }`,
-      });
+### Sides
 
-      // Global Reactive
-      const dict = xtyle.dict({
-        count: 0,
-        add() {
-          this.state = (draft) => {
-            if (draft.count > 9) {
-              this.reset();
-            } else {
-              draft.count += 1;
-            }
-          };
-        },
-      });
-      // Reusable Component (Global State)
-      const Component = xtyle.dom({
-        tag: "button",
-        data: {
-          dict,
-        },
-        attrs: {
-          "x-on:click": () => dict.state.add(),
-        },
-        slot: {
-          default() {
-            // Access $store.project (Defined in the App Section)
-            const { project } = this.$store;
-            const { name } = project.state;
-            // Access "dict"
-            const { count } = dict.state; // You can also use: `this.state.dict`
-            return `(Global-${name}) Count is: ${count}`;
-          },
-        },
-      });
+!!! info
 
-      // Reusable Component (Local State)
-      const maxCount = 5;
-      const LocalComponent = xtyle.dom({
-        tag: "button",
-        data: {
-          count: 0,
-        },
-        attrs: {
-          // Attrs uses (`self`)
-          "x-on:click": (self) => {
-            const { count } = self.state;
-            const isMax = count > maxCount;
-            if (!isMax) {
-              /* [Update Current Values]
-            @set(method) => state         
-        */
-              self.state = (draft) => {
-                draft.count += 1;
-              };
-            } else {
-              self.$reset();
-            }
-          },
-        },
-        slot: {
-          // Slot(s) uses (`this`)
-          default() {
-            const { count } = this.state;
-            return "Count is: " + count;
-          },
-        },
-      });
+    - **`clip-top`**
+    - **`clip-bottom`**
 
-      // Home Page
-      const pageHome = {
-        slot: {
-          default() {
-            const { $route, $router } = this;
-            const current = $router.args.name || "home";
-            const pageName = current.charAt(0).toUpperCase() + current.slice(1);
-            return [
-              "div",
-              {},
-              [
-                ["h3", {}, pageName + " | Page"],
-                ["br", {}, []],
-                LocalComponent(),
-                Component(),
-              ],
-            ];
-          },
-        },
-      };
+    To **`Open`** and **`Close`** use the toggle method.
 
-      // App Component
-      const App = {
-        slot: {
-          default() {
-            const { $route, $router } = this;
-            return [
-              "main",
-              {
-                style: "text-align: center;",
-              },
-              [
-                "Xtyle Application",
-                ["br", {}, []],
-                ["br", {}, []],
-                [
-                  "button",
-                  {
-                    "x-on:click": () => {
-                      $router.go("/");
-                    },
-                  },
-                  ["home"],
-                ],
-                [
-                  "button",
-                  {
-                    "x-on:click": () => {
-                      $router.go("/about");
-                    },
-                  },
-                  ["about"],
-                ],
-                [
-                  "button",
-                  {
-                    "x-ripple": { color: "red", circle: true, center: true },
-                  },
-                  ["x-ripple"],
-                ],
-                ["br", {}, []],
-                ["br", {}, []],
-                $route,
-              ],
-            ];
-          },
-        },
-      };
+    -  **`admin.toggle("left | right | left-mini | right-mini")`**
 
-      // Xtyle App
-      const app = xtyle.app({
-        app: App,
-        val: {
-          project: {
-            name: "xtyle",
-          },
-        },
-        methods: {
-          changeTitle() {
-            console.log(this);
-          },
-        },
-        routes: {
-          "/": pageHome,
-          "/{name}": pageHome,
-        },
-      });
+```html
+<Fragment
+  x-slot="(left | right | left-mini | right-mini)"
+  clip-top
+  clip-bottom
+  class="open"
+>
+  Side
+</Fragment>
+```
 
-      // Mount
-      app.mount("#app");
-    </script>
-  </body>
-</html>
+### Demo
+
+```jsx
+function App() {
+  let admin = {};
+  return (
+    <xtyle.layout x-init={(self) => (admin = self)}>
+      {/* <!-- Header --> */}
+      <Fragment x-slot="header">
+        <button onClick={() => admin.toggle("left")}>Toggle Left</button>
+        Header
+        <button onClick={() => admin.toggle("right-mini")}>Toggle Right</button>
+      </Fragment>
+
+      {/* <!-- Main --> */}
+      <Fragment x-slot="main" clip-top clip-bottom clip-left clip-right>
+        <br />
+        <button onClick={() => xtyle.router.go({ path: "/" })}>Home</button>
+        <button
+          onClick={() =>
+            xtyle.router.go({ name: "custom", args: { view: "about" } })
+          }
+        >
+          About
+        </button>
+        <br />
+        <br />
+        {/* <!-- Router --> */}
+        <xtyle.router.view />
+      </Fragment>
+
+      {/* <!-- Drawers --> */}
+      <Fragment
+        x-slot="left"
+        class="open"
+        clip-top
+        clip-bottom
+        x-swipe={(e) => console.log(e)}
+      >
+        Left
+      </Fragment>
+      <Fragment x-slot="right" class="open" clip-top clip-bottom>
+        Right
+      </Fragment>
+
+      {/* <!-- Drawers (mini) --> */}
+      <Fragment x-slot="left-mini" class="open" clip-top clip-bottom>
+        Left-mini
+      </Fragment>
+      <Fragment x-slot="right-mini" class="open" clip-top clip-bottom>
+        Right-mini
+      </Fragment>
+
+      {/* <!-- Footer --> */}
+      <Fragment x-slot="footer">Footer</Fragment>
+    </xtyle.layout>
+  );
+}
+
+// Demo
+xtyle.inject(`
+.lt, .lb, .ll, .lr {
+  border: 1px solid black;
+}
+.ll {
+  text-align: right;
+}
+.lm, .lt {
+  text-align: center;
+}
+button { margin: 0 8px; }
+`);
+
+// Render
+preact.render(preact.h(App), document.body);
 ```

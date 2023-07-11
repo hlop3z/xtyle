@@ -3,12 +3,12 @@
 </h1>
 
 <p align="center" style="font-size: 2.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;" >
-    JavaScript Micro Framework
+    Extra Features for Preact.
 </p>
 
-<p align="center" style="font-size: 1.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;" >
-     (<code>16kb</code> and <code>6.5kb</code> ~ gzip) | For Building GUI(s).
-</p>
+```html
+<script src="https://unpkg.com/xtyle@latest"></script>
+```
 
 ```sh
 npm install xtyle

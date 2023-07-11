@@ -1,25 +1,15 @@
 site_name: Xtyle
-site_url: https://hlop3z.github.io/xtyle/
-repo_url: https://github.com/hlop3z/xtyle
-copyright: Copyright © Hlop3z
+site_url: https://example.com/
+# repo_url: https://github.com/blabla
+copyright: Copyright © ByMe
 
 nav:
-  - Introduction: index.md
-  - Component: component.md
+  - Getting Started: index.md
   - Application: application.md
-  - Routes: routes.md
-  - Plugins: plugins.md
-  - Directives: directives.md
+  - Component: component.md
   - Store: store.md
-  - Component(s):
-      - Slot(s): components/slot.md
-      - API: components/api.md
-      - Non-Reactive: components/non-reactive.md
-      - Reactive: components/reactive.md
-      - Advanced: components/advanced.md
-      - Complex: components/complex.md
-  - JSX:
-      - Getting Started: jsx/index.md
+  - Router: router.md
+  - Tabs: tabs.md
 
 # Configurations
 extra_css:
@@ -29,6 +19,7 @@ theme:
   name: material
   locale: en
   features:
+    # - navigation.tabs
     - navigation.instant
     - navigation.tracking
     - navigation.sections
@@ -36,7 +27,7 @@ theme:
     - content.code.annotate
     # - navigation.expand
   icon:
-    logo: material/circle-double
+    logo: material/bike-fast
 
   palette:
     - media: "(prefers-color-scheme: light)"

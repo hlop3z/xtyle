@@ -1,65 +1,61 @@
-# **`$store`** and **`xtyle.dict`**
+!!! info "Signals"
 
-Creating and using **`reactive`** data.
+    Wrapper for preact's **`signals`**. The purpose is to provide a simpler way to update an **`Array`** or **`Object`**.
+    Also, **Computed** and **Effect** are bind to each state, that way there is no need to worry about remembering if you need to use **`useComputed`** or **`computed`**, depending if is local or global it will use the correct one. Same goes for **`useSignalEffect`** or **`effect`**.
 
-!!! warning "tag"
+## Value (setup)
 
-    **Having** a **`tag`** creates an **`element`** and **NOT** having a **`tag`** creates a **`document-fragment`**.
+| Key             | Usage  | Description                                 |
+| --------------- | ------ | ------------------------------------------- |
+| **`useSignal`** | Local  | To be used **inside a component**.          |
+| **`signal`**    | Global | To be used globally in the **application**. |
 
-    To make the **component** **`reactive`** to the **global `$store`** you **must use** a **`tag`**
-
-## Example (**$Store**)
+### **Single** (Value)
 
 ```js
-// Xtyle App
-const app = xtyle.app({
-  // ...
-  val: {
-    counter: {
-      count: 0,
-    },
-  },
-  // ...
-});
-
-// xtyle.dom
-export default {
-  tag: "button",
-  follow: ["counter"] // This makes the component reactive to `counter` changes
-  slot: {
-    default() {
-      const { counter } = this.$store;
-      const { count } = counter.state;
-      return `Count is: ${count}`;
-    },
-  },
-};
+const myState = xtyle.signal("Hello World!");
 ```
 
-## Example `Reactive` (**Dict**)
+### **Object** (Value)
 
 ```js
-// xtyle.dict
-const counter = xtyle.dict({
-  count: 0,
+const myState = xtyle.signal({
+  title: "Hello World",
+  status: "open",
 });
+```
 
-// xtyle.dom
-export default {
-  tag: "button",
-  data: {
-    counter, // This makes the component reactive to `counter` changes
-  },
-  attrs: {
-    "x-on:click": () => {
-      counter.state = (draft) => (draft.count += 1);
-    },
-  },
-  slot: {
-    default() {
-      const { count } = counter.state;
-      return `Count is: ${count}`;
-    },
-  },
-};
+## Methods
+
+| Key            | Description                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------- |
+| **`update`**   | You can use it to **update** a **value**. But the **benefit** is when using **Object(s)** |
+| **`computed`** | **IF** is "**Local**" uses **`useComputed`** else it uses **`computed`**                  |
+| **`effect`**   | **IF** is "**Local**" uses **`useSignalEffect`** else it uses **`effect`**                |
+| **`reset`**    | You can use this method to **reset** the state to it's **original value**                 |
+
+### **Single** (Update)
+
+```js
+myState.value = "New Value!";
+// OR
+myState.update("New Value!");
+```
+
+### **Object** (Update)
+
+```js
+myState.update((draft) => (draft.status = "close"));
+```
+
+### Computed
+
+```js
+const keys = myState.computed(() => Object.keys(myState.value));
+```
+
+### Effect
+
+```js
+myState.effect(() => console.log(myState.value));
 ```

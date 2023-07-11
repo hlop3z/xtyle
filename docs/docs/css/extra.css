@@ -5,10 +5,3 @@
 .md-typeset table:not([class]) {
   display: table;
 }
-
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 60%;
-}

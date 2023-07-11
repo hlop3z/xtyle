@@ -1,106 +1,79 @@
-# Reusable **Component**(s)
+!!! Description
 
-Create **reusable** components
+    The purpose of the **`xtyle.element`** is to provide developers with a convenient and **centralized** way to create **Component(s)**. This  can serve different purposes.
 
-## Component | **Setup**
+    Mainly: **Reusable Directives**.
 
-```js title="component.js"
-export default xtyle.dom({
-  tag: "string", // (1)
-  props: {}, // (2)
-  data: {}, // (3)
-  sync: {}, // (4)
-  follow: [], // (5)
-  methods: {}, // (6)
-  slots: [], // (7)
-  slot: {
-    default() {}, // (8)
-  },
-  attrs: {}, // (9)
-  css: {}, // (10)
-  style: {}, // (11)
-  // Events
-  init() {}, // (12)
-  mounted() {}, // (13)
-});
-```
+    The reason directives are useful is because instead of having to **`export/import`** tools to each component you create and from different sources you can register a global directive and use it when you ever you find it fit. Then, later in the project you can **add** or **remove** from the component in a simpler way.
 
-1. HTML element **&lt;tag&gt;**
-2. **Argumnets** to be passed to the component
-3. Component's **Reactive-Data**
-4. Sync **Values** with parent. Binds **`{ componentKey : parentKey }`**
-5. List all **`vars`** that the component should **follow** and **react** to **changes**
-6. Component's internal **`methods`**
-7. List of **`slots`** you will like to create. If **`none`** is defined, the **`default`** slot will be rendered.
-8. Each **`function`** will be representing a **`slot`**
-9. HTML (**`slot`**) element **`attributes`**
-10. HTML (**`slot`**) element **`class`(es)**
-11. HTML (**`slot`**) element **`style`(s)**
-12. Runs **Onces** as long as the component is **not `re-render`** by the **`parent`**
-13. Runs when **Mounted & Updated**
+- **`xtyle.element`** Use it to create a custom element.
+- **`xtyle.slots`** Use it to collect **`slots`** from the **`props.children`** via **`x-slot`** **name**.
+- **`xtyle.props`** Use it to collect **`props`** and make them **camelCase**.
 
-| Property      | Type          | Description                                                                           |
-| ------------- | ------------- | ------------------------------------------------------------------------------------- |
-| **`tag`**     | String        | HTML element **&lt;tag&gt;**                                                          |
-| **`props`**   | Object        | **Argumnets** to be passed to the component                                           |
-| **`data`**    | Object        | Component's **Reactive-Data**                                                         |
-| **`sync`**    | Object        | Sync **Values** with parent. Binds **`{ componentKey : parentKey }`**                 |
-| **`follow`**  | Array(String) | List all **`vars`** that the component should **follow** and **react** to **changes** |
-| **`methods`** | Object        | Component's internal **`methods`**                                                    |
-| **`slots`**   | Array(String) | List of **`slots`** you will like to create                                           |
-| **`slot`**    | Object        | Each **`slot`** must be a **`function`**                                              |
-| **`attrs`**   | Object        | HTML (**`slot`**) element **`attributes`**                                            |
-| **`css`**     | Object        | HTML (**`slot`**) element **`class`(es)**                                             |
-| **`style`**   | Object        | HTML (**`slot`**) element **`style`(s)**                                              |
+```jsx
+function Component(args) {
+  // Collect
+  const slots = xtyle.slots(args);
+  const props = xtyle.props(args);
 
-## Component | **Events**
-
-| Property      | Description                                                                        |
-| ------------- | ---------------------------------------------------------------------------------- |
-| **`init`**    | Runs **Onces** as long as the component is **not `re-render`** by the **`parent`** |
-| **`mounted`** | Runs when **Mounted & Updated**                                                    |
-
-## **Re**writable
-
-!!! warning "props"
-
-    **`Props`** are **rewritable** by default. But you can also change configurations from the pre-defined component(s).
-
-    - **`$sync`**
-    - **`$slot`**
-    - **`$attrs`**
-    - **`$methods`**
-    - **`$mounted`**
-
-```js
-myComponent({
-  $sync: {},
-  $slot: {},
-  $attrs: {},
-  $methods: {},
-  $mounted() {},
-  titlePROP: "Hello World",
-});
-```
-
-### Internal **`Code`**
-
-```js
-switch (key) {
-  case "$sync":
-    schema.sync = { ...schema.sync, ...kwargs.$sync };
-    break;
-  case "$slot":
-    schema.slot = { ...schema.slot, ...kwargs.$slot };
-    break;
-  case "$attrs":
-    schema.attrs = { ...schema.attrs, ...kwargs.$attrs };
-    break;
-  case "$methods":
-    schema.methods = { ...schema.methods, ...kwargs.$methods };
-    break;
-  case "$mounted":
-    schema.mounted = kwargs.$mounted;
-    break;
+  // View
+  return <xtyle.element x-tag="div">Hello World</xtyle.element>;
 }
 ```
+
+---
+
+## **Slot** Reference(s)
+
+| Key          | Type | Description                                                         |
+| ------------ | ---- | ------------------------------------------------------------------- |
+| **`x-slot`** | Util | Used to define the location of a **`component`** using **`slots`**. |
+
+---
+
+## **Built-in** Directives
+
+| Key                   | Type      | Description                                                             |
+| --------------------- | --------- | ----------------------------------------------------------------------- |
+| **`x-tag`**           | Util      | Used to define the **HTML** real **`element`** for the **`component`**. |
+| **`x-init`**          | Util      | Used to manage the component from the parent.                           |
+| **`x-click`**         | Directive | Wrapper of preact's **`onClick`**                                       |
+| **`x-click-outside`** | Directive | Detect `click-outside` current element.                                 |
+| **`x-hover`**         | Directive | Detect `hover` current element.                                         |
+| **`x-resize`**        | Directive | Detect `resize` window global element.                                  |
+| **`x-ripple`**        | Directive | Detect `click` current element.                                         |
+| **`x-scroll`**        | Directive | Detect `scroll` current element.                                        |
+| **`x-swipe`**         | Directive | Detect `swipe` current element.                                         |
+
+```jsx
+function Component() {
+  // View
+  return (
+    <xtyle.element
+      x-tag="div"
+      x-init={(self) => console.log(self)}
+      x-click={(e) => console.log(e)}
+      x-click-outside={(e) => console.log(e)}
+      x-hover={(e) => console.log(e)}
+      x-resize={(e) => console.log(e)}
+      x-ripple={(e) => console.log(e)}
+      x-swipe={(e) => console.log(e)}
+      x-scroll={(info) => console.log(info)}
+    >
+      Hello World
+    </xtyle.element>
+  );
+}
+```
+
+---
+
+## Component (**Utils**)
+
+| Key                 | Usage      | Description                                                 |
+| ------------------- | ---------- | ----------------------------------------------------------- |
+| **`xtyle.element`** | Components | Create custom **Component(s)**.                             |
+| **`xtyle.slots`**   | Components | Design the location of a **`component`** using **`slots`**. |
+| **`xtyle.props`**   | Components | Transform **`props`** to **camelCase**.                     |
+| **`xtyle.class`**   | Components | Transform { `Object`, `Array`, `String` } to CSS **Class**. |
+| **`xtyle.style`**   | Components | Transform { `Object`, `Array`, `String` } to CSS **Style**. |

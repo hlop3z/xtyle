@@ -1,67 +1,31 @@
-# Welcome to **Xtyle**
+# (**X**)tyle
 
-A **minimalistic** framework. This framework is heavily inspired by 5 tools.
+!!! info "Description"
 
-!!! tip "Frameworks (3)"
+    Tool that adds extra features to **Preact**. It enhances Preact's component system, offers useful developer tools and allows customization. It gives developers more power and flexibility to build faster and more advanced user interfaces using Preact.
 
-    -  React
-    -  Vue
-    -  Mithril
+---
 
-!!! tip "Tools (2)"
+## (API) **A**pplication **P**rogramming **I**nterface
 
-    -  Immer (**Produce**)
-    -  Material Design (**Ripple**) | **`x-ripple`**
+---
 
-    **JSX** | Demo
+### Global
 
-    ```html
-     <button x-ripple={}>Click Me</button>
-    ```
+| Key                   | Usage     | Description                                      |
+| --------------------- | --------- | ------------------------------------------------ |
+| **`xtyle.createApp`** | Config    | Configure global variables and init application. |
+| **`xtyle.inject`**    | CSS       | Inject **`CSS`** code.                           |
+| **`xtyle.camel`**     | Transform | Convert string to camelCase.                     |
+| **`xtyle.slugify`**   | Transform | Convert string to slug-ify.                      |
 
-## **Tools** to Build . . .
+---
 
-- **`routes`** and **`history`** | A **Router**
-- **`components`** | Reactive & Reusable [**Component**(s)](component/)
-- **`directives`** | Global **Directives**
-- **`val`** | Global **State** Variables **`reactive`**
-- **`ctx`** | Global **Static** Variables **`non-reactive`**
-- **`app.use(plugin)`** | Reusable **Plugins**
+### Built-in Components
 
-## Application **Setup**
-
-```js title="app.js"
-const app = xtyle.app({
-  app: {}, // (1)
-  history: false, // (2)
-  reactive: true, // (3)
-  routes: {}, // (4)
-  components: [], // (5)
-  directives: {}, // (6)
-  methods: {}, // (7)
-  ctx: {}, // (8)
-  val: {}, // (9)
-});
-```
-
-1. **Application** Component
-2. IF `true`, the **URLs** will not include the **`#`**
-3. IF `true`, the Application Component will **re-render** everytime you **change routes**.
-4. All **Views** you want the application to have
-5. All Global **Components**
-6. All Global **Directives**
-7. All Global **Methods**
-8. All Global **Static** `non-reactive` values
-9. All Global **vars** aka `reactive` values
-
-| Property         | Type    | Description                                                                       |
-| ---------------- | ------- | --------------------------------------------------------------------------------- |
-| **`app`**        | Object  | **Application** Component                                                         |
-| **`history`**    | Boolean | Use the hash (**`#`**) in the **`URLS`**? (**Yes: `false`**) and (**No: `true`**) |
-| **`reactive`**   | Boolean | **Re-render** everytime you **change routes**.                                    |
-| **`routes`**     | Object  | All **Views** you want the application to have                                    |
-| **`components`** | Array   | All Global **Components**                                                         |
-| **`directives`** | Object  | All Global **Directives**                                                         |
-| **`methods`**    | Object  | All Global **Methods**                                                            |
-| **`ctx`**        | Object  | All Global **Static** `non-reactive` values                                       |
-| **`val`**        | Object  | All Global **Values** aka `reactive` values                                       |
+| Key                     | Usage      | Description                     |
+| ----------------------- | ---------- | ------------------------------- |
+| **`xtyle.element`**     | Components | Create custom **Component(s)**. |
+| **`xtyle.router.view`** | Router     | Display current **Route**.      |
+| **`xtyle.router.link`** | Router     | Create a link `<a>` to a route. |
+| **`xtyle.tabs.view`**   | Tabs       | Display current **Tab(s)**.     |

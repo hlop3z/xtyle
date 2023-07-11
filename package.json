@@ -1,7 +1,7 @@
 {
   "name": "xtyle",
   "version": "2.0.19",
-  "description": "Micro Framework",
+  "description": "Preact Toolkit",
   "main": "./dist/index.min.js",
   "module": "./dist/index.min.mjs",
   "author": "hlop3z",
@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "size": "gzip -c dist/index.min.js | wc -c",
-    "build": "node ./esbuild.js && npm run size",
+    "xtyle": "cat public/preact.min.js dist/pre.min.js > dist/index.min.js",
+    "build": "node ./esbuild.js && npm run xtyle && npm run size",
     "dev": "vite"
   },
   "repository": {
@@ -34,6 +35,9 @@
   },
   "devDependencies": {
     "esbuild": "^0.15.11",
-    "vite": "^4.1.1"
+    "vite": "^4.1.1",
+    "@babel/plugin-transform-react-jsx": "^7.20.13",
+    "cssnano": "^5.1.14",
+    "vite-plugin-babel": "^1.1.3"
   }
 }
