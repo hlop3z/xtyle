@@ -2,72 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://hlop3z.github.io/xtyle/</loc>
-         <lastmod>2023-02-06</lastmod>
+         <lastmod>2023-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hlop3z.github.io/xtyle/application/</loc>
-         <lastmod>2023-02-06</lastmod>
+         <lastmod>2023-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hlop3z.github.io/xtyle/component/</loc>
-         <lastmod>2023-02-06</lastmod>
+         <lastmod>2023-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hlop3z.github.io/xtyle/directives/</loc>
-         <lastmod>2023-02-06</lastmod>
+         <lastmod>2023-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://hlop3z.github.io/xtyle/plugins/</loc>
-         <lastmod>2023-02-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://hlop3z.github.io/xtyle/routes/</loc>
-         <lastmod>2023-02-06</lastmod>
+         <loc>https://hlop3z.github.io/xtyle/router/</loc>
+         <lastmod>2023-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://hlop3z.github.io/xtyle/store/</loc>
-         <lastmod>2023-02-06</lastmod>
+         <lastmod>2023-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://hlop3z.github.io/xtyle/components/advanced/</loc>
-         <lastmod>2023-02-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://hlop3z.github.io/xtyle/components/api/</loc>
-         <lastmod>2023-02-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://hlop3z.github.io/xtyle/components/complex/</loc>
-         <lastmod>2023-02-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://hlop3z.github.io/xtyle/components/non-reactive/</loc>
-         <lastmod>2023-02-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://hlop3z.github.io/xtyle/components/reactive/</loc>
-         <lastmod>2023-02-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://hlop3z.github.io/xtyle/components/slot/</loc>
-         <lastmod>2023-02-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://hlop3z.github.io/xtyle/jsx/</loc>
-         <lastmod>2023-02-06</lastmod>
+         <loc>https://hlop3z.github.io/xtyle/tabs/</loc>
+         <lastmod>2023-07-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
