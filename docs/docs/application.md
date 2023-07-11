@@ -1,6 +1,16 @@
-!!! Description
+!!! info "Description"
 
-    The purpose of the Application **Configuration Layout** is to structure and organization the settings and parameters that control the main appearance of a software application. By following this design approach, developers can create a cohesive structure for organizing settings, making it easier to locate and modify specific options.
+    The purpose of the **Application Configuration Layout** is to provide developers with a structured and organized approach to managing the settings and parameters that control the overall appearance and behavior of a software application. This design approach aims to create a cohesive structure that enhances the organization and accessibility of settings, facilitating efficient locating and modification of specific options.
+
+!!! info "Slots (sections)"
+
+    - **`main`** `<Fragment x-slot="main" />`
+    - **`header`** `<Fragment x-slot="header" />`
+    - **`footer`** `<Fragment x-slot="footer" />`
+    - **`left`** `<Fragment x-slot="left" />`
+    - **`right`** `<Fragment x-slot="right" />`
+    - **`left-mini`** `<Fragment x-slot="left-mini" />`
+    - **`right-mini`** `<Fragment x-slot="right-mini" />`
 
 ## Configuration Layout
 
@@ -51,16 +61,6 @@ xtyle.createApp(Config);
 | **`rightLayer`**  | Right's **layer**  |
 
 ## Application
-
-!!! info "Slots (sections)"
-
-    - **`main`** `<Fragment x-slot="main" />`
-    - **`header`** `<Fragment x-slot="header" />`
-    - **`footer`** `<Fragment x-slot="footer" />`
-    - **`left`** `<Fragment x-slot="left" />`
-    - **`right`** `<Fragment x-slot="right" />`
-    - **`left-mini`** `<Fragment x-slot="left-mini" />`
-    - **`right-mini`** `<Fragment x-slot="right-mini" />`
 
 !!! info "Cliping"
 
@@ -185,6 +185,5 @@ xtyle.inject(`
 button { margin: 0 8px; }
 `);
 
-// Render
-preact.render(preact.h(App), document.body);
+export default App;
 ```

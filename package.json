@@ -1,9 +1,8 @@
 {
   "name": "xtyle",
-  "version": "2.0.19",
+  "version": "2.1.1",
   "description": "Preact Toolkit",
   "main": "./dist/index.min.js",
-  "module": "./dist/index.min.mjs",
   "author": "hlop3z",
   "license": "MIT",
   "scripts": {

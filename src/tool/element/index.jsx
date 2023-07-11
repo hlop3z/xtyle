@@ -10,6 +10,8 @@ const globalDirectives = [
   "xNoselect",
   "xInit",
   "xScroll",
+  "xTag",
+  "xSlot",
 ];
 
 function initElement(util) {
@@ -106,9 +108,10 @@ function initElement(util) {
       @ Directives
     */
     directives.forEach((key) => {
-      const method = util.directives.method[key];
-      if (method && !globalDirectives.includes(method))
-        method(selfConfig, prop);
+      if (!globalDirectives.includes(key)) {
+        const method = util.directives.method[key];
+        if (method) method(selfConfig, prop);
+      }
     });
 
     /*

@@ -1,10 +1,14 @@
-!!! Description
+!!! info "Description"
 
-    The purpose of the **`xtyle.element`** is to provide developers with a convenient and **centralized** way to create **Component(s)**. This  can serve different purposes.
+    The **`xtyle.element`** serves the purpose of offering developers a convenient and centralized approach to creating components. It provides a versatile solution that can serve various purposes, with a primary focus on **reusable directives**.
 
-    Mainly: **Reusable Directives**.
+    One of the **key advantages of directives** is their ability to simplify component development. By registering a global directive, developers can avoid the need to **`export/import`** tools for each component individually from multiple sources. Instead, they can leverage the global directive whenever it is deemed appropriate. This approach streamlines the development process and facilitates easier **addition** or **removal** of the directive from components as the project evolves.
 
-    The reason directives are useful is because instead of having to **`export/import`** tools to each component you create and from different sources you can register a global directive and use it when you ever you find it fit. Then, later in the project you can **add** or **remove** from the component in a simpler way.
+    In summary, **`xtyle.element`** empowers developers by providing a centralized and efficient method for component creation. Through the utilization of reusable directives, developers can enhance productivity, maintain consistency, and seamlessly manage component-related functionalities throughout their projects.
+
+!!! tip "Directives"
+
+    **Directives** make everything easier.
 
 - **`xtyle.element`** Use it to create a custom element.
 - **`xtyle.slots`** Use it to collect **`slots`** from the **`props.children`** via **`x-slot`** **name**.

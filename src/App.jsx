@@ -11,7 +11,12 @@ const Routes = [
 ];
 
 const Config = {
-  directives: {},
+  directives: {
+    demo: (self, props) => {
+      console.log(self);
+      console.log(props);
+    },
+  },
   router: {
     history: true,
     routes: Routes,
@@ -59,7 +64,7 @@ function App() {
   return (
     <xtyle.layout x-init={(self) => (admin = self)}>
       {/* <!-- Header --> */}
-      <Fragment x-slot="header">
+      <Fragment x-slot="header" x-demo>
         <button onClick={() => admin.toggle("left")}>Toggle Left</button>
         Header
         <button onClick={() => admin.toggle("right-mini")}>Toggle Right</button>

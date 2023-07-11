@@ -1,7 +1,10 @@
 !!! info "Signals"
 
-    Wrapper for preact's **`signals`**. The purpose is to provide a simpler way to update an **`Array`** or **`Object`**.
-    Also, **Computed** and **Effect** are bind to each state, that way there is no need to worry about remembering if you need to use **`useComputed`** or **`computed`**, depending if is local or global it will use the correct one. Same goes for **`useSignalEffect`** or **`effect`**.
+    A Preact **`signals`** wrapper that simplifies updating Array or Object structures by providing a streamlined approach. It offers an intuitive way to manage and modify complex data structures.
+
+    The wrapper seamlessly integrates with Preact's Computed and Effect functionality, eliminating the need to remember which hook to use (**`useComputed`** or **`computed`**) or which effect to employ (**`useSignalEffect`** or **`effect`**). The wrapper automatically handles the appropriate selection based on whether the state is local or global.
+
+    This seamless integration enhances the developer experience by reducing cognitive load and ensuring consistent usage of computed values and effects. It eliminates the need to track and differentiate between similar but context-specific functions, resulting in cleaner and more maintainable code
 
 ## Value (setup)
 
