@@ -5,14 +5,13 @@ copyright: Copyright © Hlop3z
 
 nav:
   - Introduction: index.md
+  - Getting Started: getting_started.md
   - Application: application.md
   - Component: component.md
   - Directives: directives.md
   - Store: store.md
   - Router: router.md
   - Tabs: tabs.md
-  - Getting Started:
-      - Setup: tutorial/setup.md
 
 # Configurations
 watch:

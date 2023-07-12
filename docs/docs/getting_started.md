@@ -16,4 +16,12 @@
 
 <div id="terminal-index" data-termynal></div>
 
+## Demo (**Preview**)
+
 ![App Demo](media/app-1.png)
+
+## Project **Build**
+
+```sh
+npm run build
+```
