@@ -29,6 +29,31 @@ const Routes = [
 ];
 ```
 
+## Paths
+
+!!! tip
+
+    **Variables** embedded within **URLs** for dynamic data retrieval and routing.
+
+    Variables must be inside brackets **`{}`**. For example  `/my/path/key-{value}`
+
+| Key                    | Required | Descriptions                                              |
+| ---------------------- | -------- | --------------------------------------------------------- |
+| **`{variable_name}`**  | Yes      | Regular variables                                         |
+| **`{?variable_name}`** | Optional | IF it starts with **`?`** its an optional variable        |
+| **`{variable_name*}`** | Optional | IF it ends with **`*`** matches the remainder of the path |
+
+```js
+const patternDictionary = {
+  // Regular
+  "/": "view-1",
+  // Optional
+  "/a/b/{?key}": "view-2",
+  // Path
+  "/a/b/key-{name}/{path*}": "view-3",
+};
+```
+
 ## Configuration
 
 | Key           | Type     | Descriptions                                                                            |

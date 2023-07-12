@@ -6,12 +6,13 @@ copyright: Copyright © Hlop3z
 nav:
   - Introduction: index.md
   - Application: application.md
-  - Directives: directives.md
   - Component: component.md
+  - Directives: directives.md
   - Store: store.md
   - Router: router.md
   - Tabs: tabs.md
-  # - Getting Started: index.md
+  - Getting Started:
+      - Setup: tutorial/setup.md
 
 # Configurations
 extra_css:
