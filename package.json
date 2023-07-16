@@ -1,6 +1,6 @@
 {
   "name": "xtyle",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Preact Toolkit",
   "main": "./dist/index.min.js",
   "author": "hlop3z",

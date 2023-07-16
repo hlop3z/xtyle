@@ -283,6 +283,17 @@ Util.createApp = (config) => {
   Util.router(router || {});
 };
 
+Util.window = Util.signal({
+  x: window.innerWidth,
+  y: window.innerHeight,
+});
+window.addEventListener("resize", () => {
+  Util.window.update((draft) => {
+    draft.x = window.innerWidth;
+    draft.y = window.innerHeight;
+  });
+});
+
 export default Util;
 
 /* [ Testing ]
