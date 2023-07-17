@@ -1,33 +1,24 @@
 import "./style.css";
-import HelloWorld from "../components/HelloWorld.tsx";
+import Main from "./main.tsx";
+import Header from "./header.tsx";
+import Footer from "./footer.tsx";
 
 /**
- * My Custom Component.
- * @param {any} props - The props of the component.
+ * App Layout.
  */
 function App() {
   /* Layout Admin */
   let layout: any = {};
 
-  /* Menu */
-  const menu: any = {
-    home: () => xtyle.router.go({ path: "/" }),
-    about: () => xtyle.router.go({ name: "custom", args: { view: "about" } }),
-  };
+  /* Tools */
+  const toggleSide = (val: string) => layout.toggle(val);
 
   /* View */
   return (
-    <xtyle.layout x-init={(self) => (layout = self)}>
+    <xtyle.layout x-init={(self: any) => (layout = self)}>
       {/* <!-- Header --> */}
       <Fragment class="app-header" x-slot="header">
-        Header
-        <nav>
-          <ul class="menu">
-            {["left", "left-mini", "right", "right-mini"].map((item) => (
-              <li onClick={() => layout.toggle(item)}>Toggle ({item})</li>
-            ))}
-          </ul>
-        </nav>
+        <Header toggle={toggleSide} />
       </Fragment>
 
       {/* <!-- Main --> */}
@@ -39,14 +30,7 @@ function App() {
         clip-left
         clip-right
       >
-        <HelloWorld title="Hello World" />
-        <div class="router-menu">
-          <button onClick={menu.home}>Home</button>
-          <button onClick={menu.about}>About</button>
-        </div>
-        <div style="height: 40px"></div>
-        {/* <!-- Router --> */}
-        <xtyle.router.view />
+        <Main />
       </Fragment>
 
       {/* <!-- Drawers --> */}
@@ -83,7 +67,7 @@ function App() {
 
       {/* <!-- Footer --> */}
       <Fragment x-slot="footer" class="app-footer">
-        Footer
+        <Footer />
       </Fragment>
     </xtyle.layout>
   );
