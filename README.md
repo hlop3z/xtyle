@@ -12,14 +12,18 @@
 
 <p align="center" style="font-size: 2.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;" >
    Links 
-   <br>
+   <br><br>
    <a href="https://github.com/hlop3z/xtyle" target="_blank">
    Github
    </a>
-   <br>
+   <br><br>
    <a href="https://hlop3z.github.io/xtyle/" target="_blank">
    Docs
    </a>
-   <br>
+   <br><br>
+   <a href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-template.zip" target="_blank">
+   Download Template
+   </a>
+   <br><br>
    <a href="https://github.com/hlop3z/xtyle-css" target="_blank">Xtyle - CSS</a>
 </p>
