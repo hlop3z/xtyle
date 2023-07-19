@@ -6,7 +6,6 @@ export default function createDirectives(util) {
       );
     },
     "click-outside": (self, props) => {
-      console.log(self);
       util.event(document, "click", function (event) {
         const isClickInsideElement = self.ref.current.contains(event.target);
         if (!isClickInsideElement) {
