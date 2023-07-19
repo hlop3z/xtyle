@@ -1,0 +1,19 @@
+{
+  "name": "vite-xtyle",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "cssnano": "^6.0.1",
+    "postcss": "^8.4.25",
+    "sass": "^1.63.6",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.0",
+    "vite-plugin-babel": "^1.1.3"
+  }
+}
