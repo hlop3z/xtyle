@@ -4,7 +4,7 @@
 export default function Component() {
   return (
     <Fragment>
-      <h2>Sample Content</h2>
+      <h3>Mini-Left</h3>
     </Fragment>
   );
 }

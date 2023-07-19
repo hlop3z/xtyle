@@ -1,10 +1,10 @@
 /**
- * Left Side.
+ * Right Side (Mini).
  */
 export default function Component() {
   return (
     <Fragment>
-      <h2>Sample Content</h2>
+      <h3>Mini-Right</h3>
     </Fragment>
   );
 }

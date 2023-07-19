@@ -1,7 +1,11 @@
-import "./style.css";
+import "./style.scss";
 import Main from "./main.tsx";
 import Header from "./header.tsx";
 import Footer from "./footer.tsx";
+import SideLeft from "./side-left.tsx";
+import SideRight from "./side-right.tsx";
+import MiniLeft from "./mini-left.tsx";
+import MiniRight from "./mini-right.tsx";
 
 /**
  * App Layout.
@@ -41,10 +45,10 @@ function App() {
         clip-bottom
         x-swipe={(e) => console.log(e)}
       >
-        Left
+        <SideLeft />
       </Fragment>
       <Fragment x-slot="right" class="open app-right" clip-top clip-bottom>
-        Right
+        <SideRight />
       </Fragment>
 
       {/* <!-- Drawers (mini) --> */}
@@ -54,7 +58,7 @@ function App() {
         clip-top
         clip-bottom
       >
-        Left-mini
+        <MiniLeft />
       </Fragment>
       <Fragment
         x-slot="right-mini"
@@ -62,7 +66,7 @@ function App() {
         clip-top
         clip-bottom
       >
-        Right-mini
+        <MiniRight />
       </Fragment>
 
       {/* <!-- Footer --> */}
