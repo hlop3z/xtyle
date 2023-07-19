@@ -21,8 +21,12 @@
    Docs
    </a>
    <br><br>
-   <a href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-template.zip" target="_blank">
-   Download Template
+   <a href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-lib.zip" target="_blank">
+   Download (Library) Template
+   </a>
+   <br><br>
+   <a href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-app.zip" target="_blank">
+   Download (Application) Template
    </a>
    <br><br>
    <a href="https://github.com/hlop3z/xtyle-css" target="_blank">Xtyle - CSS</a>

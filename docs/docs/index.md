@@ -21,7 +21,7 @@
 ## Usage
 
 ```html
-<script src="https://unpkg.com/xtyle@latest"></script>
+<script src="https://unpkg.com/xtyle@latest" type="text/javascript"></script>
 <script>
   console.log(preact);
   console.log(xtyle);
