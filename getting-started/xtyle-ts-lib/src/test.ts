@@ -1,20 +1,23 @@
-/* Core */
-import App from "./base/__init__.tsx";
-import Routes from "./views/__init__.ts";
-import Layout from "./config/layout.ts";
+/* Theme */
+import LayoutConfig from "./config/layout.ts";
 import Directives from "./config/directives.ts";
 
+/* App */
+import App from "./base/index.tsx";
+import Routes from "./views/__init__.ts";
+
+/* Config */
 const Config = {
-  layout: Layout,
+  layout: LayoutConfig,
   directives: Directives,
   router: {
     history: false,
     routes: Routes,
-    // before: ({ from, to, next }) => next(),
+    // before: ({ from, to, next, redirect }) => next(),
     // after: ({ from, to }) => console.log(from, to),
   },
 };
 
+/* Render */
 xtyle.createApp(Config);
-
 preact.render(preact.h(App), document.body);

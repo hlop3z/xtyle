@@ -6,23 +6,15 @@ body {
   overflow: hidden;
 }
 
-/* X-Layout */
-.lt,
-.lb,
-.ll,
-.lr {
-  border: 1px solid black;
-}
-.ll {
-  text-align: right;
-}
-.lm,
-.lt,
-.lb {
+/* App-Layout */
+.app-main,
+.app-header,
+.app-footer {
   text-align: center;
 }
-
-/* Layout */
+.app-left {
+  text-align: right;
+}
 .app-main {
   background-color: white;
   padding-top: 40vh;
