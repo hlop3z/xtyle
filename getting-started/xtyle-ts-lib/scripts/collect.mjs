@@ -57,7 +57,7 @@ async function collectTSXFiles() {
               .replace("type Props =", "")
               .trim()
               .slice(0, -1);
-            const outFunc = `declare const ${componentName}: (props: ${outType}) => object;`;
+            const outFunc = `${componentName}: (props: ${outType}) => object;`;
             listFunc.push(docContent + "\n\n" + outFunc);
             listComp.push(
               `export { default as ${componentName} } from "./${folderName}/index.tsx";`
@@ -84,7 +84,11 @@ async function collectTSXFiles() {
 
   createParentPath(code.types_file);
   await writeFile(code.comps_file, code.comps, "utf-8");
-  await writeFile(code.types_file, code.types, "utf-8");
+  await writeFile(
+    code.types_file,
+    `declare const theme:{\n${code.types}\n};`,
+    "utf-8"
+  );
 }
 
 collectTSXFiles();
