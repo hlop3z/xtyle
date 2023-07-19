@@ -7,27 +7,32 @@
 </p>
 
 ```html
-<script src="https://unpkg.com/xtyle@latest"></script>
+<script src="https://unpkg.com/xtyle@latest" type="text/javascript"></script>
 ```
 
-<p align="center" style="font-size: 2.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;" >
-   Links 
-   <br><br>
-   <a href="https://github.com/hlop3z/xtyle" target="_blank">
-   Github
-   </a>
-   <br><br>
-   <a href="https://hlop3z.github.io/xtyle/" target="_blank">
-   Docs
-   </a>
-   <br><br>
-   <a href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-lib.zip" target="_blank">
-   Download (Library) Template
-   </a>
-   <br><br>
-   <a href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-app.zip" target="_blank">
-   Download (Application) Template
-   </a>
-   <br><br>
-   <a href="https://github.com/hlop3z/xtyle-css" target="_blank">Xtyle - CSS</a>
+<p
+  align="center"
+  style="font-size: 2.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;"
+>
+  Links
+  <br /><br />
+  <a href="https://github.com/hlop3z/xtyle" target="_blank"> Github </a>
+  <br /><br />
+  <a href="https://hlop3z.github.io/xtyle/" target="_blank"> Docs </a>
+  <br /><br />
+  <a
+    href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-lib.zip"
+    target="_blank"
+  >
+    Download (Library) Template
+  </a>
+  <br /><br />
+  <a
+    href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-app.zip"
+    target="_blank"
+  >
+    Download (Application) Template
+  </a>
+  <br /><br />
+  <a href="https://github.com/hlop3z/xtyle-css" target="_blank">Xtyle - CSS</a>
 </p>
