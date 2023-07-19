@@ -28,7 +28,6 @@ function createParentPath(filePath) {
 }
 
 async function collectTSXFiles() {
-  const listType = [];
   const listFunc = [];
   const listComp = [];
   async function decorator(folderPath, currentFolder = "") {
@@ -54,10 +53,11 @@ async function collectTSXFiles() {
           // Use the file {Content} and {Folder-Name}
           if (folderName !== "__base__") {
             const propsCode = fileContent.split("export default Props;")[0];
-            const propsKey = `${componentName}Props`;
-            const outType = propsCode.replace("type Props", `type ${propsKey}`);
-            const outFunc = `declare const ${componentName}: (props: ${propsKey}) => object;`;
-            listType.push(outType);
+            const outType = propsCode
+              .replace("type Props =", "")
+              .trim()
+              .slice(0, -1);
+            const outFunc = `declare const ${componentName}: (props: ${outType}) => object;`;
             listFunc.push(docContent + "\n\n" + outFunc);
             listComp.push(
               `export { default as ${componentName} } from "./${folderName}/index.tsx";`
@@ -78,14 +78,12 @@ async function collectTSXFiles() {
     comps_file: path.join(folderPath, "index.ts"),
     types_file: path.join(outPath, "theme.d.ts"),
     // Text
-    types: listType.join("\n\n") + "\n\n" + listFunc.join("\n\n"),
+    types: listFunc.join("\n\n"),
     comps: listComp.join("\n"),
   };
 
-  //
-  await writeFile(code.comps_file, code.comps, "utf-8");
-
   createParentPath(code.types_file);
+  await writeFile(code.comps_file, code.comps, "utf-8");
   await writeFile(code.types_file, code.types, "utf-8");
 }
 

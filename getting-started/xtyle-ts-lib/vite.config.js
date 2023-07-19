@@ -10,6 +10,7 @@ export default defineConfig({
       entry: resolve(__dirname, "src/index.ts"),
       name: "theme",
       fileName: "index",
+      formats: ["es"],
     },
   },
 });
