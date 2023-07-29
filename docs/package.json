@@ -1,0 +1,42 @@
+{
+  "name": "xtyle",
+  "version": "2.1.4",
+  "description": "Preact Toolkit",
+  "main": "./dist/index.min.js",
+  "author": "hlop3z",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "size": "gzip -c dist/index.min.js | wc -c",
+    "xtyle": "cat public/preact.min.js dist/pre.min.js > dist/index.min.js",
+    "build": "node ./esbuild.js && npm run xtyle && node scripts/cleanup.mjs && rm dist/pre.min.js && npm run size",
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hlop3z/xtyle.git"
+  },
+  "keywords": [
+    "framework",
+    "xtyle"
+  ],
+  "bugs": {
+    "url": "https://github.com/hlop3z/xtyle/issues"
+  },
+  "homepage": "https://github.com/hlop3z/xtyle#readme",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.min.js"
+    }
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.11",
+    "vite": "^4.1.1",
+    "@babel/plugin-transform-react-jsx": "^7.20.13",
+    "cssnano": "^5.1.14",
+    "vite-plugin-babel": "^1.1.3"
+  }
+}

@@ -1,33 +1,21 @@
-// replaceLastChar.js
 import fs from "fs";
+import { execSync } from "child_process";
+import ProjectName from "./__init__.mjs";
 
-export function replaceLastChar(filePath, newChar) {
-  fs.promises
-    .readFile(filePath, "utf8")
-    .then((data) => {
-      if (data.length === 0) {
-        console.error("The file is empty.");
-        return;
-      }
+const sourceCSS = "dist/style.css";
+const destinationCSS = `dist/${ProjectName}.min.css`;
 
-      const updatedData = data.trim().slice(0, -1) + newChar;
-
-      fs.promises
-        .writeFile(filePath, updatedData, "utf8")
-        .then(() => {
-          console.log("Last character replaced successfully.");
-        })
-        .catch((error) => {
-          console.error("Error writing to the file:", error);
-        });
-    })
-    .catch((error) => {
-      console.error("Error reading the file:", error);
-    });
+try {
+  fs.copyFileSync(sourceCSS, destinationCSS);
+} catch (error) {
+  console.error("Error executing command:", error.message);
 }
 
-// Usage example:
-const filePath = "dist/index.min.js";
-const newChar = ".default;"; // Replace this with the character you want to use
-
-replaceLastChar(filePath, newChar);
+try {
+  const result = execSync(
+    "rm dist/index.js dist/style.css dist/vite.svg dist/preact.min.js dist/xtyle.min.js"
+  );
+  console.log(result.toString());
+} catch (error) {
+  console.error("Error executing command:", error.message);
+}

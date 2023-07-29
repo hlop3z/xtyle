@@ -5,13 +5,28 @@ copyright: Copyright © Hlop3z
 
 nav:
   - Introduction: index.md
-  # - Getting Started: getting_started.md
-  - Application: application.md
-  - Component: component.md
-  - Directives: directives.md
-  - Store: store.md
+  - Tables: tables.md
   - Router: router.md
-  - Tabs: tabs.md
+  - Hooks: hooks.md
+  - CSS: css.md
+  - Events: on-events.md
+  - Built-in Directives:
+      - x-ref: directives/ref.md
+      - x-value: directives/value.md
+      - x-hover: directives/hover.md
+      - x-scroll: directives/scroll.md
+      - x-swipe: directives/swipe.md
+      - x-ripple: directives/ripple.md
+      - x-resize: directives/resize.md
+      - x-click-outside: directives/click-outside.md
+  - Control Flow:
+      - x-for: control-flow/for.md
+      - x-switch: control-flow/switch.md
+      - x-show: control-flow/show.md
+      - x-if: control-flow/if.md
+      - x-live: control-flow/live.md
+      - x-portal: control-flow/portal.md
+      - x-fallback: control-flow/fallback.md
 
 # Configurations
 watch:
@@ -25,10 +40,11 @@ theme:
     # - navigation.tabs
     - navigation.instant
     - navigation.tracking
-    - navigation.sections
+    # - navigation.sections
     - navigation.top
     - content.code.annotate
-    # - navigation.expand
+    - navigation.expand
+
   icon:
     logo: material/alien
 
@@ -49,6 +65,8 @@ theme:
 markdown_extensions:
   - admonition
   - tables
+  - toc:
+      toc_depth: 2
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.snippets

@@ -1,16 +1,23 @@
 {
   "name": "xtyle",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Preact Toolkit",
-  "main": "./dist/index.min.js",
   "author": "hlop3z",
   "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "size": "gzip -c dist/index.min.js | wc -c",
-    "xtyle": "cat public/preact.min.js dist/pre.min.js > dist/index.min.js",
-    "build": "node ./esbuild.js && npm run xtyle && node scripts/cleanup.mjs && rm dist/pre.min.js && npm run size",
-    "dev": "vite"
+    "dev": "vite",
+    "preview": "vite preview",
+    "build:vite": "tsc && vite build",
+    "build:rollup": "npx rollup -c",
+    "build": "npm run build:vite && npm run app:collect && npm run build:rollup && npm run build:merge && npm run app:cleanup",
+    "build:pre": "cd core-engine && npm run build",
+    "build:merge": "cat dist/preact.min.js dist/xtyle.min.js >> dist/index.min.js",
+    "dev:pre": "npm run build:pre && npm run dev",
+    "app:collect": "node scripts/collect.mjs",
+    "app:cleanup": "node scripts/cleanup.mjs",
+    "app:start": "node scripts/startApp.mjs"
   },
   "repository": {
     "type": "git",
@@ -27,16 +34,13 @@
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/index.min.js"
-    }
-  },
   "devDependencies": {
-    "esbuild": "^0.15.11",
-    "vite": "^4.1.1",
-    "@babel/plugin-transform-react-jsx": "^7.20.13",
-    "cssnano": "^5.1.14",
+    "@rollup/plugin-terser": "^0.4.3",
+    "cssnano": "^6.0.1",
+    "postcss": "^8.4.25",
+    "sass": "^1.63.6",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.0",
     "vite-plugin-babel": "^1.1.3"
   }
 }

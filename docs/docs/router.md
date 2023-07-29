@@ -1,106 +1,114 @@
-!!! info "Description"
+!!! tip "Router"
 
-    The purpose of the **Router** is to offer developers a convenient and efficient solution for managing client-side navigation and enhancing page rendering. One of its key advantages lies in enabling the functionality of Single Page Applications (SPAs). By rendering content on the client-side, SPAs provide dynamic and interactive user experiences without the need for full page reloads.
+    The **xtyle.router** (virtual router) is designed to **keep track of parameter changes without rendering a view immediately**, This enables you to **define views later** in the project, promoting decoupling from the router and providing greater flexibility in managing routes.
 
-    The Router empowers developers to create seamless transitions between different views and components within their web applications. It allows for efficient content updates, resulting in a smoother and more responsive user interface. By handling navigation on the client-side, the Router optimizes the user experience by minimizing page load times and providing a more fluid interaction.
+## Path Patterns (Examples)
 
-## Routes
+- **`/a/some-{key}`** : Encapsulating a word with **"`{}`"** brackets makes it a **required** query parameter.
 
-| Key        | Descriptions                                                                                  |
-| ---------- | --------------------------------------------------------------------------------------------- |
-| **`path`** | Uniform Resource Locator (**URL**), string that specifies the location of a specific resource |
-| **`name`** | Name to reference the **URL** as a form of an **"`ID`"**                                      |
-| **`view`** | **`HyperScript`** component to render as a **"`view`"** or **"`page`"**                       |
+- **`/a/b-{?key}`** : The **"`?`"** indicates that the query parameter **`key`** is **optional**.
+
+- **`/a/b/{path*}`** : The **"`*`"** denotes a wildcard query parameter named **`path`**, which matches the **remaining part of the path**.
+
+## Config (Example)
 
 ```js
-const Routes = [
-  // Home Page
+/**
+ * Define the list of route patterns
+ */
+const patternList = ["/", "/a/b/{?key}", "/a/b/key-{name}/{path*}"];
+
+/**
+ * Initialize the router with options
+ */
+const router = xtyle.router({
+  callback: () => {
+    console.log("Changed");
+  },
+  history: false,
+  baseURL: "/",
+  routes: patternList,
+});
+```
+
+## Options
+
+| Key            | Description                                                                 |
+| -------------- | --------------------------------------------------------------------------- |
+| **`callback`** | A **callback `function`** that will be executed when the **route changes**. |
+| **`baseURL`**  | The base **URL** for the router.                                            |
+| **`routes`**   | The **list** of route patterns to use for routing.                          |
+| **`history`**  | Indicating whether to use the history API for routing.                      |
+
+!!! info "history"
+
+    The **`history`** option is a **boolean flag** that determines the **routing behavior**.
+
+    - If set to **`false`**, paths will use the **"#" prefix**, indicating the use of the **hash-based routing** strategy.
+    - If set to **`true`**, the router will use the **regular history API** for navigation, allowing for cleaner URLs without the "#" symbol.
+
+## Properties
+
+| Key         | Description                    |
+| ----------- | ------------------------------ |
+| **current** | Get the current router's info. |
+
+## Methods
+
+| Key          | Description                                                                       |
+| ------------ | --------------------------------------------------------------------------------- |
+| **go**       | **Navigate** to a specific path and optionally add a **URL** query via an object. |
+| **effect**   | Preact effect wrapper for easy access to **router effects**.                      |
+| **computed** | Preact computed wrapper for easy **creation of computed values**.                 |
+
+## Special ${**Keys**}
+
+| Key         | Description                                                                                               |
+| ----------- | --------------------------------------------------------------------------------------------------------- |
+| **$action** | Converts to **URL** query parameter **`__a`** to define a backend **action** for the route.               |
+| **$query**  | Converts to **URL** query parameter **`__q`** to pass **query parameters** as a JSON string to the route. |
+
+## Navigate (Demo)
+
+```js
+/**
+ * Navigate to a new path with query parameters
+ */
+router.go(
+  "/home", // Path
+  // Query
   {
-    path: "/",
-    name: "home",
-    view: () => h("div", {}, "Home View"),
-  },
-  // About Page
-  {
-    path: "/{view}",
-    name: "custom",
-    view: () => h("div", {}, "About View"),
-  },
-];
+    key: "val",
+    $action: "app.model.filter",
+    $query: { key: "val" },
+  }
+);
 ```
 
-## Paths
-
-!!! tip
-
-    **Variables** embedded within **URLs** for dynamic data retrieval and routing.
-
-    Variables must be inside brackets **`{}`**. For example  `/my/path/key-{value}`
-
-| Key                    | Required | Descriptions                                              |
-| ---------------------- | -------- | --------------------------------------------------------- |
-| **`{variable_name}`**  | Yes      | Regular variables                                         |
-| **`{?variable_name}`** | Optional | IF it starts with **`?`** its an optional variable        |
-| **`{variable_name*}`** | Optional | IF it ends with **`*`** matches the remainder of the path |
+## Computed & Effect (Demo)
 
 ```js
-const patternDictionary = {
-  // Regular
-  "/": "view-1",
-  // Optional
-  "/a/b/{?key}": "view-2",
-  // Path
-  "/a/b/key-{name}/{path*}": "view-3",
-};
-```
+/**
+ * Create a computed value based on the current route
+ */
+const currentSearch = router.computed(() => {
+  return router.current.search;
+});
 
-## Configuration
+/**
+ * Add an effect to be triggered when the route changes
+ */
+router.effect(() => {
+  // Log an example value from the `router.current.search` object
+  console.log(currentSearchKey.value.key);
+});
 
-| Key           | Type     | Descriptions                                                                            |
-| ------------- | -------- | --------------------------------------------------------------------------------------- |
-| **`history`** | Boolean  | This sets the browser's history **`regular`** (**`true`**) or **`hash`** (**`false`**). |
-| **`routes`**  | Array    | List of views / pages / components as **`objects`**.                                    |
-| **`before`**  | Function | Runs **before** each route change.                                                      |
-| **`after`**   | Function | Runs **after** each route change.                                                       |
-
-```js
-const Config = {
-  router: {
-    history: false,
-    routes: Routes,
-    before: ({ from, to, next }) => next(),
-    after: ({ from, to }) => console.log(from, to),
-  },
-  // Other Configs . . .
-};
-```
-
-## Utils
-
-| Key                        | Description                         |
-| -------------------------- | ----------------------------------- |
-| **`xtyle.router.current`** | **Info** of the current Route.      |
-| **`xtyle.router.view`**    | Display current **Route**.          |
-| **`xtyle.router.link`**    | Create a link **`<a>`** to a route. |
-| **`xtyle.router.go`**      | Method to change routes.            |
-
-```js
-function App() {
-  /* Menu */
-  const menu = {
-    home: () => xtyle.router.go({ path: "/" }),
-    about: () => xtyle.router.go({ name: "custom", args: { view: "about" } }),
-  };
-  /* Component */
-  return (
-    <div class="the-app">
-      {/* <!-- Router Menu --> */}
-      <button onClick={menu.home}>Home</button>
-      <button onClick={menu.about}>About</button>
-
-      {/* <!-- Router View(s) --> */}
-      <xtyle.router.view />
-    </div>
-  );
-}
+/**
+ * Set an interval to navigate after a certain time
+ */
+setInterval(() => {
+  router.go("/home", {
+    key: new Date().toISOString(),
+  });
+}, 4000);
 ```

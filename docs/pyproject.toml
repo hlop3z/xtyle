@@ -7,11 +7,11 @@ name = ""
 version = ""
 description = ""
 authors = [
-    {name = "hlop3z", email = "23062270+hlop3z@users.noreply.github.com"},
+    { name = "hlop3z", email = "23062270+hlop3z@users.noreply.github.com" },
 ]
 dependencies = ["mkdocs", "mkdocs-material"]
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = { text = "MIT" }
 
 [tool]
 [tool.pdm]
@@ -23,4 +23,4 @@ name = "pypi"
 [tool.pdm.scripts]
 dev = "python -m mkdocs serve --dev-addr 0.0.0.0:8055"
 build = "python -m mkdocs build"
-gh-deploy = "python -m mkdocs gh-deploy --force"
+deploy = "python -m mkdocs gh-deploy --force"
