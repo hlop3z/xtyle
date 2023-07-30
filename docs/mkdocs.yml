@@ -5,6 +5,7 @@ copyright: Copyright © Hlop3z
 
 nav:
   - Introduction: index.md
+  - Preact: preact.md
   - Router: router.md
   - Hooks: hooks.md
   - CSS: css.md

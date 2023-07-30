@@ -23,4 +23,4 @@ name = "pypi"
 [tool.pdm.scripts]
 dev = "python -m mkdocs serve --dev-addr 0.0.0.0:8055"
 build = "python -m mkdocs build"
-deploy = "python -m mkdocs gh-deploy --force"
+gh-deploy = "python -m mkdocs gh-deploy --force"

@@ -94,3 +94,4 @@ typings/
 .tern-port
 
 tests/live/
+docs/.pdm-python

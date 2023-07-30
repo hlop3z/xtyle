@@ -12,17 +12,17 @@
 
 !!! tip "TypeScript"
 
-    **Install :**
-
-    ```sh
-    npm install xtyle
-    ```
-
-    **Type Declarations :**
-
-    ```js title="src/xtyle.d.ts"
-    /// <reference types="../node_modules/xtyle/index.d.ts" />
-    ```
+<p
+  align="center"
+  style="font-size: 2.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;"
+>
+  <a
+    href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-lib.zip"
+    target="_blank"
+  >
+    Download (Library) Template
+  </a>
+</p>
 
 ---
 
@@ -30,11 +30,12 @@
 
 | Key                   | Description                                     |
 | --------------------- | ----------------------------------------------- |
-| **`xtyle.base`**      | **Only** useful with **`TypeScript`**           |
+| **`xtyle.use`**       | <a href="#creating-plugins">Plugin(s)</a>       |
 | **`xtyle.element`**   | <a href="#creating-components">Component(s)</a> |
 | **`xtyle.directive`** | <a href="#creating-directives">Directive(s)</a> |
 | **`xtyle.router`**    | <a href="./router">Router</a>                   |
 | **`xtyle.model`**     | <a href="./models">Model(s)</a>                 |
+| **`xtyle.base`**      | **Only** useful with **`TypeScript`**           |
 
 ---
 
@@ -152,3 +153,44 @@ Usage:
 ```
 
 ---
+
+## Creating **Plugins**
+
+!!! info "xtyle.use"
+
+    Register **`directives`** and **`elements`** in a single place.
+
+Props:
+
+- **`elements`**
+- **`directives`**
+
+Example:
+
+```js
+const myPlugin = {
+  directives: {
+    html(self, props) {
+      // Logic . . .
+    },
+  },
+  elements: {
+    button(props) {
+      return <button>Click Me</button>;
+    },
+  },
+};
+
+/* Register Plugin */
+xtyle.use(myPlugin);
+
+/* App (Demo) */
+const App = () => (
+  <div x-html>
+    <x-button></x-button>
+  </div>
+);
+
+/* Render */
+preact.render(preact.h(App), document.body);
+```
