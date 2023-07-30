@@ -10,8 +10,12 @@
       
         <link rel="canonical" href="https://hlop3z.github.io/xtyle/">
       
+      
+      
+        <link rel="next" href="preact/">
+      
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.0">
+      <meta name="generator" content="mkdocs-1.5.1, mkdocs-material-9.1.21">
     
     
       
@@ -19,21 +23,21 @@
       
     
     
-    
-      <link rel="stylesheet" href="assets/stylesheets/main.69437709.min.css">
+
+      <link rel="stylesheet" href="assets/stylesheets/main.eebd395e.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
-        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ecc896b0.min.css">
       
       
-    
-    <link rel="stylesheet" href="./css/extra.css" />
-    <link rel="stylesheet" href="./css/termynal.css" />
 
     
+<link rel="stylesheet" href="./css/extra.css" />
+<link rel="stylesheet" href="./css/termynal.css" />
+
     
-    <script src="./js/termynal.js"></script>
+
+<script src="./js/termynal.js"></script>
 
     
       
@@ -51,6 +55,7 @@
 
     
     
+    
   </head>
   
   
@@ -61,7 +66,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
   
     
     
@@ -73,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#xtyle" class="md-skip">
+        <a href="#xtyle-library-for-preact" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +90,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="Xtyle" class="md-header__button md-logo" aria-label="Xtyle" data-md-component="logo">
       
@@ -113,27 +120,31 @@
       </div>
     </div>
     
-      <form class="md-header__option" data-md-component="palette">
-        
+      
+        <form class="md-header__option" data-md-component="palette">
           
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
           
-            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-            </label>
-          
-        
-          
-          
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
-          
-            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
-            </label>
-          
-        
-      </form>
+        </form>
+      
     
     
     
@@ -151,7 +162,7 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
@@ -163,7 +174,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -175,7 +186,7 @@
         <a href="https://github.com/hlop3z/xtyle" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -220,7 +231,7 @@
       <a href="https://github.com/hlop3z/xtyle" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -241,7 +252,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
@@ -272,71 +283,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#global-kit" class="md-nav__link">
-    Global Kit
+  <a href="#core-api" class="md-nav__link">
+    Core API
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#x-html-directive" class="md-nav__link">
+    x-html (Directive)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-application-programming-interface" class="md-nav__link">
-    (API) Application Programming Interface
-  </a>
-  
-    <nav class="md-nav" aria-label="(API) Application Programming Interface">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#built-in-components" class="md-nav__link">
-    Built-in Components
+  <a href="#x-slot-component" class="md-nav__link">
+    x-slot (Component)
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#global-methods" class="md-nav__link">
-    Global Methods
+      
+        <li class="md-nav__item">
+  <a href="#creating-directives" class="md-nav__link">
+    Creating Directives
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#createapp" class="md-nav__link">
-    createApp
+      
+        <li class="md-nav__item">
+  <a href="#creating-components" class="md-nav__link">
+    Creating Components
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#inject" class="md-nav__link">
-    inject
+      
+        <li class="md-nav__item">
+  <a href="#creating-plugins" class="md-nav__link">
+    Creating Plugins
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#camel" class="md-nav__link">
-    camel
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#slugify" class="md-nav__link">
-    slugify
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -356,53 +340,8 @@
   
   
     <li class="md-nav__item">
-      <a href="application/" class="md-nav__link">
-        Application
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="component/" class="md-nav__link">
-        Component
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="directives/" class="md-nav__link">
-        Directives
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="store/" class="md-nav__link">
-        Store
+      <a href="preact/" class="md-nav__link">
+        Preact
       </a>
     </li>
   
@@ -431,9 +370,374 @@
   
   
     <li class="md-nav__item">
-      <a href="tabs/" class="md-nav__link">
-        Tabs
+      <a href="hooks/" class="md-nav__link">
+        Hooks
       </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="css/" class="md-nav__link">
+        CSS
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="on-events/" class="md-nav__link">
+        Events
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Util
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Util
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="models/" class="md-nav__link">
+        Model
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          Built-in Directives
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Built-in Directives
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="directives/ref/" class="md-nav__link">
+        x-ref
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="directives/value/" class="md-nav__link">
+        x-value
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="directives/hover/" class="md-nav__link">
+        x-hover
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="directives/scroll/" class="md-nav__link">
+        x-scroll
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="directives/swipe/" class="md-nav__link">
+        x-swipe
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="directives/ripple/" class="md-nav__link">
+        x-ripple
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="directives/resize/" class="md-nav__link">
+        x-resize
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="directives/click-outside/" class="md-nav__link">
+        x-click-outside
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          Control Flow
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          Control Flow
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="control-flow/for/" class="md-nav__link">
+        x-for
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="control-flow/switch/" class="md-nav__link">
+        x-switch
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="control-flow/show/" class="md-nav__link">
+        x-show
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="control-flow/if/" class="md-nav__link">
+        x-if
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="control-flow/live/" class="md-nav__link">
+        x-live
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="control-flow/portal/" class="md-nav__link">
+        x-portal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="control-flow/fallback/" class="md-nav__link">
+        x-fallback
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -465,71 +769,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#global-kit" class="md-nav__link">
-    Global Kit
+  <a href="#core-api" class="md-nav__link">
+    Core API
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
+  <a href="#x-html-directive" class="md-nav__link">
+    x-html (Directive)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#api-application-programming-interface" class="md-nav__link">
-    (API) Application Programming Interface
-  </a>
-  
-    <nav class="md-nav" aria-label="(API) Application Programming Interface">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#built-in-components" class="md-nav__link">
-    Built-in Components
+  <a href="#x-slot-component" class="md-nav__link">
+    x-slot (Component)
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#global-methods" class="md-nav__link">
-    Global Methods
+      
+        <li class="md-nav__item">
+  <a href="#creating-directives" class="md-nav__link">
+    Creating Directives
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#createapp" class="md-nav__link">
-    createApp
+      
+        <li class="md-nav__item">
+  <a href="#creating-components" class="md-nav__link">
+    Creating Components
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#inject" class="md-nav__link">
-    inject
+      
+        <li class="md-nav__item">
+  <a href="#creating-plugins" class="md-nav__link">
+    Creating Plugins
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#camel" class="md-nav__link">
-    camel
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#slugify" class="md-nav__link">
-    slugify
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -541,179 +818,245 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-  <a href="https://github.com/hlop3z/xtyle/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+                  
+
+  
+  
 
 
-
-<h1 id="xtyle">(<strong>X</strong>)tyle</h1>
+<h1 id="xtyle-library-for-preact"><strong>Xtyle</strong> Library for <strong>(Preact)</strong></h1>
 <div class="admonition info">
-<p class="admonition-title">Description</p>
-<p>This <strong>Preact Enhancement Tool</strong> is a comprehensive utility that enhances the capabilities of the Preact framework by providing additional functionality and features. It serves as a powerful companion to empower developers in building highly performant and customizable applications.</p>
-<p>This tool encompasses a collection of utility modules, for:</p>
-<ul>
-<li><strong><code>Components</code></strong> and <strong><code>Directives</code></strong></li>
-<li><strong><code>Router</code></strong> and <strong><code>Routes</code></strong></li>
-<li><strong><code>Tabs</code></strong></li>
-<li><strong><code>State-Manager</code></strong></li>
-</ul>
-<p>And, some <strong>extra tools</strong>. These utilities offer developers enhanced control and flexibility in creating components.</p>
+<p class="admonition-title">Xtyle</p>
+<p>Welcome to <strong>Xtyle</strong>! Your Ultimate Directive Extension! <img alt="🚀" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f680.svg" title=":rocket:" />  Enabling you to effortlessly extend your functions as <strong>global directives</strong>. Say goodbye to exporting and importing components constantly. Any <strong><code>method</code></strong> or <strong><code>component</code></strong> you register globally will be readily available throughout your whole Application.</p>
 </div>
-<h2 id="global-kit">Global Kit</h2>
-<ul>
-<li><strong><code>preact</code></strong> Preact Wrapped.</li>
-<li><strong><code>xtyle</code></strong> Xtyle Utils.</li>
-</ul>
-<h2 id="usage">Usage</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/xtyle@latest&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="w"></span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">preact</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">xtyle</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="admonition tip">
+<p class="admonition-title">no-installation</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;</span><span class="nx">script</span><span class="w"> </span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;https://unpkg.com/xtyle@latest&quot;</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
 </code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">TypeScript</p>
+</div>
+<p><p
+  align="center"
+  style="font-size: 2.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;"
+>
+  <a
+    href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-lib.zip"
+    target="_blank"
+  >
+    Download (Library) Template
+  </a>
+</p>
+</p>
 <hr />
-<h2 id="api-application-programming-interface">(API) <strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>nterface</h2>
-<hr />
-<h3 id="built-in-components"><strong>Built-in</strong> Components</h3>
+<h2 id="core-api">Core <strong>API</strong></h2>
 <table>
 <thead>
 <tr>
 <th>Key</th>
-<th>Usage</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong><code>xtyle.layout</code></strong></td>
-<td>Application</td>
-<td>Application <strong>Layout</strong>.</td>
+<td><strong><code>xtyle.use</code></strong></td>
+<td><a href="#creating-plugins">Plugin(s)</a></td>
 </tr>
 <tr>
 <td><strong><code>xtyle.element</code></strong></td>
-<td>Components</td>
-<td>Create custom <strong>Component(s)</strong>.</td>
+<td><a href="#creating-components">Component(s)</a></td>
 </tr>
 <tr>
-<td><strong><code>xtyle.router.view</code></strong></td>
-<td>Router</td>
-<td>Display current <strong>Route</strong>.</td>
+<td><strong><code>xtyle.directive</code></strong></td>
+<td><a href="#creating-directives">Directive(s)</a></td>
 </tr>
 <tr>
-<td><strong><code>xtyle.router.link</code></strong></td>
-<td>Router</td>
-<td>Create a link <code>&lt;a&gt;</code> to a route.</td>
+<td><strong><code>xtyle.router</code></strong></td>
+<td><a href="./router">Router</a></td>
 </tr>
 <tr>
-<td><strong><code>xtyle.tabs.view</code></strong></td>
-<td>Tabs</td>
-<td>Display current <strong>Tab(s)</strong>.</td>
+<td><strong><code>xtyle.model</code></strong></td>
+<td><a href="./models">Model(s)</a></td>
+</tr>
+<tr>
+<td><strong><code>xtyle.base</code></strong></td>
+<td><strong>Only</strong> useful with <strong><code>TypeScript</code></strong></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Example:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">&lt;</span><span class="nt">xtyle.element</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">xtyle.element</span><span class="p">&gt;</span>
+<hr />
+<h2 id="x-html-directive"><code>x-html</code> <strong>(Directive)</strong></h2>
+<div class="admonition info">
+<p class="admonition-title">x-html</p>
+<p>Converts a regular HTML element into an <strong>Xtyle <code>&lt;Component /&gt;</code></strong>.</p>
+</div>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">html</span><span class="o">&gt;</span><span class="nx">Regular</span><span class="w"> </span><span class="nx">div</span><span class="w"> </span><span class="nx">becomes</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="p">(</span><span class="nx">Xtyle</span><span class="p">)</span><span class="w"> </span><span class="nx">Component</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
 </code></pre></div>
 <hr />
-<h3 id="global-methods"><strong>Global</strong> Methods</h3>
+<h2 id="x-slot-component"><code>x-slot</code> <strong>(Component)</strong></h2>
+<div class="admonition info">
+<p class="admonition-title">x-slot</p>
+<p>Converts a regular HTML element into an <strong>Xtyle <code>&lt;Fragment /&gt;</code></strong>.</p>
+</div>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">&lt;</span><span class="nx">x</span><span class="o">-</span><span class="nx">slot</span><span class="o">&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p">{</span><span class="cm">/*</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="cm">  &lt;!-- Content goes here... --&gt;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="cm">  */</span><span class="p">}</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="o">&lt;</span><span class="err">/x-slot&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="creating-directives">Creating <strong>Directives</strong></h2>
+<div class="admonition info">
+<p class="admonition-title">custom &lt;div x-custom&gt;</p>
+<p>Registered directives will be enforced to be <strong>lower-case</strong>. Any directive you register under any given name will be prefixed with “<strong><code>x-</code></strong>”</p>
+</div>
+<ul>
+<li><strong><code>props</code></strong> Arguments for the final <strong>Component</strong>.</li>
+<li><strong><code>self</code></strong> Arguments that construct the <strong>Component</strong>.</li>
+</ul>
 <table>
 <thead>
 <tr>
 <th>Key</th>
-<th>Usage</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong><code>xtyle.createApp</code></strong></td>
-<td>Config</td>
-<td>Configure global variables and init application.</td>
+<td><strong><code>self.directives.custom</code></strong></td>
+<td>Object where you can find your custom directive</td>
 </tr>
 <tr>
-<td><strong><code>xtyle.inject</code></strong></td>
-<td>CSS</td>
-<td>Inject <strong><code>CSS</code></strong> code.</td>
+<td><strong><code>self.ref.add</code></strong></td>
+<td><strong>Add</strong> class(es) to the DOM element</td>
 </tr>
 <tr>
-<td><strong><code>xtyle.camel</code></strong></td>
-<td>Transform</td>
-<td>Convert string to camelCase.</td>
+<td><strong><code>self.ref.remove</code></strong></td>
+<td><strong>Remove</strong> class(es) to the DOM element</td>
 </tr>
 <tr>
-<td><strong><code>xtyle.slugify</code></strong></td>
-<td>Transform</td>
-<td>Convert string to slug-ify.</td>
+<td><strong><code>self.ref.toggle</code></strong></td>
+<td><strong>Toggle</strong> class(es) to the DOM element</td>
+</tr>
+<tr>
+<td><strong><code>self.ref.contains</code></strong></td>
+<td>Check if DOM element <strong>Contains</strong> a class</td>
 </tr>
 </tbody>
 </table>
-<h3 id="createapp">createApp</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">createApp</span><span class="p">({</span><span class="w"></span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nx">layout</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span><span class="w"></span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nx">directives</span><span class="o">:</span><span class="w"> </span><span class="p">{},</span><span class="w"></span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nx">router</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nx">history</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="cm">/* Routes */</span><span class="w"></span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="p">],</span><span class="w"></span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nx">before</span><span class="o">:</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="p">,</span><span class="w"> </span><span class="nx">to</span><span class="p">,</span><span class="w"> </span><span class="nx">next</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">next</span><span class="p">(),</span><span class="w"></span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nx">after</span><span class="o">:</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="p">,</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kr">from</span><span class="p">,</span><span class="w"> </span><span class="nx">to</span><span class="p">),</span><span class="w"></span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="p">},</span><span class="w"></span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">});</span><span class="w"></span>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// &quot;x-demo&quot;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s2">&quot;demo&quot;</span><span class="p">)((</span><span class="nx">self</span><span class="p">,</span><span class="w"> </span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nx">preact</span><span class="p">.</span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="c1">// Self</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nx">self</span><span class="p">.</span><span class="nx">ref</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;class-after-init&quot;</span><span class="p">);</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nx">self</span><span class="p">.</span><span class="nx">ref</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;class-after-init&quot;</span><span class="p">);</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nx">self</span><span class="p">.</span><span class="nx">ref</span><span class="p">.</span><span class="nx">toggle</span><span class="p">([</span><span class="s2">&quot;toggled-class&quot;</span><span class="p">],</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nx">self</span><span class="p">.</span><span class="nx">ref</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s2">&quot;toggled-class&quot;</span><span class="p">);</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="c1">// Demo</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Custom Directive&quot;</span><span class="p">);</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">directives</span><span class="p">.</span><span class="nx">custom</span><span class="p">[</span><span class="s2">&quot;demo&quot;</span><span class="p">]);</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">});</span>
 </code></pre></div>
-<h3 id="inject">inject</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">inject</span><span class="p">(</span><span class="s2">&quot;body { color: red; }&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ID_FOR_THIS_CODE&quot;</span><span class="p">);</span><span class="w"></span>
+<p>Usage:</p>
+<p>“<strong><code>x-</code></strong>” Prefix</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">demo</span><span class="o">=</span><span class="s2">&quot;Hello World&quot;</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">html</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
 </code></pre></div>
-<h3 id="camel">camel</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">camel</span><span class="p">(</span><span class="s2">&quot;String-To-Convert-To-Camel-Case&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="admonition tip">
+<p class="admonition-title">Directives</p>
+<p><strong>Directives</strong> are a powerful tool that allows developers to reuse and encapsulate logic in their code. By leveraging custom directives, developers can effectively separate and encapsulate complex logic and low-level DOM operations, resulting in more modular and maintainable code. These directives enable the reuse of specific functionalities across multiple elements or components, promoting code consistency and reducing duplication.</p>
+<p>Custom directives provide a flexible and reusable approach to address unique requirements in web development. They can be used for a variety of purposes, such as applying specialized behaviors, manipulating the DOM, or implementing custom event handling. With custom directives, developers have the ability to create highly adaptable and reusable solutions that cater to specific needs.</p>
+</div>
+<hr />
+<h2 id="creating-components">Creating <strong>Components</strong></h2>
+<div class="admonition info">
+<p class="admonition-title">custom &lt;x-component&gt;</p>
+<p>Registered components will be enforced to be <strong>lower-case</strong> and <strong>kebab-case</strong>. Any component you register under any given name will be prefixed with “<strong><code>x-</code></strong>”</p>
+</div>
+<p>Example:</p>
+<p>A custom component that displays a title and its children.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">element</span><span class="p">(</span><span class="s2">&quot;demo&quot;</span><span class="p">)((</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="o">&lt;</span><span class="nx">x</span><span class="o">-</span><span class="nx">slot</span><span class="o">&gt;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="o">&lt;</span><span class="err">/x-slot&gt;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">));</span>
 </code></pre></div>
-<h3 id="slugify">slugify</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">slugify</span><span class="p">(</span><span class="s2">&quot;String-To-Convert-To-Slug&quot;</span><span class="p">);</span><span class="w"></span>
+<p>Usage:</p>
+<ul>
+<li>title: The title for the component.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">&lt;</span><span class="nx">x</span><span class="o">-</span><span class="nx">demo</span><span class="w"> </span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;Hello World&quot;</span><span class="o">&gt;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="o">&lt;</span><span class="nx">h4</span><span class="o">&gt;</span><span class="nx">Content</span><span class="w"> </span><span class="nx">goes</span><span class="w"> </span><span class="nx">here</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/h4&gt;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="o">&lt;</span><span class="err">/x-demo&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="creating-plugins">Creating <strong>Plugins</strong></h2>
+<div class="admonition info">
+<p class="admonition-title">xtyle.use</p>
+<p>Register <strong><code>directives</code></strong> and <strong><code>elements</code></strong> in a single place.</p>
+</div>
+<p>Props:</p>
+<ul>
+<li><strong><code>elements</code></strong></li>
+<li><strong><code>directives</code></strong></li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">myPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nx">directives</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nx">html</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span><span class="w"> </span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">      </span><span class="c1">// Logic . . .</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="nx">button</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">button</span><span class="o">&gt;</span><span class="nx">Click</span><span class="w"> </span><span class="nx">Me</span><span class="o">&lt;</span><span class="err">/button&gt;;</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="p">};</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="cm">/* Register Plugin */</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">myPlugin</span><span class="p">);</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="cm">/* App (Demo) */</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="kd">const</span><span class="w"> </span><span class="nx">App</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">  </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">html</span><span class="o">&gt;</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">x</span><span class="o">-</span><span class="nx">button</span><span class="o">&gt;&lt;</span><span class="err">/x-button&gt;</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">  </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="p">);</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="cm">/* Render */</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="nx">preact</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">preact</span><span class="p">.</span><span class="nx">h</span><span class="p">(</span><span class="nx">App</span><span class="p">),</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
 </code></pre></div>
 
 
 
 
-              
-            </article>
-            
-          </div>
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
             Back to top
-          </a>
+          </button>
         
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-      
-        
-        <a href="application/" class="md-footer__link md-footer__link--next" aria-label="Next: Application" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Application
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -740,14 +1083,14 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "content.code.annotate"], "search": "assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.annotate", "navigation.expand"], "search": "assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-    
-      <script src="assets/javascripts/bundle.9c69f0bc.min.js"></script>
+
+      <script src="assets/javascripts/bundle.220ee61c.min.js"></script>
       
     
-    <script src="./js/bashv1-0-0.js"></script>
+<script src="./js/bashv1-0-0.js"></script>
 
   </body>
 </html>

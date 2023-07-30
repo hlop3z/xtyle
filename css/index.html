@@ -8,20 +8,20 @@
       
       
       
-        <link rel="canonical" href="https://hlop3z.github.io/xtyle/router/">
+        <link rel="canonical" href="https://hlop3z.github.io/xtyle/css/">
       
       
-        <link rel="prev" href="../preact/">
+        <link rel="prev" href="../hooks/">
       
       
-        <link rel="next" href="../hooks/">
+        <link rel="next" href="../on-events/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.1, mkdocs-material-9.1.21">
     
     
       
-        <title>Router - Xtyle</title>
+        <title>CSS - Xtyle</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#path-patterns-examples" class="md-skip">
+        <a href="#reactive-css" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Router
+              CSS
             
           </span>
         </div>
@@ -279,97 +279,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Router
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
         Router
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#path-patterns-examples" class="md-nav__link">
-    Path Patterns (Examples)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#config-example" class="md-nav__link">
-    Config (Example)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    Options
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#properties" class="md-nav__link">
-    Properties
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#methods" class="md-nav__link">
-    Methods
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#special-keys" class="md-nav__link">
-    Special ${Keys}
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#navigate-demo" class="md-nav__link">
-    Navigate (Demo)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#computed-effect-demo" class="md-nav__link">
-    Computed &amp; Effect (Demo)
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -395,11 +309,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../css/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         CSS
       </a>
+      
     </li>
   
 
@@ -771,70 +695,8 @@
   
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#path-patterns-examples" class="md-nav__link">
-    Path Patterns (Examples)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#config-example" class="md-nav__link">
-    Config (Example)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    Options
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#properties" class="md-nav__link">
-    Properties
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#methods" class="md-nav__link">
-    Methods
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#special-keys" class="md-nav__link">
-    Special ${Keys}
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#navigate-demo" class="md-nav__link">
-    Navigate (Demo)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#computed-effect-demo" class="md-nav__link">
-    Computed &amp; Effect (Demo)
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -852,172 +714,42 @@
   
 
 
-  <h1>Router</h1>
-
+<h1 id="reactive-css">Reactive <strong>CSS</strong></h1>
 <div class="admonition tip">
-<p class="admonition-title">Router</p>
-<p>The <strong>xtyle.router</strong> (virtual router) is designed to <strong>keep track of parameter changes without rendering a view immediately</strong>, This enables you to <strong>define views later</strong> in the project, promoting decoupling from the router and providing greater flexibility in managing routes.</p>
+<p class="admonition-title">Reactive CSS</p>
+<p>A powerful <strong>CSS solution</strong> that dynamically applies styles <strong>based on the state of an element <code>(is)</code></strong>, distinguishing between <strong><code>(on)</code> active</strong> and <strong><code>(off)</code> inactive</strong> control conditions. The advantage lies in its ability to update styles <strong>without</strong> requiring a full <strong>re-rendering</strong> of the element. This approach provides a <strong>seamless and efficient</strong> way to manage element styles based on user interactions or changing states, resulting in a more responsive and interactive user experience.</p>
 </div>
-<h2 id="path-patterns-examples">Path Patterns (Examples)</h2>
-<ul>
-<li>
-<p><strong><code>/a/some-{key}</code></strong> : Encapsulating a word with <strong>"<code>{}</code>"</strong> brackets makes it a <strong>required</strong> query parameter.</p>
-</li>
-<li>
-<p><strong><code>/a/b-{?key}</code></strong> : The <strong>"<code>?</code>"</strong> indicates that the query parameter <strong><code>key</code></strong> is <strong>optional</strong>.</p>
-</li>
-<li>
-<p><strong><code>/a/b/{path*}</code></strong> : The <strong>"<code>*</code>"</strong> denotes a wildcard query parameter named <strong><code>path</code></strong>, which matches the <strong>remaining part of the path</strong>.</p>
-</li>
-</ul>
-<h2 id="config-example">Config (Example)</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cm">/**</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cm"> * Define the list of route patterns</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cm"> */</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">patternList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/a/b/{?key}&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/a/b/key-{name}/{path*}&quot;</span><span class="p">];</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cm">/**</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="cm"> * Initialize the router with options</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="cm"> */</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">router</span><span class="p">({</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nx">history</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nx">baseURL</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="nx">patternList</span><span class="p">,</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nx">callback</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Changed&quot;</span><span class="p">);</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">});</span>
-</code></pre></div>
-<h2 id="options">Options</h2>
 <table>
 <thead>
 <tr>
-<th>Key</th>
+<th>Directive</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong><code>history</code></strong></td>
-<td>Indicating whether to use the history API for routing.</td>
+<td>css-<strong>is</strong></td>
+<td>Specifies the CSS class to apply when the condition is <strong><code>true</code></strong>.</td>
 </tr>
 <tr>
-<td><strong><code>baseURL</code></strong></td>
-<td>The base <strong>URL</strong> for the router.</td>
+<td>css-<strong>on</strong></td>
+<td>Specifies the CSS classes to add when the condition is <strong><code>true</code></strong>.</td>
 </tr>
 <tr>
-<td><strong><code>routes</code></strong></td>
-<td>The <strong>list</strong> of route patterns to use for routing.</td>
-</tr>
-<tr>
-<td><strong><code>callback</code></strong></td>
-<td>A <strong>callback <code>function</code></strong> that will be executed when the <strong>route changes</strong>.</td>
+<td>css-<strong>off</strong></td>
+<td>Specifies the CSS classes to add when the condition is <strong><code>false</code></strong>.</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition info">
-<p class="admonition-title">history</p>
-<p>The <strong><code>history</code></strong> option is a <strong>boolean flag</strong> that determines the <strong>routing behavior</strong>.</p>
-<ul>
-<li>If set to <strong><code>false</code></strong>, paths will use the <strong>"#" prefix</strong>, indicating the use of the <strong>hash-based routing</strong> strategy.</li>
-<li>If set to <strong><code>true</code></strong>, the router will use the <strong>regular history API</strong> for navigation, allowing for cleaner URLs without the "#" symbol.</li>
-</ul>
-</div>
-<h2 id="properties">Properties</h2>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>current</strong></td>
-<td>Get the current router's info.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="methods">Methods</h2>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>go</strong></td>
-<td><strong>Navigate</strong> to a specific path and optionally add a <strong>URL</strong> query via an object.</td>
-</tr>
-<tr>
-<td><strong>effect</strong></td>
-<td>Preact effect wrapper for easy access to <strong>router effects</strong>.</td>
-</tr>
-<tr>
-<td><strong>computed</strong></td>
-<td>Preact computed wrapper for easy <strong>creation of computed values</strong>.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="special-keys">Special ${<strong>Keys</strong>}</h2>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>$action</strong></td>
-<td>Converts to <strong>URL</strong> query parameter <strong><code>__a</code></strong> to define a backend <strong>action</strong> for the route.</td>
-</tr>
-<tr>
-<td><strong>$query</strong></td>
-<td>Converts to <strong>URL</strong> query parameter <strong><code>__q</code></strong> to pass <strong>query parameters</strong> as a JSON string to the route.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="navigate-demo">Navigate (Demo)</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cm">/**</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cm"> * Navigate to a new path with query parameters</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="cm"> */</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nx">router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="s2">&quot;/home&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Path</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="c1">// Query</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p">{</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;val&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nx">$action</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app.model.filter&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nx">$query</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;val&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">);</span>
-</code></pre></div>
-<h2 id="computed-effect-demo">Computed &amp; Effect (Demo)</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cm">/**</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="cm"> * Create a computed value based on the current route</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="cm"> */</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">currentSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">router</span><span class="p">.</span><span class="nx">computed</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">router</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">search</span><span class="p">;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">});</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="cm">/**</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="cm"> * Add an effect to be triggered when the route changes</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="cm"> */</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nx">router</span><span class="p">.</span><span class="nx">effect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="c1">// Log an example value from the `router.current.search` object</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currentSearchKey</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">key</span><span class="p">);</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">});</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="cm">/**</span>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="cm"> * Set an interval to navigate after a certain time</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="cm"> */</span>
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">  </span><span class="nx">router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="s2">&quot;/home&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">(),</span>
-<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">  </span><span class="p">});</span>
-<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="p">},</span><span class="w"> </span><span class="mf">4000</span><span class="p">);</span>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">Component</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">preact</span><span class="p">.</span><span class="nx">useSignal</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">html</span><span class="w"> </span><span class="nx">css</span><span class="o">-</span><span class="nx">is</span><span class="o">=</span><span class="p">{</span><span class="nx">status</span><span class="p">.</span><span class="nx">value</span><span class="p">}</span><span class="w"> </span><span class="nx">css</span><span class="o">-</span><span class="nx">on</span><span class="o">=</span><span class="s2">&quot;active&quot;</span><span class="w"> </span><span class="nx">css</span><span class="o">-</span><span class="nx">off</span><span class="o">=</span><span class="s2">&quot;inactive&quot;</span><span class="o">&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="nx">Content</span><span class="w"> </span><span class="nx">goes</span><span class="w"> </span><span class="nx">here</span><span class="p">...</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="p">);</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
 </code></pre></div>
 
 
