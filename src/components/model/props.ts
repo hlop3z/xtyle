@@ -1,7 +1,9 @@
 type Props = {
-  class?: string | string[] | object;
-  style?: string | string[] | object;
-  children?: any;
+  resourceName: string;
+  config: {
+    keys?: string[];
+    items?: any;
+  };
 };
 
 export default Props;

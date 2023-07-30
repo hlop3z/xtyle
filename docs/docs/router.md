@@ -22,12 +22,12 @@ const patternList = ["/", "/a/b/{?key}", "/a/b/key-{name}/{path*}"];
  * Initialize the router with options
  */
 const router = xtyle.router({
-  callback: () => {
-    console.log("Changed");
-  },
   history: false,
   baseURL: "/",
   routes: patternList,
+  callback: () => {
+    console.log("Changed");
+  },
 });
 ```
 
@@ -35,10 +35,10 @@ const router = xtyle.router({
 
 | Key            | Description                                                                 |
 | -------------- | --------------------------------------------------------------------------- |
-| **`callback`** | A **callback `function`** that will be executed when the **route changes**. |
+| **`history`**  | Indicating whether to use the history API for routing.                      |
 | **`baseURL`**  | The base **URL** for the router.                                            |
 | **`routes`**   | The **list** of route patterns to use for routing.                          |
-| **`history`**  | Indicating whether to use the history API for routing.                      |
+| **`callback`** | A **callback `function`** that will be executed when the **route changes**. |
 
 !!! info "history"
 

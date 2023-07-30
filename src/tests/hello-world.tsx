@@ -1,11 +1,11 @@
 // @ts-nocheck
 
-import { Base } from "../components";
+import { directive, element } from "../index";
 
 /* 
 @ (Register) Directive
 */
-Base.directive("demo", (self: any, props: any) => {
+directive("demo")((self: any, props: any) => {
   console.log("Custom Directive");
   console.log(self.directives.custom["demo"]);
   console.log(props);
@@ -14,7 +14,7 @@ Base.directive("demo", (self: any, props: any) => {
 /* 
 @ (Register) Theme Component
 */
-Base.element("demo")((props) => (
+element("demo")((props) => (
   <div>
     <h2>Custom | {props.title}</h2>
     {props.children}
@@ -66,12 +66,12 @@ export default function Component(props: any) {
       <div
         class="demo-class"
         x-html
-        css:is={status.value}
-        css:off="inactive"
-        css:on="active"
-        hook:created={() => console.log("Component <Created>")}
-        hook:updated={() => console.log("Component <Updated>")}
-        hook:removed={() => console.log("Component <Removed>")}
+        css-is={status.value}
+        css-off="inactive"
+        css-on="active"
+        hook-created={() => console.log("Component <Created>")}
+        hook-updated={() => console.log("Component <Updated>")}
+        hook-removed={() => console.log("Component <Removed>")}
         x-resize={({ self }) => {
           console.log(self);
         }}
@@ -93,8 +93,9 @@ export default function Component(props: any) {
       <x-slot x-portal="#modal" x-fragment>
         <h1
           x-html
-          on:click={() => {
+          on-click={() => {
             status.value = !status.value;
+            console.log("clicked");
           }}
         >
           Portal Demo

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import "./backend";
-import "./model";
+// import "./model";
 
 import HelloWorld from "./hello-world";
 

@@ -83,7 +83,7 @@ export const filterDirectives = (
 export const filterEventDirectives = (props: Props): Directive => {
   const eventDirectives: Directive = {};
   Object.keys(props).forEach((key) => {
-    if (key.startsWith("on:")) {
+    if (key.startsWith("on-")) {
       const _name = key.slice(3).trim();
       const name = util.events[_name];
       eventDirectives[name || _name] = props[key];
@@ -102,8 +102,8 @@ export const collectDirectives = (props: Props): Directive => {
     filterDirectives(props, key.length, (item) => item.startsWith(key));
   // Collect
   const customDirectives = find("x-");
-  const hookDirectives = find("hook:");
-  const cssDirectives = find("css:");
+  const hookDirectives = find("hook-");
+  const cssDirectives = find("css-");
   const eventDirectives = filterEventDirectives(props);
 
   const dict: Directive = {

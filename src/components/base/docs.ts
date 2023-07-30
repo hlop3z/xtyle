@@ -10,14 +10,14 @@
  * @param {any} [props.children] - The children elements of the component.
  *
  * // CSS
- * @param {boolean} [props['css:is']] - Custom CSS attribute for conditional styling.
- * @param {string[] | string} [props['css:on']] - CSS class(es) to apply when 'css:is' is true.
- * @param {string[] | string} [props['css:off']] - CSS class(es) to apply when 'css:is' is false.
+ * @param {boolean} [props['css-is']] - Custom CSS attribute for conditional styling.
+ * @param {string[] | string} [props['css-on']] - CSS class(es) to apply when 'css-is' is true.
+ * @param {string[] | string} [props['css-off']] - CSS class(es) to apply when 'css-is' is false.
  *
  * // Hooks
- * @param {(callback: Function) => void} [props['hook:created']] - Hook for the component creation.
- * @param {(callback: Function) => void} [props['hook:updated']] - Hook for the component update.
- * @param {(callback: Function) => void} [props['hook:removed']] - Hook for the component removal.
+ * @param {(callback: Function) => void} [props['hook-created']] - Hook for the component creation.
+ * @param {(callback: Function) => void} [props['hook-updated']] - Hook for the component update.
+ * @param {(callback: Function) => void} [props['hook-removed']] - Hook for the component removal.
  *
  * // Custom Directives
  * @param {(callback: Function) => void} [props['x-click-outside']] - Custom directive to handle click events outside the element.
@@ -43,40 +43,40 @@
  * @param {boolean | { center?: boolean, circle?: boolean, color?: string, class?: string }} [props['x-ripple']] - Attribute for adding a ripple effect to elements.
  *
  * // Utils (ON)
- * @param {(callback: Function) => void} [props['on:click']] - Event listener for click event.
- * @param {(callback: Function) => void} [props['on:dbl-click']] - Event listener for double-click event.
- * @param {(callback: Function) => void} [props['on:context-menu']] - Event listener for context menu event.
- * @param {(callback: Function) => void} [props['on:mouse-down']] - Event listener for mouse down event.
- * @param {(callback: Function) => void} [props['on:mouse-up']] - Event listener for mouse up event.
- * @param {(callback: Function) => void} [props['on:mouse-enter']] - Event listener for mouse enter event.
- * @param {(callback: Function) => void} [props['on:mouse-leave']] - Event listener for mouse leave event.
- * @param {(callback: Function) => void} [props['on:mouse-move']] - Event listener for mouse move event.
- * @param {(callback: Function) => void} [props['on:key-down']] - Event listener for key down event.
- * @param {(callback: Function) => void} [props['on:key-up']] - Event listener for key up event.
- * @param {(callback: Function) => void} [props['on:key-press']] - Event listener for key press event.
- * @param {(callback: Function) => void} [props['on:focus']] - Event listener for focus event.
- * @param {(callback: Function) => void} [props['on:blur']] - Event listener for blur event.
- * @param {(callback: Function) => void} [props['on:change']] - Event listener for change event.
- * @param {(callback: Function) => void} [props['on:input']] - Event listener for input event.
- * @param {(callback: Function) => void} [props['on:submit']] - Event listener for submit event.
- * @param {(callback: Function) => void} [props['on:touch-start']] - Event listener for touch start event.
- * @param {(callback: Function) => void} [props['on:touch-move']] - Event listener for touch move event.
- * @param {(callback: Function) => void} [props['on:touch-end']] - Event listener for touch end event.
- * @param {(callback: Function) => void} [props['on:touch-cancel']] - Event listener for touch cancel event.
- * @param {(callback: Function) => void} [props['on:wheel']] - Event listener for wheel event.
- * @param {(callback: Function) => void} [props['on:scroll']] - Event listener for scroll event.
- * @param {(callback: Function) => void} [props['on:copy']] - Event listener for copy event.
- * @param {(callback: Function) => void} [props['on:cut']] - Event listener for cut event.
- * @param {(callback: Function) => void} [props['on:paste']] - Event listener for paste event.
- * @param {(callback: Function) => void} [props['on:composition-start']] - Event listener for composition start event.
- * @param {(callback: Function) => void} [props['on:composition-update']] - Event listener for composition update event.
- * @param {(callback: Function) => void} [props['on:composition-end']] - Event listener for composition end event.
- * @param {(callback: Function) => void} [props['on:load']] - Event listener for load event.
- * @param {(callback: Function) => void} [props['on:error']] - Event listener for error event.
- * @param {(callback: Function) => void} [props['on:animation-start']] - Event listener for animation start event.
- * @param {(callback: Function) => void} [props['on:animation-end']] - Event listener for animation end event.
- * @param {(callback: Function) => void} [props['on:animation-iteration']] - Event listener for animation iteration event.
- * @param {(callback: Function) => void} [props['on:transition-end']] - Event listener for transition end event.
+ * @param {(callback: Function) => void} [props['on-click']] - Event listener for click event.
+ * @param {(callback: Function) => void} [props['on-dbl-click']] - Event listener for double-click event.
+ * @param {(callback: Function) => void} [props['on-context-menu']] - Event listener for context menu event.
+ * @param {(callback: Function) => void} [props['on-mouse-down']] - Event listener for mouse down event.
+ * @param {(callback: Function) => void} [props['on-mouse-up']] - Event listener for mouse up event.
+ * @param {(callback: Function) => void} [props['on-mouse-enter']] - Event listener for mouse enter event.
+ * @param {(callback: Function) => void} [props['on-mouse-leave']] - Event listener for mouse leave event.
+ * @param {(callback: Function) => void} [props['on-mouse-move']] - Event listener for mouse move event.
+ * @param {(callback: Function) => void} [props['on-key-down']] - Event listener for key down event.
+ * @param {(callback: Function) => void} [props['on-key-up']] - Event listener for key up event.
+ * @param {(callback: Function) => void} [props['on-key-press']] - Event listener for key press event.
+ * @param {(callback: Function) => void} [props['on-focus']] - Event listener for focus event.
+ * @param {(callback: Function) => void} [props['on-blur']] - Event listener for blur event.
+ * @param {(callback: Function) => void} [props['on-change']] - Event listener for change event.
+ * @param {(callback: Function) => void} [props['on-input']] - Event listener for input event.
+ * @param {(callback: Function) => void} [props['on-submit']] - Event listener for submit event.
+ * @param {(callback: Function) => void} [props['on-touch-start']] - Event listener for touch start event.
+ * @param {(callback: Function) => void} [props['on-touch-move']] - Event listener for touch move event.
+ * @param {(callback: Function) => void} [props['on-touch-end']] - Event listener for touch end event.
+ * @param {(callback: Function) => void} [props['on-touch-cancel']] - Event listener for touch cancel event.
+ * @param {(callback: Function) => void} [props['on-wheel']] - Event listener for wheel event.
+ * @param {(callback: Function) => void} [props['on-scroll']] - Event listener for scroll event.
+ * @param {(callback: Function) => void} [props['on-copy']] - Event listener for copy event.
+ * @param {(callback: Function) => void} [props['on-cut']] - Event listener for cut event.
+ * @param {(callback: Function) => void} [props['on-paste']] - Event listener for paste event.
+ * @param {(callback: Function) => void} [props['on-composition-start']] - Event listener for composition start event.
+ * @param {(callback: Function) => void} [props['on-composition-update']] - Event listener for composition update event.
+ * @param {(callback: Function) => void} [props['on-composition-end']] - Event listener for composition end event.
+ * @param {(callback: Function) => void} [props['on-load']] - Event listener for load event.
+ * @param {(callback: Function) => void} [props['on-error']] - Event listener for error event.
+ * @param {(callback: Function) => void} [props['on-animation-start']] - Event listener for animation start event.
+ * @param {(callback: Function) => void} [props['on-animation-end']] - Event listener for animation end event.
+ * @param {(callback: Function) => void} [props['on-animation-iteration']] - Event listener for animation iteration event.
+ * @param {(callback: Function) => void} [props['on-transition-end']] - Event listener for transition end event.
  *
  * @returns {any} - The component's return value.
  */

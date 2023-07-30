@@ -6,9 +6,9 @@
 
 | Directive   | Description                                                         |
 | ----------- | ------------------------------------------------------------------- |
-| css:**is**  | Specifies the CSS class to apply when the condition is **`true`**.  |
-| css:**on**  | Specifies the CSS classes to add when the condition is **`true`**.  |
-| css:**off** | Specifies the CSS classes to add when the condition is **`false`**. |
+| css-**is**  | Specifies the CSS class to apply when the condition is **`true`**.  |
+| css-**on**  | Specifies the CSS classes to add when the condition is **`true`**.  |
+| css-**off** | Specifies the CSS classes to add when the condition is **`false`**. |
 
 Example:
 
@@ -16,7 +16,7 @@ Example:
 function Component(props) {
   const status = preact.useSignal(false);
   return (
-    <div x-html css:is={status.value} css:on="active" css:off="inactive">
+    <div x-html css-is={status.value} css-on="active" css-off="inactive">
       Content goes here...
     </div>
   );

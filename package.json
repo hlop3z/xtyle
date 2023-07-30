@@ -5,6 +5,7 @@
   "author": "hlop3z",
   "license": "MIT",
   "type": "module",
+  "types": "./dist/index.d.ts",
   "main": "./dist/index.min.js",
   "scripts": {
     "dev": "vite",
@@ -13,7 +14,7 @@
     "build:rollup": "npx rollup -c",
     "build": "npm run build:vite && npm run app:collect && npm run build:rollup && npm run build:merge && npm run app:cleanup",
     "build:pre": "cd core-engine && npm run build",
-    "build:merge": "cat dist/preact.min.js dist/xtyle.min.js >> dist/index.min.js",
+    "build:merge": "cat dist/preact.min.js dist/xtyle.min.js > dist/index.min.js && echo window.h=xtyle.h; >> dist/index.min.js && mv dist/xtyle.d.ts dist/index.d.ts",
     "dev:pre": "npm run build:pre && npm run dev",
     "app:collect": "node scripts/collect.mjs",
     "app:cleanup": "node scripts/cleanup.mjs",
@@ -25,6 +26,7 @@
   },
   "keywords": [
     "framework",
+    "library",
     "xtyle"
   ],
   "bugs": {

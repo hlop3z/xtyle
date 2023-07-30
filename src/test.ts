@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /* Theme */
-import { Base } from "./components";
+import { base } from "./components";
 import App from "./tests/app";
 // import "./tests/backend";
 
@@ -17,7 +17,7 @@ console.log(XTYLE_GLOBAL);
 // Base.app.element
 
 // @ts-ignore
-window.h = Base.h;
+window.h = base.h;
 
 preact.render(preact.h(App), document.body);
 /*

@@ -1,8 +1,6 @@
 type Props = {
-  history?: boolean;
-  baseURL?: string;
-  routes?: any;
-  callback: () => void;
+  elements: Record<string, any>;
+  title?: string;
 };
 
 export default Props;

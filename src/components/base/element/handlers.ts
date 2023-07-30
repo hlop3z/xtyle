@@ -7,23 +7,95 @@ const { useEffect, render, $ready } = preact;
 /**
  * Import statements for required modules and functions.
  */
+import core from "../../../core";
+
 import {
+  cleanCSS,
   isFunction,
   hookCreated,
   hookUpdated,
   hookCleanup,
-  cleanCSS,
 } from "./utils";
 
 import {
-  customCoreDirectives,
-  globalDirectives,
   Ripple,
   hideKeyCSS,
+  globalDirectives,
+  includedCoreAttrs,
+  customCoreDirectives,
 } from "../directives";
 
+/**
+ * IS-NOT Blank
+ */
 export const isNotBlank = (val: any) =>
   val !== null && val !== undefined && val !== "";
+
+/**
+ * Handles HTML (Element) creation and processing of directives.
+ * @param {any} xtyleCore - The Xtyle Core object.
+ * @param {string | null} tagHTML - The HTML tag specified in the directives.
+ * @param {any} selfContext - The self context object for the component.
+ * @returns {any | null} - The rendered JSX element based on the directives or null if no tagHTML is provided.
+ */
+export function handleHTMLElement(
+  xtyleCore: any,
+  tagHTML: any,
+  selfContext: any
+): any {
+  if (!tagHTML) return null;
+
+  // Custom Attrs
+  const customAttrs = { ...selfContext.directives.on };
+  if (selfContext.directives.custom["ripple"]) {
+    Ripple(selfContext.ref, selfContext.directives);
+  }
+
+  // Included Attrs
+  includedCoreAttrs.forEach((key) => {
+    if (selfContext.props[key]) {
+      customAttrs[key] = selfContext.props[key];
+    }
+  });
+
+  // Real Built Attrs
+  const propsHTML = {
+    ref: selfContext.ref,
+    ...customAttrs,
+    ...selfContext.props.attrs,
+  };
+
+  // Process Directives
+  const dKeys = Object.keys(selfContext.directives.custom);
+  if (dKeys.length > 0) {
+    dKeys.forEach((key) => {
+      if (!customCoreDirectives.includes(key)) {
+        if (globalDirectives[key]) {
+          const method = globalDirectives[key];
+          method(selfContext, propsHTML);
+        } else {
+          const method = xtyleCore.directives[key];
+          if (typeof method === "function") {
+            method(selfContext, propsHTML);
+          }
+        }
+      }
+    });
+  }
+
+  // (Any | Object) to CSS-Class
+  if (propsHTML.class) {
+    propsHTML.class = core.class(propsHTML.class);
+  }
+
+  // (Any | Object) to CSS-Style
+  if (propsHTML.style) {
+    propsHTML.style = core.style(propsHTML.style);
+  }
+
+  // HTML (Element)
+  return h(tagHTML, propsHTML, selfContext.props.children);
+}
 
 /**
  * Handles Reactive CSS using useEffect.
@@ -84,56 +156,6 @@ export function handleHooks(directives: any, selfContext: any) {
       directives.hook["removed"](selfContext);
     });
   }
-}
-
-/**
- * Handles HTML (Element) creation and processing of directives.
- * @param {any} xtyleCore - The Xtyle Core object.
- * @param {string | null} tagHTML - The HTML tag specified in the directives.
- * @param {any} selfContext - The self context object for the component.
- * @returns {any | null} - The rendered JSX element based on the directives or null if no tagHTML is provided.
- */
-export function handleHTMLElement(
-  xtyleCore: any,
-  tagHTML: any,
-  selfContext: any
-): any {
-  if (!tagHTML) return null;
-
-  const customAttrs = { ...selfContext.directives.on };
-  if (selfContext.directives.custom["ripple"]) {
-    Ripple(selfContext.ref, selfContext.directives);
-  }
-
-  const propsHTML = {
-    ref: selfContext.ref,
-    class: selfContext.props.class,
-    style: selfContext.props.style,
-    key: selfContext.props.key,
-    ...customAttrs,
-    ...selfContext.props.attrs,
-  };
-
-  // Process Directives
-  const dKeys = Object.keys(selfContext.directives.custom);
-  if (dKeys.length > 0) {
-    dKeys.forEach((key) => {
-      if (!customCoreDirectives.includes(key)) {
-        if (globalDirectives[key]) {
-          const method = globalDirectives[key];
-          method(selfContext, propsHTML);
-        } else {
-          const method = xtyleCore.directives[key];
-          if (typeof method === "function") {
-            method(selfContext, propsHTML);
-          }
-        }
-      }
-    });
-  }
-
-  // HTML (Element)
-  return h(tagHTML, propsHTML, selfContext.props.children);
 }
 
 /**

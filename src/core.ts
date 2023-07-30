@@ -444,9 +444,8 @@ export const stringTo = {
 // Core module exports
 export default {
   inject: injectCSS,
-  camel: camelCase,
   form: createForm,
-  // Preact module exports
+  // Preact plugins
   ref: createRefAdmin,
   class: objectToClass,
   style: objectToStyle,

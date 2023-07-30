@@ -1,7 +1,7 @@
 /**
  * Import statements.
  */
-import util from "../../core";
+import core from "../../core";
 import ripple from "./ripple";
 
 const { useEffect, useRef } = preact;
@@ -9,8 +9,33 @@ const { useEffect, useRef } = preact;
 // Ripple Effect
 export const hideKeyCSS = "xtyle__hide";
 
-util.inject(ripple.css, "xtyle-ripple");
-util.inject(`.${hideKeyCSS}{ display: none !important; }`, "xtyle-hide");
+core.inject(ripple.css, "xtyle-ripple");
+core.inject(`.${hideKeyCSS}{ display: none !important; }`, "xtyle-hide");
+
+export const includedCoreAttrs = [
+  // Core
+  "key",
+  "id",
+  "class",
+  "style",
+  // Input
+  "type",
+  "name",
+  "placeholder",
+  "checked",
+  "step",
+  "pattern",
+  "readonly",
+  "required",
+  // Textarea
+  "rows",
+  "cols",
+  // Link
+  "href",
+  // Link & Img
+  "src",
+  "alt",
+];
 
 export const customCoreDirectives = [
   "html",
@@ -80,7 +105,7 @@ export const globalDirectives = {
       });
       directive(dirConfig);
     };
-    util.event(self.ref, "scroll", handler, [self.ref, directive, props]);
+    core.event(self.ref, "scroll", handler, [self.ref, directive, props]);
   },
   hover: (self: any, props: any) => {
     const directive = self.directives.custom["hover"];
@@ -120,7 +145,7 @@ export const globalDirectives = {
       const dirConfig = DirectiveResponse(self, props, event);
       directive(dirConfig);
     };
-    util.event(window, "resize", handler, [self.ref, directive, props]);
+    core.event(window, "resize", handler, [self.ref, directive, props]);
   },
   "click-outside": (self: any, props: any) => {
     const directive = self.directives.custom["click-outside"];
@@ -131,7 +156,7 @@ export const globalDirectives = {
         directive(dirConfig);
       }
     };
-    util.event(document, "click", handler, [self.ref, directive, props]);
+    core.event(document, "click", handler, [self.ref, directive, props]);
   },
 };
 

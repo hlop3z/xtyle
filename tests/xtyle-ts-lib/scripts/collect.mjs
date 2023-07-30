@@ -5,11 +5,8 @@ import ProjectName from "./__init__.mjs";
 
 const folderPath = "src/components"; // Search Path
 const outPath = "dist";
-const isCore = true;
 
 const titleCase = (text) => {
-  if (isCore) return text.toLowerCase();
-  // Continue
   const _text = text.replace("-", " ");
   return _text
     .toLowerCase()

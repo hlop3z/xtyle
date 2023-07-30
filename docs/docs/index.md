@@ -10,6 +10,32 @@
     <script src="https://unpkg.com/xtyle@latest" type="text/javascript"></script>
     ```
 
+!!! tip "TypeScript"
+
+    **Install :**
+
+    ```sh
+    npm install xtyle
+    ```
+
+    **Type Declarations :**
+
+    ```js title="src/xtyle.d.ts"
+    /// <reference types="../node_modules/xtyle/index.d.ts" />
+    ```
+
+---
+
+## Core **API**
+
+| Key                   | Description                                     |
+| --------------------- | ----------------------------------------------- |
+| **`xtyle.base`**      | **Only** useful with **`TypeScript`**           |
+| **`xtyle.element`**   | <a href="#creating-components">Component(s)</a> |
+| **`xtyle.directive`** | <a href="#creating-directives">Directive(s)</a> |
+| **`xtyle.router`**    | <a href="./router">Router</a>                   |
+| **`xtyle.model`**     | <a href="./models">Model(s)</a>                 |
+
 ---
 
 ## `x-html` **(Directive)**
@@ -44,7 +70,7 @@ Example:
 
 ---
 
-## Creating Directives
+## Creating **Directives**
 
 !!! info "custom &lt;div x-custom&gt;"
 
@@ -65,7 +91,7 @@ Example:
 
 ```js
 // "x-demo"
-xtyle.directive("demo", (self, props) => {
+xtyle.directive("demo")((self, props) => {
   preact.useEffect(() => {
     // Self
     self.ref.add("class-after-init");
@@ -96,7 +122,7 @@ Usage:
 
 ---
 
-## Creating Components
+## Creating **Components**
 
 !!! info "custom &lt;x-component&gt;"
 
