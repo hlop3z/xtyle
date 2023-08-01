@@ -34,7 +34,7 @@
  * @param {any} [props['x-live']] - Attribute for rendering a dynamic component based on the provided callback.
  * @param {any | HTMLElement} [props['x-portal']] - Attribute for portal rendering, allowing elements to be rendered outside the component's DOM.
  * @param {any | HTMLElement} [props['x-fallback']] - Attribute for fallback rendering when something goes wrong with the main component rendering.
- * @param {boolean} [props['x-fallback:is']] - Attribute for conditional fallback rendering.
+ * @param {boolean} [props['x-fallback-is']] - Attribute for conditional fallback rendering.
  * @param {boolean} [props['x-switch']] - Attribute for conditionally rendering content based on a switch case.
  * @param {string} [props['x-case']] - Attribute for case value to match in the 'x-switch' block.
  * @param {string} [props['case']] - Alias for 'x-case'.
