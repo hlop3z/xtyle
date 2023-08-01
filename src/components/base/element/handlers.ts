@@ -224,7 +224,12 @@ export function handleSwitchCase(directives: any, props: any): any {
   if (directives.custom["switch"]) {
     const activeCase = directives.custom["case"];
     let currentView = null;
-    if (props.children.props["x-for"] && props.children.props["x-in"]) {
+    if (
+      props.children &&
+      props.children.props &&
+      props.children.props["x-for"] &&
+      props.children.props["x-in"]
+    ) {
       const out = props.children.props["x-in"].map(
         props.children.props["x-for"]
       );

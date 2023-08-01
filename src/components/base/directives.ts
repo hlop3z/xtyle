@@ -44,7 +44,7 @@ export const customCoreDirectives = [
   "switch",
   "case",
   "fallback",
-  "fallback:is",
+  "fallback-is",
   "for",
   "in",
   "if",
@@ -52,7 +52,7 @@ export const customCoreDirectives = [
   "live",
   "portal",
   "ripple",
-  "value:clean",
+  "value-clean",
 ];
 
 const DirectiveResponse = (
@@ -77,7 +77,7 @@ export const globalDirectives = {
   value: (self: any, props: any) => {
     const xTag = self.directives.custom["tag"];
     const state = self.directives.custom["value"];
-    const filter = self.directives.custom["value:clean"];
+    const filter = self.directives.custom["value-clean"];
     const onInput = props.onInput ? props.onInput : null;
     if (["input", "textarea", "select", "progress"].includes(xTag)) {
       props.onInput = (event: any) => {

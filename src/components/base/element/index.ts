@@ -51,9 +51,9 @@ export default function XtyleComponent(xtyleCore: any): any {
 
     if (
       directives.custom["fallback"] &&
-      isNotBlank(directives.custom["fallback:is"])
+      isNotBlank(directives.custom["fallback-is"])
     ) {
-      if (directives.custom["fallback:is"] === true) {
+      if (directives.custom["fallback-is"] === true) {
         return directives.custom["fallback"];
       }
     }

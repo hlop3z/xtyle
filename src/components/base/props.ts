@@ -15,6 +15,7 @@ type Props = {
   // Custom Directives
   "x-ref"?: (callback: Function | any) => void;
   "x-value"?: any;
+  "x-value-clean"?: (callback: Function | any) => void;
   "x-hover"?: (callback: Function | any) => void;
   "x-scroll"?: (callback: Function | any) => void;
   "x-swipe"?: (callback: Function | any) => void;
@@ -29,7 +30,7 @@ type Props = {
   "x-fragment"?: boolean;
   "x-portal"?: any | HTMLElement;
   "x-fallback"?: any | HTMLElement;
-  "x-fallback:is"?: boolean;
+  "x-fallback-is"?: boolean;
   "x-switch"?: boolean;
   "x-case"?: string;
   case?: string;
