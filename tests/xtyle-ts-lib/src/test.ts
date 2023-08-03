@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { plugin } from "./index.ts";
-import Home from "./views/home.tsx";
+import Main from "./views/main.tsx";
 
 /**
  * @Testing
@@ -10,7 +10,7 @@ import Home from "./views/home.tsx";
 xtyle.use(plugin);
 
 /* Render */
-preact.render(preact.h(Home), document.body);
+preact.render(preact.h(Main), document.body);
 
 /* Preview Directives Keys */
 console.log("Directives: ", Object.keys(xtyle.allDirectives));

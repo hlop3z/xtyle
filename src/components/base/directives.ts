@@ -68,6 +68,7 @@ const DirectiveResponse = (
 });
 
 export const globalDirectives = {
+  // wheel - maybe implement a "wheel-tracker" (Up & Down) Tracker.
   ref: (self: any) => {
     const directive = self.directives.custom["ref"];
     useEffect(() => {
@@ -78,7 +79,7 @@ export const globalDirectives = {
     const xTag = self.directives.custom["tag"];
     const state = self.directives.custom["value"];
     const filter = self.directives.custom["value-clean"];
-    const onInput = props.onInput ? props.onInput : null;
+    const { onInput } = props;
     if (["input", "textarea", "select", "progress"].includes(xTag)) {
       props.onInput = (event: any) => {
         if (filter) {
@@ -92,6 +93,9 @@ export const globalDirectives = {
           onInput(event);
         }
       };
+      useEffect(() => {
+        self.ref.current.value = state.value;
+      }, [self.ref, state]);
     }
   },
   scroll: (self: any, props: any) => {
@@ -131,7 +135,6 @@ export const globalDirectives = {
   },
   swipe: (self: any, props: any) => {
     const directive = self.directives.custom["swipe"];
-
     SwipeDetector((value: string) => {
       const dirConfig = DirectiveResponse(self, props, null, {
         value: value,
@@ -189,6 +192,8 @@ function SwipeDetector(onSwipe: Function) {
   const touchStartY = useRef(null);
 
   useEffect(() => {
+    const MIN_SWIPE_DISTANCE = 50;
+
     const handleTouchStart = (event) => {
       touchStartX.current = event.touches[0].clientX;
       touchStartY.current = event.touches[0].clientY;
@@ -202,8 +207,6 @@ function SwipeDetector(onSwipe: Function) {
 
       const deltaX = touchEndX - touchStartX.current;
       const deltaY = touchEndY - touchStartY.current;
-
-      const MIN_SWIPE_DISTANCE = 50;
 
       if (
         Math.abs(deltaX) > MIN_SWIPE_DISTANCE ||

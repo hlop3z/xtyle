@@ -1,6 +1,7 @@
 type Props = {
   elements?: Record<string, any>;
   directives?: Record<string, any>;
+  props?: Record<string, any>;
 };
 
 export default Props;

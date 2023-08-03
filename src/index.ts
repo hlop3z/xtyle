@@ -18,7 +18,9 @@ export { allComponents, allDirectives };
 export const h = (...args: any) => App.h(...args);
 export const element = (...args: any) => App.element(...args);
 export const directive = (...args: any) => App.directive(...args);
+export const globalProps = (...args: any) => App.globalProps(...args);
 
+// Custom Plugins
 export const use = (options: any = {}) => {
   const config = options || {};
   if (config.elements) {
@@ -31,8 +33,12 @@ export const use = (options: any = {}) => {
       directive(key)(config.directives[key]);
     });
   }
+  if (config.props) {
+    globalProps(config.props);
+  }
 };
 
+// Components in Pascal-Case
 export const build = (options: any = {}, title: string = null) => {
   function pascalToKebab(str: string) {
     return str

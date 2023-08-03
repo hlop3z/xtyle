@@ -116,6 +116,11 @@ export const collectDirectives = (props: Props): Directive => {
   return dict;
 };
 
+/**
+ * Ensures the value is a CSS "Class-List".
+ * @param {Array | string} items - The object/items to extract the classes from.
+ * @returns {string[]} A list of css classes
+ */
 export const cleanCSS = (items: any): any => {
   if (Array.isArray(items)) {
     return items;
