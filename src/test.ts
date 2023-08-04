@@ -3,6 +3,22 @@
 /* Theme */
 import { base } from "./components";
 import App from "./tests/app";
+import * as xtyle from "./pre-build";
+
+xtyle.use({
+  globals: {
+    title: "Xtyle",
+  },
+});
+
+xtyle.router({
+  history: false,
+  routes: ["/", "/{?key}", "/a/b/key-{name}/{path*}"],
+  callback(next) {
+    console.log(next);
+  },
+});
+
 // import "./tests/backend";
 
 // HelloWorld
@@ -25,3 +41,5 @@ setTimeout(() => {
   preact.render(null, document.body);
 }, 1000);
 */
+
+console.log(xtyle.global);

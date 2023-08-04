@@ -1,4 +1,3 @@
-import "./style.scss";
 import Props from "./props.ts";
 
 export default function Component(props: Props = {}) {

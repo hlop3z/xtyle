@@ -1,0 +1,3 @@
+/**
+ * Preact Signal Wrapper
+ */

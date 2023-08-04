@@ -1,7 +1,7 @@
 {
   "name": "xtyle",
-  "version": "2.1.7",
-  "description": "Preact Toolkit",
+  "version": "2.1.8",
+  "description": "Preact Toolkit (Stand-Alone)",
   "author": "hlop3z",
   "license": "MIT",
   "type": "module",

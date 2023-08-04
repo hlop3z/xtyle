@@ -7,16 +7,20 @@ const folderPath = "src/components"; // Search Path
 const outPath = "dist";
 const isCore = true;
 
+const SPECIAL = [
+  "global",
+  "store",
+  "router",
+  "signal",
+  "useSignal",
+  "device",
+  "model",
+  "validator",
+  "stringTo",
+];
+
 const titleCase = (text) => {
-  if (isCore) return text.toLowerCase();
-  // Continue
-  const _text = text.replace("-", " ");
-  return _text
-    .toLowerCase()
-    .split(" ")
-    .map((e) => e.charAt(0).toUpperCase() + e.slice(1))
-    .join(" ")
-    .replace(" ", "");
+  if (isCore) return text;
 };
 
 function createParentPath(filePath) {
@@ -56,12 +60,18 @@ async function collectTSXFiles() {
 
           // Use the file {Content} and {Folder-Name}
           if (folderName !== "__base__") {
+            let outFunc = null;
             const propsCode = fileContent.split("export default Props;")[0];
             const outType = propsCode
               .replace("type Props =", "")
               .trim()
               .slice(0, -1);
-            const outFunc = `${componentName}: (props: ${outType}) => object;`;
+            // Builder
+            if (SPECIAL.includes(componentName)) {
+              outFunc = `${componentName}: ${outType}`;
+            } else {
+              outFunc = `${componentName}: (props: ${outType}) => object;`;
+            }
             listFunc.push(docContent + "\n\n" + outFunc);
             listComp.push(
               `export { default as ${componentName} } from "./${folderName}/index.tsx";`

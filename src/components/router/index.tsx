@@ -5,6 +5,10 @@ const BackendKey = {
   query: "__q",
 };
 
+function checkDiff(obj1, obj2) {
+  return JSON.stringify(obj1) !== JSON.stringify(obj2);
+}
+
 /**
  * RouterAPI class for handling routing and providing route-related functionality.
  *
@@ -28,9 +32,13 @@ class RouterAPI {
   constructor(options: NavigatorOptions) {
     this.routerHandler = () => {
       const nextRouter = this.find();
-      this.$current.value = nextRouter;
-      if (typeof options.callback === "function") {
-        options.callback();
+      const isDiff = checkDiff({ ...this.$current.value }, nextRouter);
+      // Update IF Changes only
+      if (isDiff) {
+        this.$current.value = nextRouter;
+        if (typeof options.callback === "function") {
+          options.callback(nextRouter);
+        }
       }
     };
     this.baseURL = options.baseURL || "/";
@@ -54,6 +62,9 @@ class RouterAPI {
     // Extra Methods
     this.find = VirtualRouter(this.routes, this.history);
     this.searchArgs = createSearchParams;
+
+    // Init Router
+    this.routerHandler();
   }
 
   /**
@@ -255,7 +266,7 @@ interface Routes {
  * @interface
  */
 interface NavigatorOptions {
-  callback: () => void;
+  callback: (next: any) => void;
   history?: boolean;
   baseURL?: string;
   routes?: any;
@@ -306,7 +317,8 @@ function parsePath(
         });
       }
       const view = routes[pattern];
-      return new RouterView({ view: view, arg: param });
+      const routerInfo = new RouterView({ view: view, arg: param });
+      return routerInfo;
     }
   }
 
@@ -332,9 +344,15 @@ function getPath(
       : window.location.hash.slice(1);
   }
 
+  // Core
   const data = parsePath(currentPath, routes);
   const parts = currentPath.split("?");
+
+  // Extract Path
   data.path = parts[0];
+  if (!data.path) data.path = "/";
+
+  // Query
   const query = parts.length === 2 ? parts[1] : null;
   if (query) {
     data.search = extractSearchParams(query);
@@ -380,7 +398,7 @@ const patternList: any = ["/", "/a/b/{?key}", "/a/b/key-{name}/{path*}"];
 
 const router = new RouterAPI({
   callback: () => {
-    console.log("CHanged");
+    console.log("Changed");
   },
   history: false,
   baseURL: "/",

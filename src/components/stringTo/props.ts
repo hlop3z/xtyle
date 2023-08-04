@@ -1,7 +1,10 @@
 type Props = {
-  elements?: Record<string, any>;
-  directives?: Record<string, any>;
-  globals?: Record<string, any>;
+  camel: (value: string) => string;
+  slug: (value: string) => string;
+  lower: (value: string) => string;
+  upper: (value: string) => string;
+  title: (value: string) => string;
+  pascal: (value: string) => string;
 };
 
 export default Props;

@@ -1,8 +1,4 @@
-type Props = {
-  elements?: Record<string, any>;
-  directives?: Record<string, any>;
-  globals?: Record<string, any>;
-};
+type Props = (value: any, validators: any[]) => any[] | string[];
 
 export default Props;
 /* 
