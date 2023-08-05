@@ -2,14 +2,14 @@
 // import "./backend";
 // import "./model";
 
-import HelloWorld from "./hello-world";
+import HelloWorld from "./views/hello-world";
+import Value from "./views/value";
 
 export default function App(props: any) {
   return (
     <div>
-      {/* <HelloWorld></HelloWorld> */}
-      <HelloWorld></HelloWorld>
-      <h1>Hello World</h1>
+      {/* <HelloWorld /> */}
+      <Value />
     </div>
   );
 }

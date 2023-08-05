@@ -8,14 +8,33 @@
 
         You can **clean/filter** the value **before updating** the state and element's value.
 
+!!! tip "x-value-validators"
+
+        You can **validate** the value after you filter it.
+
+!!! tip "x-input"
+
+        Useful for **extending** an **input** component.
+        
+        - Get the **current `value`**
+        - Submit if the value **is `valid`**
+        - Present **`errors`** to the client
+
 ```js
 function Component(props) {
   const text = preact.useSignal("");
   return (
     <input
       x-html
+      x-input={({ value, valid, errors }) =>
+        console.log({ value, valid, errors })
+      }
       x-value={text}
       x-value-clean={(value) => value.toLowerCase()}
+      x-value-validators={[
+        (v) => v.length === 0 || "Required Field!",
+        (v) => v.length >= 8 || "At least 8 characters long",
+      ]}
     />
   );
 }

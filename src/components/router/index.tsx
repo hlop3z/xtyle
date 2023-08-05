@@ -5,7 +5,7 @@ const BackendKey = {
   query: "__q",
 };
 
-function checkDiff(obj1, obj2) {
+function checkDiff(obj1: any, obj2: any) {
   return JSON.stringify(obj1) !== JSON.stringify(obj2);
 }
 
@@ -27,15 +27,15 @@ class RouterAPI {
   find: any;
   routes: any;
   searchArgs: any;
-  $current: any;
+  _current: any;
 
   constructor(options: NavigatorOptions) {
     this.routerHandler = () => {
       const nextRouter = this.find();
-      const isDiff = checkDiff({ ...this.$current.value }, nextRouter);
+      const isDiff = checkDiff({ ...this._current.value }, nextRouter);
       // Update IF Changes only
       if (isDiff) {
-        this.$current.value = nextRouter;
+        this._current.value = nextRouter;
         if (typeof options.callback === "function") {
           options.callback(nextRouter);
         }
@@ -43,7 +43,7 @@ class RouterAPI {
     };
     this.baseURL = options.baseURL || "/";
     this.history = options.history || false;
-    this.$current = signalXtyle({});
+    this._current = signalXtyle({});
 
     // Set Handler
     window.onpopstate = this.routerHandler;
@@ -68,23 +68,13 @@ class RouterAPI {
   }
 
   /**
-   * Static method to initialize the RouterAPI with provided options.
-   *
-   * @static
-   * @param {NavigatorOptions} options - The options object containing router configuration.
-   * @returns {RouterAPI} - A new RouterAPI instance.
-   */
-  static init(options: NavigatorOptions): RouterAPI {
-    return new RouterAPI(options);
-  }
-  /**
    * Gets the current route view.
    *
    * @readonly
    * @returns {string | null} - The current route view.
    */
   get current(): string | null {
-    return this.$current.value;
+    return this._current.value;
   }
 
   /**
@@ -94,7 +84,7 @@ class RouterAPI {
    * @returns {any} - The computed value.
    */
   computed(...args: any): any {
-    return this.$current.computed(...args);
+    return this._current.computed(...args);
   }
 
   /**
@@ -104,7 +94,7 @@ class RouterAPI {
    * @returns {any} - The effect.
    */
   effect(...args: any): any {
-    return this.$current.effect(...args);
+    return this._current.effect(...args);
   }
 
   /**

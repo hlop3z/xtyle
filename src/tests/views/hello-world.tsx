@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { directive, element } from "../index";
+import { directive, element } from "../../index";
 
 /* 
 @ (Register) Directive

@@ -1,16 +1,30 @@
-!!! tip "Router"
+!!! tip "xtyle.Router"
 
-    The **xtyle.router** (virtual router) is designed to **keep track of parameter changes without rendering a view immediately**, This enables you to **define views later** in the project, promoting decoupling from the router and providing greater flexibility in managing routes.
+    The **xtyle.Router** (initializer) is designed to **keep track of parameter changes without rendering a view immediately**, This enables you to **define views later** in the project, promoting decoupling from the router and providing greater flexibility in managing routes.
 
-## Path Patterns (Examples)
+!!! tip "xtyle.router"
 
-- **`/a/some-{key}`** : Encapsulating a word with **"`{}`"** brackets makes it a **required** query parameter.
+    The **xtyle.router** (virtual router) is your router's manager.
 
-- **`/a/b-{?key}`** : The **"`?`"** indicates that the query parameter **`key`** is **optional**.
+## **Dynamic** Path Patterns
 
-- **`/a/b/{path*}`** : The **"`*`"** denotes a wildcard query parameter named **`path`**, which matches the **remaining part of the path**.
+- **`/{variable}`** : Encapsulating a word with **"`{}`"** brackets makes it a **required** path parameter.
+
+- **`/{?variable}`** : The **"`?`"** at the **start** indicates that the parameter is **optional**.
+
+- **`/{variable*}`** : The **"`*`"** at the **end** denotes a wildcard parameter, which matches the **remaining part of the path**.
+
 
 ## Config (Example)
+
+
+!!! note "Path Patterns (Examples)"
+
+    - **`/a/some-{key}`** : This one is **required**!
+
+    - **`/a/b-{?key}`** : The **"`?`"** indicates that the parameter **`key`** is **optional**.
+
+    - **`/a/b/{path*}`** : The **"`*`"** denotes a wildcard parameter named **`path`**, which matches the **remaining part of the path**.
 
 ```js
 /**
@@ -21,7 +35,7 @@ const patternList = ["/", "/a/b/{?key}", "/a/b/key-{name}/{path*}"];
 /**
  * Initialize the router with options
  */
-const router = xtyle.router({
+xtyle.Router({
   history: false,
   baseURL: "/",
   routes: patternList,
@@ -74,7 +88,7 @@ const router = xtyle.router({
 /**
  * Navigate to a new path with query parameters
  */
-router.go(
+xtyle.router.go(
   "/home", // Path
   // Query
   {
@@ -91,24 +105,24 @@ router.go(
 /**
  * Create a computed value based on the current route
  */
-const currentSearch = router.computed(() => {
-  return router.current.search;
+const currentSearch = xtyle.router.computed(() => {
+  return xtyle.router.current.search;
 });
 
 /**
  * Add an effect to be triggered when the route changes
  */
-router.effect(() => {
+xtyle.router.effect(() => {
   // Log an example value from the `router.current.search` object
-  console.log(currentSearchKey.value.key);
+  console.log(currentSearch.value);
 });
 
 /**
  * Set an interval to navigate after a certain time
  */
 setInterval(() => {
-  router.go("/home", {
+  xtyle.router.go("/about", {
     key: new Date().toISOString(),
   });
-}, 4000);
+}, 1000);
 ```

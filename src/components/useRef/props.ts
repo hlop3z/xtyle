@@ -1,4 +1,4 @@
-type Props = (elements: Record<string, any>, title?: string) => void;
+type Props = any;
 
 export default Props;
 /* 

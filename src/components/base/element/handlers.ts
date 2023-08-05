@@ -7,7 +7,7 @@ const { useEffect, render, $ready } = preact;
 /**
  * Import statements for required modules and functions.
  */
-import core from "../../../core";
+import core from "../../../utils";
 
 import {
   cleanCSS,
@@ -25,6 +25,8 @@ import {
   customCoreDirectives,
 } from "../directives";
 
+import { allDirectives } from "../";
+
 /**
  * IS-NOT Blank
  */
@@ -33,16 +35,11 @@ export const isNotBlank = (val: any) =>
 
 /**
  * Handles HTML (Element) creation and processing of directives.
- * @param {any} xtyleCore - The Xtyle Core object.
  * @param {string | null} tagHTML - The HTML tag specified in the directives.
  * @param {any} selfContext - The self context object for the component.
  * @returns {any | null} - The rendered JSX element based on the directives or null if no tagHTML is provided.
  */
-export function handleHTMLElement(
-  xtyleCore: any,
-  tagHTML: any,
-  selfContext: any
-): any {
+export function handleHTMLElement(tagHTML: any, selfContext: any): any {
   if (!tagHTML) return null;
 
   // Custom Attrs
@@ -74,7 +71,7 @@ export function handleHTMLElement(
           const method = globalDirectives[key];
           method(selfContext, propsHTML);
         } else {
-          const method = xtyleCore.directives[key];
+          const method = allDirectives[key];
           if (typeof method === "function") {
             method(selfContext, propsHTML);
           }

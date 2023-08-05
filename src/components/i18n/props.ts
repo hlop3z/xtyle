@@ -1,4 +1,4 @@
-type Props = (elements: Record<string, any>, title?: string) => void;
+type Props = (path: string) => string | undefined;
 
 export default Props;
 /* 

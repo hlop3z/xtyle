@@ -34,7 +34,7 @@
 | **`xtyle.element`**   | <a href="#creating-components">Component(s)</a> |
 | **`xtyle.directive`** | <a href="#creating-directives">Directive(s)</a> |
 | **`xtyle.router`**    | <a href="./router">Router</a>                   |
-| **`xtyle.model`**     | <a href="./models">Model(s)</a>                 |
+| **`xtyle.model`**     | <a href="./util/models">Model(s)</a>                 |
 | **`xtyle.base`**      | **Only** useful with **`TypeScript`**           |
 
 ---

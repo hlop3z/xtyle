@@ -1,8 +1,9 @@
 /**
  * Import statements.
  */
-import core from "../../core";
+import core from "../../utils";
 import ripple from "./ripple";
+import validator from "../validator";
 
 const { useEffect, useRef } = preact;
 
@@ -38,6 +39,7 @@ export const includedCoreAttrs = [
 ];
 
 export const customCoreDirectives = [
+  // Tools, Control-Flow & Effects
   "html",
   "fragment",
   "tag",
@@ -52,7 +54,10 @@ export const customCoreDirectives = [
   "live",
   "portal",
   "ripple",
+  // Input Related
+  "input",
   "value-clean",
+  "value-validators",
 ];
 
 const DirectiveResponse = (
@@ -79,16 +84,34 @@ export const globalDirectives = {
     const xTag = self.directives.custom["tag"];
     const state = self.directives.custom["value"];
     const filter = self.directives.custom["value-clean"];
+    const validators = self.directives.custom["value-validators"];
+    const xInput = self.directives.custom["input"];
+
     const { onInput } = props;
     if (["input", "textarea", "select", "progress"].includes(xTag)) {
       props.onInput = (event: any) => {
-        if (filter) {
-          const newValue = filter(event.target.value);
-          state.value = newValue;
+        let newValue = "";
+        // Clean Value
+        if (filter && typeof filter === "function") {
+          newValue = filter(event.target.value);
           event.target.value = newValue;
         } else {
-          state.value = event.target.value;
+          newValue = event.target.value;
         }
+        // Set New-Value
+        state.value = newValue;
+        // Validators
+        if (validators && typeof Array.isArray(validators)) {
+          const isValid = validator(newValue, validators);
+          if (xInput && typeof xInput === "function") {
+            xInput({
+              value: newValue,
+              valid: isValid.length === 0,
+              errors: isValid,
+            });
+          }
+        }
+        // On Input (Methods)
         if (onInput) {
           onInput(event);
         }

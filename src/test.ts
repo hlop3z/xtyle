@@ -1,7 +1,6 @@
 // @ts-nocheck
 
 /* Theme */
-import { base } from "./components";
 import App from "./tests/app";
 import * as xtyle from "./pre-build";
 
@@ -11,7 +10,7 @@ xtyle.use({
   },
 });
 
-xtyle.router({
+xtyle.Router({
   history: false,
   routes: ["/", "/{?key}", "/a/b/key-{name}/{path*}"],
   callback(next) {
@@ -33,7 +32,7 @@ console.log(XTYLE_GLOBAL);
 // Base.app.element
 
 // @ts-ignore
-window.h = base.h;
+window.h = xtyle.h;
 
 preact.render(preact.h(App), document.body);
 /*
@@ -43,3 +42,4 @@ setTimeout(() => {
 */
 
 console.log(xtyle.global);
+console.log(xtyle.router.current);

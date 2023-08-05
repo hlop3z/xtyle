@@ -2,7 +2,7 @@
  * Import Core
  */
 const { useEffect, useRef } = preact;
-import util, { removeSpace } from "../../../core";
+import util, { removeSpace } from "../../../utils";
 
 /**
  * Represents the directives extracted from the props.

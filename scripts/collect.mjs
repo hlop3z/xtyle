@@ -5,22 +5,10 @@ import ProjectName from "./__init__.mjs";
 
 const folderPath = "src/components"; // Search Path
 const outPath = "dist";
-const isCore = true;
-
-const SPECIAL = [
-  "global",
-  "store",
-  "router",
-  "signal",
-  "useSignal",
-  "device",
-  "model",
-  "validator",
-  "stringTo",
-];
 
 const titleCase = (text) => {
-  if (isCore) return text;
+  if (text === "createRouter") return "Router";
+  return text;
 };
 
 function createParentPath(filePath) {
@@ -67,10 +55,10 @@ async function collectTSXFiles() {
               .trim()
               .slice(0, -1);
             // Builder
-            if (SPECIAL.includes(componentName)) {
-              outFunc = `${componentName}: ${outType}`;
-            } else {
+            if (componentName === "base") {
               outFunc = `${componentName}: (props: ${outType}) => object;`;
+            } else {
+              outFunc = `${componentName}: ${outType}`;
             }
             listFunc.push(docContent + "\n\n" + outFunc);
             listComp.push(

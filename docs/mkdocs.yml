@@ -11,7 +11,8 @@ nav:
   - CSS: css.md
   - Events: on-events.md
   - Util:
-      - Model: models.md
+      - Model: util/models.md
+      - i18n: util/i18n.md
   - Built-in Directives:
       - x-ref: directives/ref.md
       - x-value: directives/value.md
@@ -40,9 +41,10 @@ theme:
   locale: en
   features:
     # - navigation.tabs
+    # - navigation.sections
+    - content.code.copy
     - navigation.instant
     - navigation.tracking
-    # - navigation.sections
     - navigation.top
     - content.code.annotate
     - navigation.expand
