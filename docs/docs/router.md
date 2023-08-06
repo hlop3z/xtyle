@@ -1,22 +1,18 @@
-!!! tip "xtyle.Router"
+!!! tip "Router"
 
-    The **xtyle.Router** (initializer) is designed to **keep track of parameter changes without rendering a view immediately**, This enables you to **define views later** in the project, promoting decoupling from the router and providing greater flexibility in managing routes.
-
-!!! tip "xtyle.router"
-
-    The **xtyle.router** (virtual router) is your router's manager.
+    The **`xtyle.Router`** and **`xtyle.router`** provide powerful routing capabilities for your application. The **`xtyle.Router`** is designed as an initializer to keep track of parameter changes without immediately rendering a view, promoting flexibility in managing routes. On the other hand, the **`xtyle.router`** acts as your router's manager.
 
 ## **Dynamic** Path Patterns
 
-- **`/{variable}`** : Encapsulating a word with **"`{}`"** brackets makes it a **required** path parameter.
+When defining routes, you can use dynamic path patterns to handle different scenarios:
 
-- **`/{?variable}`** : The **"`?`"** at the **start** indicates that the parameter is **optional**.
+- **`/{variable}`**: Encapsulating a word with `{}` brackets makes it a required path parameter.
+- **`/{?variable}`**: The `?` at the start indicates that the parameter is optional.
+- **`/{variable*}`**: The `*` at the end denotes a wildcard parameter, which matches the remaining part of the path.
 
-- **`/{variable*}`** : The **"`*`"** at the **end** denotes a wildcard parameter, which matches the **remaining part of the path**.
+## Configuration (Example)
 
-
-## Config (Example)
-
+Here's an example of how to initialize the router and configure it with options and route patterns:
 
 !!! note "Path Patterns (Examples)"
 
@@ -25,6 +21,8 @@
     - **`/a/b-{?key}`** : The **"`?`"** indicates that the parameter **`key`** is **optional**.
 
     - **`/a/b/{path*}`** : The **"`*`"** denotes a wildcard parameter named **`path`**, which matches the **remaining part of the path**.
+
+!!! tip "xtyle.Router"
 
 ```js
 /**
@@ -49,7 +47,7 @@ xtyle.Router({
 
 | Key            | Description                                                                 |
 | -------------- | --------------------------------------------------------------------------- |
-| **`history`**  | Indicating whether to use the history API for routing.                      |
+| **`history`**  | A boolean flag indicating whether to use the history API for routing.       |
 | **`baseURL`**  | The base **URL** for the router.                                            |
 | **`routes`**   | The **list** of route patterns to use for routing.                          |
 | **`callback`** | A **callback `function`** that will be executed when the **route changes**. |
@@ -84,6 +82,8 @@ xtyle.Router({
 
 ## Navigate (Demo)
 
+!!! tip "xtyle.router"
+
 ```js
 /**
  * Navigate to a new path with query parameters
@@ -100,6 +100,8 @@ xtyle.router.go(
 ```
 
 ## Computed & Effect (Demo)
+
+!!! tip "xtyle.router"
 
 ```js
 /**
@@ -126,3 +128,5 @@ setInterval(() => {
   });
 }, 1000);
 ```
+
+With the Xtyle Router module, you can easily manage your application's routing, handle dynamic path patterns, and perform actions when the route changes, providing a smooth user experience and better control over your application's navigation.
