@@ -1,6 +1,7 @@
 import { readdir, stat, readFile, writeFile } from "fs/promises";
 import fs from "fs";
 import path from "path";
+
 import ProjectName from "./__init__.mjs";
 
 const folderPath = "src/components"; // Search Path
@@ -24,6 +25,7 @@ function createParentPath(filePath) {
 }
 
 async function collectTSXFiles() {
+  const listDocs = [];
   const listFunc = [];
   const listComp = [];
   async function decorator(folderPath, currentFolder = "") {
@@ -49,6 +51,7 @@ async function collectTSXFiles() {
           // Use the file {Content} and {Folder-Name}
           if (folderName !== "__base__") {
             let outFunc = null;
+            let outDocs = null;
             const propsCode = fileContent.split("export default Props;")[0];
             const outType = propsCode
               .replace("type Props =", "")
@@ -57,9 +60,12 @@ async function collectTSXFiles() {
             // Builder
             if (componentName === "base") {
               outFunc = `${componentName}: (props: ${outType}) => object;`;
+              outDocs = `declare const ${componentName}: (props: ${outType}) => object;`;
             } else {
               outFunc = `${componentName}: ${outType}`;
+              outDocs = `declare const ${componentName}: ${outType}`;
             }
+            listDocs.push(docContent + "\n\n" + outDocs);
             listFunc.push(docContent + "\n\n" + outFunc);
             listComp.push(
               `export { default as ${componentName} } from "./${folderName}/index.tsx";`
@@ -67,7 +73,6 @@ async function collectTSXFiles() {
           }
         }
       }
-      //console.log(listFunc.join("\n"));
     } catch (error) {
       console.error("Error reading folder:", error);
     }
@@ -79,18 +84,20 @@ async function collectTSXFiles() {
     // Files
     comps_file: path.join(folderPath, "index.ts"),
     types_file: path.join(outPath, `${ProjectName}.d.ts`),
+    docs_file: path.join(outPath, `docs.d.ts`),
     // Text
+    docs: listDocs.join("\n\n"),
     types: listFunc.join("\n\n"),
     comps: listComp.join("\n"),
   };
 
   createParentPath(code.types_file);
+
+  const xtyleDocumentation = `declare const ${ProjectName}:{\n${code.types}\n};`;
+
   await writeFile(code.comps_file, code.comps, "utf-8");
-  await writeFile(
-    code.types_file,
-    `declare const ${ProjectName}:{\n${code.types}\n};`,
-    "utf-8"
-  );
+  await writeFile(code.types_file, xtyleDocumentation, "utf-8");
+  await writeFile(code.docs_file, code.docs, "utf-8");
 }
 
 collectTSXFiles();

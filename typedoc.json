@@ -1,0 +1,9 @@
+{
+    "name": "Xtyle",
+    "out": "type-docs",
+    "entryPoints": ["dist/docs.d.ts"],
+    "exclude": ["**/*.spec.ts", "node_modules/**/*"],
+    "readme": "README.md",
+    "tsconfig": "tsconfig.docs.json"
+  }
+  

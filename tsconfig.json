@@ -37,6 +37,7 @@
   },
   "include": [
     "globals.d.ts",
+    "dist/docs.d.ts",
     "src/**/*.tsx",
     "src/**/*.ts"
   ],
