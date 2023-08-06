@@ -34,7 +34,7 @@
 | **`xtyle.element`**   | <a href="#creating-components">Component(s)</a> |
 | **`xtyle.directive`** | <a href="#creating-directives">Directive(s)</a> |
 | **`xtyle.router`**    | <a href="./router">Router</a>                   |
-| **`xtyle.model`**     | <a href="./util/models">Model(s)</a>                 |
+| **`xtyle.model`**     | <a href="./util/models">Model(s)</a>            |
 | **`xtyle.base`**      | **Only** useful with **`TypeScript`**           |
 
 ---
@@ -158,39 +158,80 @@ Usage:
 
 !!! info "xtyle.use"
 
-    Register **`directives`** and **`elements`** in a single place.
+    **Simplifying Plugin Registration**:
 
-Props:
+    The **`xtyle.use`** function is a powerful utility that simplifies the process of registering various **`elements`, `directives`, `globals`, and `store`** in a single place for your plugin. This documentation will guide you through the steps to create and register your plugins effectively.
 
-- **`elements`**
-- **`directives`**
+### Props:
 
-Example:
+- **`elements`**: Define the custom elements you want to create with your plugin.
+- **`directives`**: Declare custom directives to extend the behavior of your elements.
+- **`globals`**: Specify global variables accessible within your plugin's scope.
+- **`store`**: Define global state variables that can be used reactively within your plugin.
+
+### Example:
+
+Below is an example of how to create and register a custom plugin using **`xtyle.use`**:
 
 ```js
+// Define your plugin
 const myPlugin = {
+  /** @Directives */
   directives: {
     html(self, props) {
-      // Logic . . .
+      // Logic to handle the 'html' directive
+      // ...
     },
   },
+  /** @Elements */
   elements: {
     button(props) {
-      return <button>Click Me</button>;
+      return <button>Click Me | {props.children}</button>;
     },
+  },
+  /** @Globals */
+  globals: {
+    title: "Xtyle Project",
+  },
+  /** @Store */
+  store: {
+    count: xtyle.signal(0),
   },
 };
 
-/* Register Plugin */
+// Register the plugin
 xtyle.use(myPlugin);
+```
 
-/* App (Demo) */
+By following this example, you've successfully created a plugin that includes:
+
+- a custom **`x-html`** directive.
+- a **`x-button`** element.
+- a **`title`** global variable.
+- a **`count`** store global state.
+
+These can now be used within your application.
+
+```js
+// App (Demo)
 const App = () => (
   <div x-html>
-    <x-button></x-button>
+    Count is: {xtyle.store.count}
+    <x-button>{xtyle.global.title}</x-button>
   </div>
 );
 
-/* Render */
+// Reactive Count
+setInterval(() => {
+  xtyle.store.count.value += 1;
+}, 1000);
+
+// Render the App
 preact.render(preact.h(App), document.body);
 ```
+
+!!! warning
+
+    The **`x-html`** directive is a **built-in** directive.
+
+With **`xtyle.use`**, you can easily bundle and manage multiple **`elements`, `directives`, `globals`, and `store`** variables into a single cohesive **plugin**, making it more organized and maintainable for your Preact applications.
