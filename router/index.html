@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#path-patterns-examples" class="md-skip">
+        <a href="#dynamic-path-patterns" class="md-skip">
           Skip to content
         </a>
       
@@ -311,15 +311,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#path-patterns-examples" class="md-nav__link">
-    Path Patterns (Examples)
+  <a href="#dynamic-path-patterns" class="md-nav__link">
+    Dynamic Path Patterns
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#config-example" class="md-nav__link">
-    Config (Example)
+  <a href="#configuration-example" class="md-nav__link">
+    Configuration (Example)
   </a>
   
 </li>
@@ -456,8 +456,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../models/" class="md-nav__link">
+      <a href="../util/models/" class="md-nav__link">
         Model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../util/i18n/" class="md-nav__link">
+        i18n
       </a>
     </li>
   
@@ -779,15 +793,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#path-patterns-examples" class="md-nav__link">
-    Path Patterns (Examples)
+  <a href="#dynamic-path-patterns" class="md-nav__link">
+    Dynamic Path Patterns
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#config-example" class="md-nav__link">
-    Config (Example)
+  <a href="#configuration-example" class="md-nav__link">
+    Configuration (Example)
   </a>
   
 </li>
@@ -856,21 +870,34 @@
 
 <div class="admonition tip">
 <p class="admonition-title">Router</p>
-<p>The <strong>xtyle.router</strong> (virtual router) is designed to <strong>keep track of parameter changes without rendering a view immediately</strong>, This enables you to <strong>define views later</strong> in the project, promoting decoupling from the router and providing greater flexibility in managing routes.</p>
+<p>The <strong><code>xtyle.Router</code></strong> and <strong><code>xtyle.router</code></strong> provide powerful routing capabilities for your application. The <strong><code>xtyle.Router</code></strong> is designed as an initializer to keep track of parameter changes without immediately rendering a view, promoting flexibility in managing routes. On the other hand, the <strong><code>xtyle.router</code></strong> acts as your router's manager.</p>
 </div>
-<h2 id="path-patterns-examples">Path Patterns (Examples)</h2>
+<h2 id="dynamic-path-patterns"><strong>Dynamic</strong> Path Patterns</h2>
+<p>When defining routes, you can use dynamic path patterns to handle different scenarios:</p>
+<ul>
+<li><strong><code>/{variable}</code></strong>: Encapsulating a word with <code>{}</code> brackets makes it a required path parameter.</li>
+<li><strong><code>/{?variable}</code></strong>: The <code>?</code> at the start indicates that the parameter is optional.</li>
+<li><strong><code>/{variable*}</code></strong>: The <code>*</code> at the end denotes a wildcard parameter, which matches the remaining part of the path.</li>
+</ul>
+<h2 id="configuration-example">Configuration (Example)</h2>
+<p>Here's an example of how to initialize the router and configure it with options and route patterns:</p>
+<div class="admonition note">
+<p class="admonition-title">Path Patterns (Examples)</p>
 <ul>
 <li>
-<p><strong><code>/a/some-{key}</code></strong> : Encapsulating a word with <strong>"<code>{}</code>"</strong> brackets makes it a <strong>required</strong> query parameter.</p>
+<p><strong><code>/a/some-{key}</code></strong> : This one is <strong>required</strong>!</p>
 </li>
 <li>
-<p><strong><code>/a/b-{?key}</code></strong> : The <strong>"<code>?</code>"</strong> indicates that the query parameter <strong><code>key</code></strong> is <strong>optional</strong>.</p>
+<p><strong><code>/a/b-{?key}</code></strong> : The <strong>"<code>?</code>"</strong> indicates that the parameter <strong><code>key</code></strong> is <strong>optional</strong>.</p>
 </li>
 <li>
-<p><strong><code>/a/b/{path*}</code></strong> : The <strong>"<code>*</code>"</strong> denotes a wildcard query parameter named <strong><code>path</code></strong>, which matches the <strong>remaining part of the path</strong>.</p>
+<p><strong><code>/a/b/{path*}</code></strong> : The <strong>"<code>*</code>"</strong> denotes a wildcard parameter named <strong><code>path</code></strong>, which matches the <strong>remaining part of the path</strong>.</p>
 </li>
 </ul>
-<h2 id="config-example">Config (Example)</h2>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">xtyle.Router</p>
+</div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cm">/**</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cm"> * Define the list of route patterns</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cm"> */</span>
@@ -879,7 +906,7 @@
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cm">/**</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="cm"> * Initialize the router with options</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="cm"> */</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">router</span><span class="p">({</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">Router</span><span class="p">({</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nx">history</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nx">baseURL</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="nx">patternList</span><span class="p">,</span>
@@ -899,7 +926,7 @@
 <tbody>
 <tr>
 <td><strong><code>history</code></strong></td>
-<td>Indicating whether to use the history API for routing.</td>
+<td>A boolean flag indicating whether to use the history API for routing.</td>
 </tr>
 <tr>
 <td><strong><code>baseURL</code></strong></td>
@@ -981,10 +1008,13 @@
 </tbody>
 </table>
 <h2 id="navigate-demo">Navigate (Demo)</h2>
+<div class="admonition tip">
+<p class="admonition-title">xtyle.router</p>
+</div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cm">/**</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cm"> * Navigate to a new path with query parameters</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="cm"> */</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nx">router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="s2">&quot;/home&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Path</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="c1">// Query</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p">{</span>
@@ -995,30 +1025,34 @@
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">);</span>
 </code></pre></div>
 <h2 id="computed-effect-demo">Computed &amp; Effect (Demo)</h2>
+<div class="admonition tip">
+<p class="admonition-title">xtyle.router</p>
+</div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cm">/**</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="cm"> * Create a computed value based on the current route</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="cm"> */</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">currentSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">router</span><span class="p">.</span><span class="nx">computed</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">router</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">search</span><span class="p">;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">currentSearch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">computed</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">search</span><span class="p">;</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">});</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="cm">/**</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="cm"> * Add an effect to be triggered when the route changes</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="cm"> */</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nx">router</span><span class="p">.</span><span class="nx">effect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">effect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="c1">// Log an example value from the `router.current.search` object</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currentSearchKey</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">key</span><span class="p">);</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currentSearch</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">});</span>
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
 <a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="cm">/**</span>
 <a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="cm"> * Set an interval to navigate after a certain time</span>
 <a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="cm"> */</span>
 <a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">  </span><span class="nx">router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="s2">&quot;/home&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">  </span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="s2">&quot;/about&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">(),</span>
 <a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">  </span><span class="p">});</span>
-<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="p">},</span><span class="w"> </span><span class="mf">4000</span><span class="p">);</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
 </code></pre></div>
+<p>With the Xtyle Router module, you can easily manage your application's routing, handle dynamic path patterns, and perform actions when the route changes, providing a smooth user experience and better control over your application's navigation.</p>
 
 
 
@@ -1065,7 +1099,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.annotate", "navigation.expand"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.instant", "navigation.tracking", "navigation.top", "content.code.annotate", "navigation.expand"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
 
