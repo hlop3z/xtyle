@@ -1,5 +1,5 @@
 type Props = {
-  go: (path: string, query: object) => void;
+  go: (path: string, query?: object) => void;
   computed: (props: any) => any;
   effect: (props: any) => void;
   find: (query: string) => any;
