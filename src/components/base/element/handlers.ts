@@ -219,7 +219,7 @@ export function handleForLoop(directives: any): any {
  */
 export function handleSwitchCase(directives: any, props: any): any {
   if (directives.custom["switch"]) {
-    const activeCase = directives.custom["case"];
+    const activeCase = directives.custom["case"] || "default";
     let currentView = null;
     if (
       props.children &&
@@ -234,11 +234,9 @@ export function handleSwitchCase(directives: any, props: any): any {
         (item: any) => item.props["case"] === activeCase
       );
     } else if (Array.isArray(props.children)) {
-      props.children.forEach((item: any) => {
-        if (item.props && item.props["case"] === activeCase) {
-          currentView = item;
-        }
-      });
+      currentView = props.children.filter(
+        (item: any) => item.props && item.props["case"] === activeCase
+      );
     }
     return currentView;
   }

@@ -60,7 +60,7 @@ class RouterAPI {
     }
 
     // Extra Methods
-    this.find = VirtualRouter(this.routes, this.history);
+    this.find = VirtualRouter(this.routes, this.history, this.baseURL);
     this.searchArgs = createSearchParams;
 
     // Init Router
@@ -220,6 +220,20 @@ function extractSearchParams(_path: string): RouteParams {
 }
 
 /**
+ * Custom Search Arguments
+ */
+function createSearchParamsBackendCustom(keys: any, params: any) {
+  const dict = {};
+  if (keys.includes("$query") && keys.includes("$action")) {
+    dict[BackendKey.action] = params.$action;
+    dict[BackendKey.query] = JSON.stringify(params.$query);
+    delete params.$query;
+    delete params.$action;
+  }
+  return dict;
+}
+
+/**
  * Function to create search parameters from the provided object.
  *
  * @param {any} params - The object containing search parameters.
@@ -227,14 +241,8 @@ function extractSearchParams(_path: string): RouteParams {
  */
 function createSearchParams(params: any): string {
   const keys: string[] = Object.keys(params || {});
-  const dict = {};
   if (keys.length > 0) {
-    if (keys.includes("$query") && keys.includes("$action")) {
-      dict[BackendKey.action] = params.$action;
-      dict[BackendKey.query] = JSON.stringify(params.$query);
-      delete params.$query;
-      delete params.$action;
-    }
+    const dict = createSearchParamsBackendCustom(keys, params);
     const queryString = new URLSearchParams({ ...dict, ...params }).toString();
     return "?" + queryString;
   }
@@ -325,8 +333,10 @@ function parsePath(
 function getPath(
   routes: Record<string, string>,
   history: boolean = true,
-  path: string
+  path: string,
+  baseURL: string
 ): RouteResponse {
+  // Real
   let currentPath = path;
   if (!currentPath) {
     currentPath = history
@@ -334,8 +344,14 @@ function getPath(
       : window.location.hash.slice(1);
   }
 
+  // Clean
+  let cleanPath = currentPath;
+  if (baseURL !== "/") {
+    cleanPath = currentPath.replace(baseURL, "").replace("//", "/");
+  }
+
   // Core
-  const data = parsePath(currentPath, routes);
+  const data = parsePath(cleanPath, routes);
   const parts = currentPath.split("?");
 
   // Extract Path
@@ -362,9 +378,10 @@ function getPath(
  */
 export function VirtualRouter(
   routes: Routes,
-  history: boolean = true
+  history: boolean = true,
+  baseURL: string = ""
 ): Function {
-  return (path = "") => getPath(routes, history, path);
+  return (path = "") => getPath(routes, history, path, baseURL);
 }
 
 /**
