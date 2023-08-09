@@ -2,7 +2,7 @@
  * Import statements.
  */
 import core from "../../utils";
-import ripple from "./ripple";
+import ripple from "./ripple.js";
 import validator from "../validator";
 
 const { useEffect, useRef } = preact;

@@ -1,10 +1,3 @@
-interface RippleSetup {
-  centered?: boolean;
-  class?: string;
-  circle?: boolean;
-  color?: string;
-}
-
 const cssClass = {
   container: "ripple-effect__container",
   animation: "ripple-effect__animation",
@@ -15,29 +8,23 @@ const cssClass = {
   style: `.ripple-effect__animation,.ripple-effect__container{color:inherit;position:absolute;top:0;left:0;pointer-events:none;overflow:hidden}.ripple-effect__container{border-radius:inherit;width:100%;height:100%;z-index:0;contain:strict}.ripple-effect__animation{border-radius:50%;background:currentColor;opacity:0;will-change:transform,opacity}.ripple-effect__animation--enter{transition:none}.ripple-effect__animation--start{transition:transform .25s cubic-bezier(.4, 0, .2, 1),opacity .1s cubic-bezier(.4, 0, .2, 1)}.ripple-effect__animation--end{transition:opacity .3s cubic-bezier(.4, 0, .2, 1)}`,
 };
 
-function transform(el: any, value: string) {
-  el.style.transform = value;
-  el.style.webkitTransform = value;
+function transform(el, value) {
+  el.style["transform"] = value;
+  el.style["webkitTransform"] = value;
 }
-
-function opacity(el: any, value: number) {
-  el.style.opacity = value.toString();
+function opacity(el, value) {
+  el.style["opacity"] = value.toString();
 }
-
-function isTouchEvent(e: Event) {
-  return e instanceof TouchEvent;
+function isTouchEvent(e) {
+  return e.constructor.name === "TouchEvent";
 }
-
-function calculate(e: Event, el: any, value: any = {}) {
+const calculate = (e, el, value = {}) => {
   const offset = el.getBoundingClientRect();
-  const target: any = isTouchEvent(e)
-    ? (e as TouchEvent).touches[(e as TouchEvent).touches.length - 1]
-    : e;
+  const target = isTouchEvent(e) ? e.touches[e.touches.length - 1] : e;
   const localX = target.clientX - offset.left;
   const localY = target.clientY - offset.top;
   let radius = 0;
   let scale = 0.3;
-
   if (el._ripple && el._ripple.circle) {
     scale = 0.15;
     radius = el.clientWidth / 2;
@@ -47,20 +34,15 @@ function calculate(e: Event, el: any, value: any = {}) {
   } else {
     radius = Math.sqrt(el.clientWidth ** 2 + el.clientHeight ** 2) / 2;
   }
-
   const centerX = `${(el.clientWidth - radius * 2) / 2}px`;
   const centerY = `${(el.clientHeight - radius * 2) / 2}px`;
-  // @ts-ignore
   const x = value.center ? centerX : `${localX - radius}px`;
-  // @ts-ignore
   const y = value.center ? centerY : `${localY - radius}px`;
-
   return { radius, scale, x, y, centerX, centerY };
-}
-
+};
 const ripples = {
   /* eslint-disable max-statements */
-  show(e: Event, el: any, value: RippleSetup = {}) {
+  show(e, el, value = {}) {
     if (!el._ripple || !el._ripple.enabled) {
       return;
     }
@@ -100,11 +82,11 @@ const ripples = {
       opacity(animation, 0.25);
     }, 0);
   },
-  hide(el: any) {
+  hide(el) {
     if (!el || !el._ripple || !el._ripple.enabled) return;
     const ripples = el.getElementsByClassName(cssClass.animation);
     if (ripples.length === 0) return;
-    const animation = ripples[ripples.length - 1] as any;
+    const animation = ripples[ripples.length - 1];
     if (animation.dataset.isHiding) return;
     else animation.dataset.isHiding = "true";
     const diff = performance.now() - Number(animation.dataset.activated);
@@ -124,14 +106,12 @@ const ripples = {
     }, delay);
   },
 };
-
-function isRippleEnabled(value: unknown): boolean {
+function isRippleEnabled(value) {
   return typeof value === "undefined" || !!value;
 }
-
-function rippleShow(e: Event) {
-  const value: any = {};
-  const element = e.currentTarget as any;
+function rippleShow(e) {
+  const value = {};
+  const element = e.currentTarget;
   if (!element || !element._ripple || element._ripple.touched) return;
   if (isTouchEvent(e)) {
     element._ripple.touched = true;
@@ -145,9 +125,8 @@ function rippleShow(e: Event) {
   }
   ripples.show(e, element, value);
 }
-
-function rippleHide(e: Event) {
-  const element = e.currentTarget as any;
+function rippleHide(e) {
+  const element = e.currentTarget;
   if (!element) return;
   window.setTimeout(() => {
     if (element._ripple) {
@@ -157,22 +136,21 @@ function rippleHide(e: Event) {
   ripples.hide(element);
 }
 
-function startListeners(
-  el: any,
-  setup: RippleSetup | undefined,
-  wasEnabled: boolean
-) {
+function startListeners(el, setup, wasEnabled) {
   const enabled = isRippleEnabled(setup);
   if (!enabled) {
     ripples.hide(el);
   }
   el._ripple = el._ripple || {};
   el._ripple.enabled = enabled;
-
-  if (setup) {
-    el._ripple.centered = !!setup.centered;
-    el._ripple.class = setup.class;
-    el._ripple.circle = !!setup.circle;
+  const value = setup || {};
+  if (value.center) {
+    el._ripple.centered = true;
+  }
+  if (value.circle) {
+    el._ripple.circle = setup.circle;
+  }
+  if (value.color) {
     el._ripple.color = setup.color;
   }
   if (enabled && !wasEnabled) {
@@ -188,7 +166,7 @@ function startListeners(
   }
 }
 
-export function stopListeners(el: any) {
+export function stopListeners(el) {
   el.removeEventListener("mousedown", rippleShow);
   el.removeEventListener("touchstart", rippleHide);
   el.removeEventListener("touchend", rippleHide);
@@ -200,5 +178,5 @@ export function stopListeners(el: any) {
 
 export default {
   css: cssClass.style,
-  directive: (el: any, setup?: RippleSetup) => startListeners(el, setup, false),
+  directive: (el, setup) => startListeners(el, setup, false),
 };
