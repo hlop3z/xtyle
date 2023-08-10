@@ -96,3 +96,5 @@ typings/
 tests/live/
 docs/.pdm-python
 docs/.pdm-python
+
+vite.config.js.*
