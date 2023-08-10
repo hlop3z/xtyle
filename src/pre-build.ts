@@ -44,6 +44,9 @@ export const Router = (args: any) => {
   return admin;
 };
 
+// Plugins Routes
+export const pluginRoutes: any = new Set();
+
 // Custom Plugins
 export const use = (options: any = {}) => {
   const config = options || {};
@@ -62,6 +65,11 @@ export const use = (options: any = {}) => {
   }
   if (config.store) {
     Core.globalStore(config.store);
+  }
+  if (config.routes && Array.isArray(config.routes)) {
+    config.routes.forEach((key) => {
+      pluginRoutes.add(key);
+    });
   }
 };
 
@@ -82,3 +90,22 @@ export const build = (
   });
   return dict;
 };
+
+// Run Project
+export function init(app: any, renderTo: any, options: any) {
+  options = options || {};
+
+  // Init Router
+  const routes = new Set(options.routes || []);
+  options.routes = [...Array.from(routes), ...Array.from(pluginRoutes)];
+  Router(options);
+
+  // GET Mount Point
+  let element: any = renderTo;
+  if (typeof renderTo === "string") {
+    element = document.querySelector(renderTo);
+  }
+
+  // Init App
+  preact.render(preact.h(app), element);
+}

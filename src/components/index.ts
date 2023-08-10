@@ -4,6 +4,7 @@ export { default as Router } from "./createRouter/index.tsx";
 export { default as device } from "./device/index.tsx";
 export { default as global } from "./global/index.tsx";
 export { default as i18n } from "./i18n/index.tsx";
+export { default as init } from "./init/index.tsx";
 export { default as model } from "./model/index.tsx";
 export { default as router } from "./router/index.tsx";
 export { default as signal } from "./signal/index.tsx";

@@ -84,7 +84,7 @@ async function collectTSXFiles() {
     // Files
     comps_file: path.join(folderPath, "index.ts"),
     types_file: path.join(outPath, `${ProjectName}.d.ts`),
-    docs_file: path.join(outPath, `docs.d.ts`),
+    docs_file: path.join(outPath, `types.d.ts`),
     // Text
     docs: listDocs.join("\n\n"),
     types: listFunc.join("\n\n"),
