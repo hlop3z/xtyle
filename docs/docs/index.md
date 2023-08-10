@@ -4,14 +4,6 @@
 
     Welcome to **Xtyle**! Your Ultimate Directive Extension! :rocket:  Enabling you to effortlessly extend your functions as **global directives**. Say goodbye to exporting and importing components constantly. Any **`method`** or **`component`** you register globally will be readily available throughout your whole Application.
 
-!!! tip "no-installation"
-
-    ```js
-    <script src="https://unpkg.com/xtyle@latest" type="text/javascript"></script>
-    ```
-
-!!! tip "TypeScript"
-
 <p
   align="center"
   style="font-size: 2.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;"
@@ -20,22 +12,52 @@
     href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-lib.zip"
     target="_blank"
   >
-    Download (Library) Template
+    Download (TypeScript) Template
   </a>
 </p>
+
+!!! tip "no-installation"
+
+    ```js
+    <script src="https://unpkg.com/xtyle@latest" type="text/javascript"></script>
+    ```
+
+## Description
+
+!!! info "Purpose and Goals"
+
+    The purpose of the **`xtyle`** tool is to revolutionize the way you **develop for the browser**. Our aim is to **simplify** the development process while **maintaining compatibility with TypeScript** and modern tools like **VS Code**. Xtyle empowers **API developers** by providing them with a simpler way to connect various plugins built with **TypeScript/Javascript** with their corresponding **APIs**.
+
+### Key Features
+
+- **Global Directives**: Easily extend the behavior of your elements by declaring custom directives.
+- **Simplified Components**: Define custom elements without the hassle of constant exporting and importing.
+- **Global Variables**: Specify global variables that are accessible within your application's scope.
+- **Reactive State Management**: Define global state variables that can be used reactively within your application.
+
+!!! tip "Plugins"
+
+    With **`xtyle.use`**, you can easily **. . .**
+
+    1. Define Routes: Configure your route patterns using the `routes` prop to create a structured navigation flow.
+    2. Declare Directives: Extend the behavior of your elements by declaring custom directives using the `directives` prop.
+    3. Create Custom Elements: Define the custom elements you want to create with your plugin using the `elements` prop.
+    4. Set Global Variables: Specify global variables within your plugin's scope using the `globals` prop.
+    5. Reactive State Management: Define global state variables using the `store` prop to enable reactive updates.
 
 ---
 
 ## Core **API**
 
-| Key                   | Description                                     |
-| --------------------- | ----------------------------------------------- |
-| **`xtyle.use`**       | <a href="#creating-plugins">Plugin(s)</a>       |
-| **`xtyle.element`**   | <a href="#creating-components">Component(s)</a> |
-| **`xtyle.directive`** | <a href="#creating-directives">Directive(s)</a> |
-| **`xtyle.router`**    | <a href="./router">Router</a>                   |
-| **`xtyle.model`**     | <a href="./util/models">Model(s)</a>            |
-| **`xtyle.base`**      | **Only** useful with **`TypeScript`**           |
+| Key                   | Description                                         |
+| --------------------- | --------------------------------------------------- |
+| **`xtyle.init`**      | <a href="#init-run-application">Run Application</a> |
+| **`xtyle.use`**       | <a href="#creating-plugins">Plugin(s)</a>           |
+| **`xtyle.element`**   | <a href="#creating-components">Component(s)</a>     |
+| **`xtyle.directive`** | <a href="#creating-directives">Directive(s)</a>     |
+| **`xtyle.router`**    | <a href="./router">Router</a>                       |
+| **`xtyle.model`**     | <a href="./util/models">Model(s)</a>                |
+| **`xtyle.base`**      | **Only** useful with **`TypeScript`**               |
 
 ---
 
@@ -144,7 +166,7 @@ xtyle.element("demo")((props) => (
 
 Usage:
 
-- title: The title for the component.
+- **`title`**: The title for the component.
 
 ```js
 <x-demo title="Hello World">
@@ -164,8 +186,9 @@ Usage:
 
 ### Props:
 
-- **`elements`**: Define the custom elements you want to create with your plugin.
+- **`routes`**: Define your route(s) pattern(s).
 - **`directives`**: Declare custom directives to extend the behavior of your elements.
+- **`elements`**: Define the custom elements you want to create with your plugin.
 - **`globals`**: Specify global variables accessible within your plugin's scope.
 - **`store`**: Define global state variables that can be used reactively within your plugin.
 
@@ -174,8 +197,10 @@ Usage:
 Below is an example of how to create and register a custom plugin using **`xtyle.use`**:
 
 ```js
-// Define your plugin
 const myPlugin = {
+  /** @Routes */
+  routes: ["/my-app/", "/my-app/{path*}"],
+
   /** @Directives */
   directives: {
     html(self, props) {
@@ -183,16 +208,19 @@ const myPlugin = {
       // ...
     },
   },
+
   /** @Elements */
   elements: {
     button(props) {
       return <button>Click Me | {props.children}</button>;
     },
   },
+
   /** @Globals */
   globals: {
     title: "Xtyle Project",
   },
+
   /** @Store */
   store: {
     count: xtyle.signal(0),
@@ -203,7 +231,7 @@ const myPlugin = {
 xtyle.use(myPlugin);
 ```
 
-By following this example, you've successfully created a plugin that includes:
+By following this example, you've **successfully created a plugin** that includes:
 
 - a custom **`x-html`** directive.
 - a **`x-button`** element.
@@ -234,4 +262,56 @@ preact.render(preact.h(App), document.body);
 
     The **`x-html`** directive is a **built-in** directive.
 
-With **`xtyle.use`**, you can easily bundle and manage multiple **`elements`, `directives`, `globals`, and `store`** variables into a single cohesive **plugin**, making it more organized and maintainable for your Preact applications.
+---
+
+## **INIT** Run Application
+
+```js
+import myPlugin from "./plugin.ts";
+import Main from "./main.tsx";
+
+/**
+ * @Register <Plugin>
+ */
+xtyle.use(myPlugin);
+
+/**
+ * @Router
+ */
+const router = {
+  history: false,
+  baseURL: null,
+};
+
+/**
+ * @Render
+ */
+xtyle.init(Main, document.body, router);
+```
+
+### Main **Properties**
+
+| Key                | Description                                     |
+| ------------------ | ----------------------------------------------- |
+| **`xtyle.global`** | Object where you can find your custom directive |
+| **`xtyle.store`**  | Object where you can find your custom directive |
+| **`xtyle.router`** | Object where you can find your custom directive |
+
+## (App) **Preview Variables**
+
+```js
+/* Globals */
+console.log("Globals: ", xtyle.global);
+
+/* Store */
+console.log("Store: ", xtyle.store);
+
+/* Routes Keys */
+console.log("Routes: ", Object.keys(xtyle.router.routes));
+
+/* Directives Keys */
+console.log("Directives: ", Object.keys(xtyle.allDirectives));
+
+/* Components Keys */
+console.log("Components: ", Object.keys(xtyle.allComponents));
+```
