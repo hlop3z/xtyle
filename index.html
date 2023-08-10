@@ -283,6 +283,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#core-api" class="md-nav__link">
     Core API
   </a>
@@ -320,6 +327,20 @@
         <li class="md-nav__item">
   <a href="#creating-plugins" class="md-nav__link">
     Creating Plugins
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#init-run-application" class="md-nav__link">
+    INIT Run Application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-preview-variables" class="md-nav__link">
+    (App) Preview Variables
   </a>
   
 </li>
@@ -783,6 +804,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    Description
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#core-api" class="md-nav__link">
     Core API
   </a>
@@ -824,6 +852,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#init-run-application" class="md-nav__link">
+    INIT Run Application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-preview-variables" class="md-nav__link">
+    (App) Preview Variables
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -847,14 +889,6 @@
 <p class="admonition-title">Xtyle</p>
 <p>Welcome to <strong>Xtyle</strong>! Your Ultimate Directive Extension! <img alt="🚀" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f680.svg" title=":rocket:" />  Enabling you to effortlessly extend your functions as <strong>global directives</strong>. Say goodbye to exporting and importing components constantly. Any <strong><code>method</code></strong> or <strong><code>component</code></strong> you register globally will be readily available throughout your whole Application.</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">no-installation</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;</span><span class="nx">script</span><span class="w"> </span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;https://unpkg.com/xtyle@latest&quot;</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
-</code></pre></div>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">TypeScript</p>
-</div>
 <p><p
   align="center"
   style="font-size: 2.5em; letter-spacing: -2px; font-family: Georgia, sans-serif;"
@@ -863,10 +897,38 @@
     href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-lib.zip"
     target="_blank"
   >
-    Download (Library) Template
+    Download (TypeScript) Template
   </a>
 </p>
 </p>
+<div class="admonition tip">
+<p class="admonition-title">no-installation</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;</span><span class="nx">script</span><span class="w"> </span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;https://unpkg.com/xtyle@latest&quot;</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</code></pre></div>
+</div>
+<h2 id="description">Description</h2>
+<div class="admonition info">
+<p class="admonition-title">Purpose and Goals</p>
+<p>The purpose of the <strong><code>xtyle</code></strong> tool is to revolutionize the way you <strong>develop for the browser</strong>. Our aim is to <strong>simplify</strong> the development process while <strong>maintaining compatibility with TypeScript</strong> and modern tools like <strong>VS Code</strong>. Xtyle empowers <strong>API developers</strong> by providing them with a simpler way to connect various plugins built with <strong>TypeScript/Javascript</strong> with their corresponding <strong>APIs</strong>.</p>
+</div>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>Global Directives</strong>: Easily extend the behavior of your elements by declaring custom directives.</li>
+<li><strong>Simplified Components</strong>: Define custom elements without the hassle of constant exporting and importing.</li>
+<li><strong>Global Variables</strong>: Specify global variables that are accessible within your application's scope.</li>
+<li><strong>Reactive State Management</strong>: Define global state variables that can be used reactively within your application.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Plugins</p>
+<p>With <strong><code>xtyle.use</code></strong>, you can easily <strong>. . .</strong></p>
+<ol>
+<li>Define Routes: Configure your route patterns using the <code>routes</code> prop to create a structured navigation flow.</li>
+<li>Declare Directives: Extend the behavior of your elements by declaring custom directives using the <code>directives</code> prop.</li>
+<li>Create Custom Elements: Define the custom elements you want to create with your plugin using the <code>elements</code> prop.</li>
+<li>Set Global Variables: Specify global variables within your plugin's scope using the <code>globals</code> prop.</li>
+<li>Reactive State Management: Define global state variables using the <code>store</code> prop to enable reactive updates.</li>
+</ol>
+</div>
 <hr />
 <h2 id="core-api">Core <strong>API</strong></h2>
 <table>
@@ -877,6 +939,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><strong><code>xtyle.init</code></strong></td>
+<td><a href="#init-run-application">Run Application</a></td>
+</tr>
 <tr>
 <td><strong><code>xtyle.use</code></strong></td>
 <td><a href="#creating-plugins">Plugin(s)</a></td>
@@ -1007,7 +1073,7 @@
 </code></pre></div>
 <p>Usage:</p>
 <ul>
-<li>title: The title for the component.</li>
+<li><strong><code>title</code></strong>: The title for the component.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">&lt;</span><span class="nx">x</span><span class="o">-</span><span class="nx">demo</span><span class="w"> </span><span class="nx">title</span><span class="o">=</span><span class="s2">&quot;Hello World&quot;</span><span class="o">&gt;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="o">&lt;</span><span class="nx">h4</span><span class="o">&gt;</span><span class="nx">Content</span><span class="w"> </span><span class="nx">goes</span><span class="w"> </span><span class="nx">here</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/h4&gt;</span>
@@ -1022,42 +1088,48 @@
 </div>
 <h3 id="props">Props:</h3>
 <ul>
-<li><strong><code>elements</code></strong>: Define the custom elements you want to create with your plugin.</li>
+<li><strong><code>routes</code></strong>: Define your route(s) pattern(s).</li>
 <li><strong><code>directives</code></strong>: Declare custom directives to extend the behavior of your elements.</li>
+<li><strong><code>elements</code></strong>: Define the custom elements you want to create with your plugin.</li>
 <li><strong><code>globals</code></strong>: Specify global variables accessible within your plugin's scope.</li>
 <li><strong><code>store</code></strong>: Define global state variables that can be used reactively within your plugin.</li>
 </ul>
 <h3 id="example">Example:</h3>
 <p>Below is an example of how to create and register a custom plugin using <strong><code>xtyle.use</code></strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// Define your plugin</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">myPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="cm">/** @Directives */</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nx">directives</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="nx">html</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span><span class="w"> </span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">      </span><span class="c1">// Logic to handle the &#39;html&#39; directive</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">      </span><span class="c1">// ...</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">  </span><span class="cm">/** @Elements */</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="nx">button</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">button</span><span class="o">&gt;</span><span class="nx">Click</span><span class="w"> </span><span class="nx">Me</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/button&gt;;</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">  </span><span class="cm">/** @Globals */</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">  </span><span class="nx">globals</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Xtyle Project&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">  </span><span class="cm">/** @Store */</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">  </span><span class="nx">store</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">    </span><span class="nx">count</span><span class="o">:</span><span class="w"> </span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">signal</span><span class="p">(</span><span class="mf">0</span><span class="p">),</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">myPlugin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="cm">/** @Routes */</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/my-app/&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/my-app/{path*}&quot;</span><span class="p">],</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="cm">/** @Directives */</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="nx">directives</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="nx">html</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span><span class="w"> </span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">      </span><span class="c1">// Logic to handle the &#39;html&#39; directive</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">      </span><span class="c1">// ...</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">  </span><span class="cm">/** @Elements */</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">  </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="nx">button</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">button</span><span class="o">&gt;</span><span class="nx">Click</span><span class="w"> </span><span class="nx">Me</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/button&gt;;</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">  </span><span class="cm">/** @Globals */</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">  </span><span class="nx">globals</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Xtyle Project&quot;</span><span class="p">,</span>
 <a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="p">};</span>
-<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>
-<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="c1">// Register the plugin</span>
-<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">myPlugin</span><span class="p">);</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">  </span><span class="cm">/** @Store */</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">  </span><span class="nx">store</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">    </span><span class="nx">count</span><span class="o">:</span><span class="w"> </span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">signal</span><span class="p">(</span><span class="mf">0</span><span class="p">),</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="p">};</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="c1">// Register the plugin</span>
+<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">myPlugin</span><span class="p">);</span>
 </code></pre></div>
-<p>By following this example, you've successfully created a plugin that includes:</p>
+<p>By following this example, you've <strong>successfully created a plugin</strong> that includes:</p>
 <ul>
 <li>a custom <strong><code>x-html</code></strong> directive.</li>
 <li>a <strong><code>x-button</code></strong> element.</li>
@@ -1085,7 +1157,68 @@
 <p class="admonition-title">Warning</p>
 <p>The <strong><code>x-html</code></strong> directive is a <strong>built-in</strong> directive.</p>
 </div>
-<p>With <strong><code>xtyle.use</code></strong>, you can easily bundle and manage multiple <strong><code>elements</code>, <code>directives</code>, <code>globals</code>, and <code>store</code></strong> variables into a single cohesive <strong>plugin</strong>, making it more organized and maintainable for your Preact applications.</p>
+<hr />
+<h2 id="init-run-application"><strong>INIT</strong> Run Application</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">myPlugin</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./plugin.ts&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">import</span><span class="w"> </span><span class="nx">Main</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./main.tsx&quot;</span><span class="p">;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="cm">/**</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="cm"> * @Register &lt;Plugin&gt;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="cm"> */</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">myPlugin</span><span class="p">);</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="cm">/**</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="cm"> * @Router</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="cm"> */</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="kd">const</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">  </span><span class="nx">history</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">  </span><span class="nx">baseURL</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="p">};</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="cm">/**</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="cm"> * @Render</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="cm"> */</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">Main</span><span class="p">,</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="w"> </span><span class="nx">router</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="main-properties">Main <strong>Properties</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>xtyle.global</code></strong></td>
+<td>Object where you can find your custom directive</td>
+</tr>
+<tr>
+<td><strong><code>xtyle.store</code></strong></td>
+<td>Object where you can find your custom directive</td>
+</tr>
+<tr>
+<td><strong><code>xtyle.router</code></strong></td>
+<td>Object where you can find your custom directive</td>
+</tr>
+</tbody>
+</table>
+<h2 id="app-preview-variables">(App) <strong>Preview Variables</strong></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="cm">/* Globals */</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Globals: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">xtyle</span><span class="p">.</span><span class="nb">global</span><span class="p">);</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="cm">/* Store */</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Store: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">store</span><span class="p">);</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="cm">/* Routes Keys */</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Routes: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">routes</span><span class="p">));</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="cm">/* Directives Keys */</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Directives: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">allDirectives</span><span class="p">));</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="cm">/* Components Keys */</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Components: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">xtyle</span><span class="p">.</span><span class="nx">allComponents</span><span class="p">));</span>
+</code></pre></div>
 
 
 
