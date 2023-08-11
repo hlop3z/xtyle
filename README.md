@@ -21,7 +21,7 @@
   <a href="https://hlop3z.github.io/xtyle/" target="_blank"> Docs </a>
   <br /><br />
   <a
-    href="https://github.com/hlop3z/xtyle/raw/main/getting-started/xtyle-ts-lib.zip"
+    href="https://github.com/hlop3z/xtyle-template"
     target="_blank"
   >
     Download (Library) Template
