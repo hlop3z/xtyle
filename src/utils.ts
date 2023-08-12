@@ -145,14 +145,11 @@ function objectToStyle(input: any): string {
 /**
  * Transforms an object's keys to camelCase.
  * @param {any} kwargs - The object whose keys need to be transformed to camelCase.
- * @param {any} component - The component object.
  * @returns {object} - The object with camelCase keys.
  */
-const camelProps = (kwargs: any, component?: any): object => {
+const camelProps = (kwargs: any): object => {
   const dict: { [key: string]: any } = {};
-  Object.entries(component ? component.$values(kwargs) : kwargs).map(
-    ([key, value]) => (dict[camelCase(key)] = value)
-  );
+  Object.entries(kwargs).map(([key, value]) => (dict[camelCase(key)] = value));
   return dict;
 };
 

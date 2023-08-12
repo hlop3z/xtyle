@@ -44,8 +44,19 @@ export const Router = (args: any) => {
   return admin;
 };
 
+export function generateRoutes(routePath: string) {
+  const routeHierarchy: any = [];
+  const parts = routePath.split("/").filter((part) => part);
+  let currentPath: string = "";
+  for (const part of parts) {
+    currentPath += `/${part}`;
+    routeHierarchy.push(currentPath);
+  }
+  return ["/", ...routeHierarchy];
+}
+
 // Plugins Routes
-export const pluginRoutes: any = new Set();
+const pluginRoutes: any = new Set();
 
 // Custom Plugins
 export const use = (options: any = {}) => {
