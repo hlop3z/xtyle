@@ -42,6 +42,9 @@ function slugify(str: string, numbers: boolean = true): string {
     str = str.replace(/[^a-z -]/g, "");
   }
   str = str.replace(/\s+/g, "-").replace(/-+/g, "-");
+  if (str.startsWith("-")) {
+    str = str.slice(1);
+  }
   return str;
 }
 
