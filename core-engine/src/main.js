@@ -1,4 +1,11 @@
-import { useState, useEffect, useRef, useCallback } from "preact/hooks";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+  useReducer,
+} from "preact/hooks";
 import {
   signal,
   computed,
@@ -16,7 +23,7 @@ export const $ready = signal(false);
 export { h, render } from "preact";
 
 // Export preact hooks
-export { useState, useEffect, useRef, useCallback };
+export { useState, useEffect, useRef, useCallback, useMemo, useReducer };
 
 // Export preact signals
 export {
