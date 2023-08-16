@@ -47,7 +47,7 @@ This demo showcases the usage of the **xtyle.table** wrapper to manage a virtual
 
 ```js
 // Create a new database table instance named "app.model"
-const table = Database("app.model");
+const table = xtyle.model("app.model");
 ```
 
 ### Initial Data Setup
