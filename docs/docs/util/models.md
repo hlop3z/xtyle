@@ -63,7 +63,7 @@ table.list = [
 ];
 ```
 
-### List Update(s)
+### **List** Update(s)
 
 ```js
 table.list = [...table.list, { name: "New Item" }];
@@ -75,7 +75,7 @@ table.updateList((items) => {
 });
 ```
 
-### Form Update(s)
+### **Form** Update(s)
 
 ```js
 table.form = { ...table.form, key: "one" };
@@ -91,7 +91,7 @@ table.updateForm((form) => {
 
 ```js
 // Define a computed value to search for records with "text" containing "item 5"
-const demo = table.computed((self: any) => self.search("text", "item 5"));
+const demo = table.computed((self) => self.search("text", "item 5"));
 ```
 
 ### Effects
