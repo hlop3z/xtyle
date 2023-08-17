@@ -63,28 +63,35 @@ table.list = [
 ];
 ```
 
-### Asynchronous Updates
+### List Update(s)
+
+```js
+table.list = [...table.list, { name: "New Item" }];
+
+/* OR */
+
+table.updateList((items) => {
+  items.pop();
+});
+```
+
+### Form Update(s)
+
+```js
+table.form = { ...table.form, key: "one" };
+
+/* OR */
+
+table.updateForm((form) => {
+  delete form.key;
+});
+```
+
+### Computed
 
 ```js
 // Define a computed value to search for records with "text" containing "item 5"
 const demo = table.computed((self: any) => self.search("text", "item 5"));
-
-// After 1 second, remove the last record from the table using `updateList` method
-setTimeout(() => {
-  table.updateList((items) => {
-    items.pop();
-  });
-
-  // Update the form data by adding a new key "key" with the value "one"
-  table.updateForm((form) => {
-    form.key = "one";
-  });
-
-  // Update the form data again by deleting the key "key"
-  table.updateForm((form) => {
-    delete form.key;
-  });
-}, 1000);
 ```
 
 ### Effects
