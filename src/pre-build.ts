@@ -7,11 +7,13 @@ export { default as model } from "./components/model/index.tsx";
 export { default as validator } from "./components/validator/index.tsx";
 export { default as stringTo } from "./components/stringTo/index.tsx";
 export { default as useRef } from "./components/useRef/index.tsx";
+export { default as actions } from "./components/actions/index.tsx";
 
 // (i18n) Translations
 import i18nAdmin from "./components/i18n/index.tsx";
+
 // @ts-ignore
-export let i18n = (param: any) => undefined;
+export let i18n = (param: any) => undefined; // over-written by setting up translations
 export const translations = (obj: any) => {
   i18n = i18nAdmin(obj);
 };
