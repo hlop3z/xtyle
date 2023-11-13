@@ -4,6 +4,7 @@ type RecordDB = Record<string, any>;
 
 class Table {
   readonly stateList = signal([]);
+  readonly statePage = signal({});
   readonly stateForm = signal({});
   readonly stateMode = signal("list");
   readonly keys: ReadonlyArray<string>;
@@ -26,16 +27,6 @@ class Table {
   }
 
   // Preact
-  get info(): { uri: string; app: string; model: string; keys: string[] } {
-    const parts = this.resourceName.split(".");
-    return {
-      uri: this.resourceName,
-      app: parts[0],
-      model: parts[1],
-      keys: [...this.keys],
-    };
-  }
-
   get recordList(): RecordDB[] {
     return [...this.stateList.value];
   }
@@ -64,6 +55,14 @@ class Table {
     if (Array.isArray(rows)) {
       this.stateList.value = rows;
     }
+  }
+
+  get page(): any {
+    return this.statePage.value;
+  }
+
+  set page(value: any) {
+    this.statePage.value = value;
   }
 
   computed(method: (records: Table) => any): any {
