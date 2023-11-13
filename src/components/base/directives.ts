@@ -101,15 +101,16 @@ export const globalDirectives = {
         // Set New-Value
         state.value = newValue;
         // Validators
+        let isValid: any[] = [];
         if (validators && typeof Array.isArray(validators)) {
-          const isValid = validator(newValue, validators);
-          if (xInput && typeof xInput === "function") {
-            xInput({
-              value: newValue,
-              valid: isValid.length === 0,
-              errors: isValid,
-            });
-          }
+          isValid = validator(newValue, validators);
+        }
+        if (xInput && typeof xInput === "function") {
+          xInput({
+            value: newValue,
+            valid: isValid.length === 0,
+            errors: isValid,
+          });
         }
         // On Input (Methods)
         if (onInput) {
