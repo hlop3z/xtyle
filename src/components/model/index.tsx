@@ -7,6 +7,7 @@ class Table {
   readonly statePage = signal({});
   readonly stateForm = signal({});
   readonly stateMode = signal("list");
+  readonly statePagination = signal({});
   readonly keys: ReadonlyArray<string>;
   readonly resourceName: string;
 
@@ -63,6 +64,14 @@ class Table {
 
   set page(value: any) {
     this.statePage.value = value;
+  }
+
+  get pagination(): any {
+    return this.statePagination.value;
+  }
+
+  set pagination(value: any) {
+    this.statePagination.value = value;
   }
 
   computed(method: (records: Table) => any): any {
@@ -300,16 +309,16 @@ function Database(
     items?: any;
   } = {}
 ): any {
-  if (Database.model[resourceName]) {
-    return Database.model[resourceName];
+  if (Database.get[resourceName]) {
+    return Database.get[resourceName];
   }
-  Database.model[resourceName] = new Table({
+  Database.get[resourceName] = new Table({
     ...config,
     resourceName,
   });
-  return Database.model[resourceName];
+  return Database.get[resourceName];
 }
 
-Database.model = {};
+Database.get = {};
 
 export default Database;

@@ -22,6 +22,14 @@ type Props = {
     cleanup: any[];
     config: any;
   }) => any;
+  timer: (args: {
+    years?: number;
+    months?: number;
+    days?: number;
+    hours?: number;
+    minutes?: number;
+    seconds?: number;
+  }) => number;
 };
 
 export default Props;

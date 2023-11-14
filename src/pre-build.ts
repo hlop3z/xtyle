@@ -59,6 +59,7 @@ export function generateRoutes(routePath: string) {
 
 // Plugins Routes
 const pluginRoutes: any = new Set();
+const afterInit: any = [];
 
 // Custom Plugins
 export const use = (options: any = {}) => {
@@ -84,6 +85,9 @@ export const use = (options: any = {}) => {
       pluginRoutes.add(key);
     });
   }
+  if (config.init && Array.isArray(config.init)) {
+    afterInit.push(...config.init);
+  }
 };
 
 // Components in Pascal-Case to Kebab-Case
@@ -92,6 +96,7 @@ function pascalToKebab(str: string) {
     .replace(/([a-z0-9])([A-Z])/g, "$1-$2") // Convert uppercase letters to kebab-case
     .toLowerCase(); // Convert the whole string to lowercase
 }
+
 export const build = (
   options: any = {},
   title: string | undefined = undefined
@@ -121,4 +126,9 @@ export function init(app: any, renderTo: any, options: any) {
 
   // Init App
   preact.render(preact.h(app), element);
+
+  // afterInit
+  afterInit.forEach((method: any) => {
+    method();
+  });
 }

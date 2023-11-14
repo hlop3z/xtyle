@@ -3,6 +3,7 @@ type Props = {
   directives?: Record<string, any>;
   globals?: Record<string, any>;
   store?: Record<string, any>;
+  init?: any[];
 };
 
 export default Props;

@@ -248,8 +248,42 @@ export function createForm(obj: { [key: string]: any }): object {
   return newObj;
 }
 
+export function timer({
+  years = 0,
+  months = 0,
+  days = 0,
+  hours = 0,
+  minutes = 0,
+  seconds = 0,
+}: {
+  years?: number;
+  months?: number;
+  days?: number;
+  hours?: number;
+  minutes?: number;
+  seconds?: number;
+}) {
+  const yearInMillis = 365 * 24 * 60 * 60 * 1000;
+  const monthInMillis = 30 * 24 * 60 * 60 * 1000; // Assuming an average month length
+  const dayInMillis = 24 * 60 * 60 * 1000;
+  const hourInMillis = 60 * 60 * 1000;
+  const minuteInMillis = 60 * 1000;
+  const secondInMillis = 1000;
+
+  const totalMilliseconds =
+    years * yearInMillis +
+    months * monthInMillis +
+    days * dayInMillis +
+    hours * hourInMillis +
+    minutes * minuteInMillis +
+    seconds * secondInMillis;
+
+  return totalMilliseconds;
+}
+
 // Core module exports
 export default {
+  timer: timer,
   inject: injectCSS,
   form: createForm,
   // Preact plugins
