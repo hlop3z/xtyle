@@ -37,8 +37,9 @@ xtyle.Router({
   history: false,
   baseURL: "/",
   routes: patternList,
-  callback: () => {
+  callback: (router) => {
     console.log("Changed");
+    console.log(router);
   },
 });
 ```

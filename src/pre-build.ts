@@ -3,7 +3,6 @@ export { device } from "./store";
 export { useSignalXtyle as useSignal } from "./store";
 export { signalXtyle as signal } from "./store";
 export { default as util } from "./utils.ts";
-export { default as model } from "./components/model/index.tsx";
 export { default as validator } from "./components/validator/index.tsx";
 export { default as stringTo } from "./components/stringTo/index.tsx";
 export { default as useRef } from "./components/useRef/index.tsx";

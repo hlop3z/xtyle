@@ -7,7 +7,6 @@ export { default as generateRoutes } from "./generateRoutes/index.tsx";
 export { default as global } from "./global/index.tsx";
 export { default as i18n } from "./i18n/index.tsx";
 export { default as init } from "./init/index.tsx";
-export { default as model } from "./model/index.tsx";
 export { default as router } from "./router/index.tsx";
 export { default as signal } from "./signal/index.tsx";
 export { default as store } from "./store/index.tsx";
