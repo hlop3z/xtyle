@@ -3,6 +3,7 @@
  */
 
 const { useEffect, render, $ready } = preact;
+import { h } from "../";
 
 /**
  * Import statements for required modules and functions.
@@ -81,8 +82,14 @@ export function handleHTMLElement(tagHTML: any, selfContext: any): any {
   }
 
   // (Any | Object) to CSS-Class
+  const classConfigCSS: any = [
+    ...handleThemeColors(selfContext.directives.theme),
+  ];
   if (propsHTML.class) {
-    propsHTML.class = core.class(propsHTML.class);
+    classConfigCSS.push(propsHTML.class);
+  }
+  if (classConfigCSS.length > 0) {
+    propsHTML.class = core.class(classConfigCSS);
   }
 
   // (Any | Object) to CSS-Style
@@ -92,6 +99,26 @@ export function handleHTMLElement(tagHTML: any, selfContext: any): any {
 
   // HTML (Element)
   return h(tagHTML, propsHTML, selfContext.props.children);
+}
+
+/**
+ * Handles CSS Theme.
+ * @param {any} theme - The directives object containing CSS Theme properties.
+ */
+
+export function handleThemeColors(theme: any) {
+  const { color, text, border } = theme;
+  const css: any = [];
+  if (color) {
+    css.push(`color-bg-${color}`);
+  }
+  if (text) {
+    css.push(`color-tx-${text}`);
+  }
+  if (border) {
+    css.push(`color-br-${border}`);
+  }
+  return css;
 }
 
 /**
@@ -172,12 +199,13 @@ export function handlePortal(
       const elementHTML = document.querySelector(elementQuery);
       if (elementHTML) {
         useEffect(() => {
+          const realComponent = props.slot ? h(props.slot) : props.children;
           if (directives.custom["fragment"]) {
             const fragment = document.createDocumentFragment();
-            render(props.children, fragment);
+            render(realComponent, fragment);
             elementHTML.appendChild(fragment);
           } else {
-            render(props.children, elementHTML);
+            render(realComponent, elementHTML);
           }
         }, []);
       }

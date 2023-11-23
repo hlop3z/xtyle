@@ -4,6 +4,10 @@ type Props = {
   class?: any;
   style?: any;
   children?: any;
+  // Theme
+  "theme-color"?: string;
+  "theme-text"?: string;
+  "theme-border"?: string;
   // CSS
   "css-is"?: boolean;
   "css-on"?: string[] | string;

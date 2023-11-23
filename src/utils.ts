@@ -1,4 +1,4 @@
-import { camelCase } from "./components/stringTo";
+import { stringCamelCase } from "./components/stringTo";
 
 const { useEffect, useCallback } = preact;
 
@@ -52,7 +52,7 @@ const events: object = {
  * @param {string} code - The CSS code to inject.
  * @param {string} id - The ID of the style element to inject the code into.
  */
-const injectCSS = (code: string, id: string = "main") =>
+export const injectCSS = (code: string, id: string = "main") =>
   injectCSSBase({ code, id });
 
 /**
@@ -149,7 +149,9 @@ function objectToStyle(input: any): string {
  */
 const camelProps = (kwargs: any): object => {
   const dict: { [key: string]: any } = {};
-  Object.entries(kwargs).map(([key, value]) => (dict[camelCase(key)] = value));
+  Object.entries(kwargs).map(
+    ([key, value]) => (dict[stringCamelCase(key)] = value)
+  );
   return dict;
 };
 
@@ -180,7 +182,7 @@ function createSlots(
         if (!slotName) {
           slots["default"] = el;
         } else {
-          slots[camelCase(slotName)] = el;
+          slots[stringCamelCase(slotName)] = el;
         }
       }
     });

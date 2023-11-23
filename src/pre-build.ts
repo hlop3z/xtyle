@@ -7,6 +7,10 @@ export { default as validator } from "./components/validator/index.tsx";
 export { default as stringTo } from "./components/stringTo/index.tsx";
 export { default as useRef } from "./components/useRef/index.tsx";
 export { default as actions } from "./components/actions/index.tsx";
+export { default as theme } from "./components/theme/index.tsx";
+export { default as slot } from "./components/slot/index.tsx";
+export { default as arrayPage } from "./components/arrayPage/index.tsx";
+export { default as string } from "./components/string/index.tsx";
 
 // (i18n) Translations
 import i18nAdmin from "./components/i18n/index.tsx";

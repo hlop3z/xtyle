@@ -41,7 +41,7 @@ export function directive(name: string) {
 
 export function h(
   tag: string,
-  props: Record<string, any>,
+  props?: Record<string, any>,
   ...children: any[]
 ): any {
   let $props = props || {};

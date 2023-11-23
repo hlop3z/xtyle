@@ -1,5 +1,15 @@
 Docs for ...
 
+- actions
+- arrayPage
+- build
+- device
+- generateRoutes
+- slot
+- stringTo
+- theme
 - util.timer
-- model.pagination
-- model.page
+
+Fix Docs for ...
+
+- portal

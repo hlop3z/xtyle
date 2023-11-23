@@ -3,7 +3,7 @@
  * @param {string} text - The input string to convert.
  * @returns {string} The Pascal case representation of the input string.
  */
-function toPascalCase(text: string): string {
+export function stringPascalCase(text: string): string {
   return text
     .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) => {
       if (+match === 0) return "";
@@ -18,7 +18,7 @@ function toPascalCase(text: string): string {
  * @param {string} input - The input string to transform.
  * @returns {string} - The camelCase string.
  */
-export function camelCase(input: string): string {
+export function stringCamelCase(input: string): string {
   return input
     .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (e, r) =>
       0 == +e ? "" : 0 === r ? e.toLowerCase() : e.toUpperCase()
@@ -33,7 +33,7 @@ export function camelCase(input: string): string {
  * @param {boolean} numbers - Whether to include numbers in the slug.
  * @returns {string} - The slugified string.
  */
-function slugify(str: string, numbers: boolean = true): string {
+export function stringSlugify(str: string, numbers: boolean = true): string {
   str = str.replace(/^\s+|\s+$/g, "");
   str = str.toLowerCase();
   if (numbers) {
@@ -53,7 +53,7 @@ function slugify(str: string, numbers: boolean = true): string {
  * @param {string} text - The input string to convert.
  * @returns {string} The lowercase representation of the input string.
  */
-function toLower(text: string): string {
+export function stringLowerCase(text: string): string {
   return text.toLowerCase();
 }
 
@@ -62,7 +62,7 @@ function toLower(text: string): string {
  * @param {string} text - The input string to convert.
  * @returns {string} The uppercase representation of the input string.
  */
-function toUpper(text: string): string {
+export function stringUpperCase(text: string): string {
   return text.toUpperCase();
 }
 
@@ -71,7 +71,7 @@ function toUpper(text: string): string {
  * @param {string} text - The input string to convert.
  * @returns {string} The title case representation of the input string.
  */
-function toTitleCase(text: string): string {
+export function stringTitleCase(text: string): string {
   return text.replace(
     /\w\S*/g,
     (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
@@ -82,10 +82,10 @@ function toTitleCase(text: string): string {
  * Object containing methods to convert strings to different formats.
  */
 export default {
-  camel: camelCase,
-  slug: slugify,
-  lower: toLower,
-  upper: toUpper,
-  title: toTitleCase,
-  pascal: toPascalCase,
+  camel: stringCamelCase,
+  slug: stringSlugify,
+  lower: stringLowerCase,
+  upper: stringUpperCase,
+  title: stringTitleCase,
+  pascal: stringPascalCase,
 };

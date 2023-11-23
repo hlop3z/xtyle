@@ -93,17 +93,25 @@ export const filterEventDirectives = (props: Props): Directive => {
 };
 
 /**
+ * Extracts all the directives from the props
+ * @param {Props} props - The props object to extract the directives from.
+ * @returns {Directive} The extracted directives
+ */
+export const findDirectives = (props) => (key: string) =>
+  filterDirectives(props, key.length, (item) => item.startsWith(key));
+
+/**
  * Extracts all the directives from the props and categorizes them.
  * @param {Props} props - The props object to extract the directives from.
  * @returns {Directive} The extracted directives as a dictionary with categorized sections.
  */
 export const collectDirectives = (props: Props): Directive => {
-  const find = (key: string) =>
-    filterDirectives(props, key.length, (item) => item.startsWith(key));
+  const find = findDirectives(props);
   // Collect
   const customDirectives = find("x-");
   const hookDirectives = find("hook-");
   const cssDirectives = find("css-");
+  const colorDirectives = find("theme-");
   const eventDirectives = filterEventDirectives(props);
 
   const dict: Directive = {
@@ -111,6 +119,7 @@ export const collectDirectives = (props: Props): Directive => {
     on: eventDirectives,
     hook: hookDirectives,
     css: cssDirectives,
+    theme: colorDirectives,
   };
 
   return dict;
