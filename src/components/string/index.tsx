@@ -22,6 +22,7 @@ const stringTo = {
 
 export default function Slots(props) {
   const { slug, lower, upper, title, filter, cut, ellipsis } = props;
+  const originalValue = props.value || "";
   let value = props.value || "";
   if (slug) return stringTo.slug(value);
   else if (lower) return stringTo.lower(value);
@@ -30,7 +31,7 @@ export default function Slots(props) {
   if (filter) value = filter(value);
   if (cut) {
     value = stringTo.cut(value, cut);
-    if (ellipsis) {
+    if (ellipsis && originalValue.length > cut) {
       if (ellipsis === true) {
         value += "...";
       } else {

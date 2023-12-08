@@ -17,6 +17,7 @@ type Props = {
   "hook-updated"?: (callback: Function | any) => void;
   "hook-removed"?: (callback: Function | any) => void;
   // Custom Directives
+  "x-tag"?: string;
   "x-ref"?: (callback: Function | any) => void;
   "x-value"?: any;
   "x-value-clean"?: (callback: Function | any) => void;

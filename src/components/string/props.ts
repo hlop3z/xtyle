@@ -1,4 +1,4 @@
-type Props = {
+type Props = (props: {
   value?: string;
   filter?: any;
   cut?: number;
@@ -7,7 +7,7 @@ type Props = {
   upper?: boolean;
   title?: boolean;
   ellipsis?: string | boolean;
-};
+}) => string;
 
 export default Props;
 /* 

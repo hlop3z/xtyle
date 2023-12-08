@@ -58,6 +58,7 @@ export const customCoreDirectives = [
   "input",
   "value-clean",
   "value-validators",
+  "value-disabled",
 ];
 
 const DirectiveResponse = (
@@ -86,20 +87,25 @@ export const globalDirectives = {
     const filter = self.directives.custom["value-clean"];
     const validators = self.directives.custom["value-validators"];
     const xInput = self.directives.custom["input"];
+    const disabled = self.directives.custom["value-disabled"];
 
     const { onInput } = props;
     if (["input", "textarea", "select", "progress"].includes(xTag)) {
       props.onInput = (event: any) => {
         let newValue = "";
-        // Clean Value
-        if (filter && typeof filter === "function") {
-          newValue = filter(event.target.value);
-          event.target.value = newValue;
-        } else {
-          newValue = event.target.value;
-        }
         // Set New-Value
-        state.value = newValue;
+        if (disabled) {
+          event.target.value = state.value;
+        } else {
+          // Clean Value
+          if (filter && typeof filter === "function") {
+            newValue = filter(event.target.value);
+            event.target.value = newValue;
+          } else {
+            newValue = event.target.value;
+          }
+          state.value = newValue;
+        }
         // Validators
         let isValid: any[] = [];
         if (validators && typeof Array.isArray(validators)) {

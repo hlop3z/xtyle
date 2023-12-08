@@ -3,29 +3,8 @@ type Props = {
   directives?: Record<string, any>;
   globals?: Record<string, any>;
   store?: Record<string, any>;
-  init?: any[];
+  init?: { before?: any[]; after?: any[] };
+  router?: { before?: (data: any) => void; after?: (data: any) => void };
 };
 
 export default Props;
-/* 
-  ---------------
-  @ Cheat-Sheet
-  ---------------
-  void
-  null
-  bigint
-  
-  any
-  boolean
-  number
-  string
-  
-  // Array<string>
-  string[]          
-  
-  // tuple
-  [string, number]
-  
-  // union
-  string | null | undefined 
-  */

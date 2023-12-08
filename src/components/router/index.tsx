@@ -1,13 +1,73 @@
 import { signalXtyle } from "../../store";
 
-const BackendKey = {
-  action: "__a",
-  query: "__q",
-};
-
 function checkDiff(obj1: any, obj2: any) {
   return JSON.stringify(obj1) !== JSON.stringify(obj2);
 }
+
+/**
+ * Fix URL(s) | URL Cleaner
+ */
+function fixURL(value, props = {}) {
+  const defaultOptions = {
+    prefix: true,
+    suffix: true,
+    remove: { prefix: false, suffix: false },
+  };
+  const options = { ...defaultOptions, ...props };
+  const { prefix, suffix, remove } = options;
+
+  if (typeof value !== "string") {
+    throw new Error("Input must be a string");
+  }
+
+  const singleSlash = (str) => "/" + str.replace(/\/+/g, "/");
+  const prefixSlash = (str, ext = "/") => ext + str.replace(/^\/+/, "");
+  const suffixSlash = (str, ext = "/") => str.replace(/\/+$/, "") + ext;
+
+  // Build
+  let output = singleSlash(value);
+  if (prefix) {
+    output = prefixSlash(output, remove.prefix ? "" : "/");
+  }
+  if (suffix) {
+    output = suffixSlash(output, remove.suffix ? "" : "/");
+  }
+  return output;
+}
+
+function noSuffixSlashURL(url) {
+  return fixURL(url, { remove: { suffix: true } });
+}
+
+function removeBaseURL(currentPath, baseURL) {
+  let cleanPath = currentPath;
+  if (baseURL !== "/") {
+    cleanPath = currentPath.replace(baseURL, "");
+  }
+  cleanPath = noSuffixSlashURL(cleanPath);
+  return cleanPath;
+}
+
+function routeURL(path, baseURL) {
+  return fixURL(removeBaseURL(path, baseURL), {
+    remove: { prefix: true, suffix: true },
+  });
+}
+
+function pathWithQuery(path, query = {}) {
+  let currentPath = "";
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    currentPath = path;
+  } else {
+    currentPath = noSuffixSlashURL(path);
+  }
+  if (Object.keys(query).length > 0) {
+    currentPath += createSearchParams(query);
+  }
+  return currentPath;
+}
+
+let SHOULD_COMMIT = false;
 
 /**
  * RouterAPI class for handling routing and providing route-related functionality.
@@ -21,7 +81,8 @@ class RouterAPI {
    * @constructor
    * @param {NavigatorOptions} options - The options object containing router configuration.
    */
-  routerHandler: () => void;
+  beforeRouter: (props: any) => void;
+  routerHandler: (fromGoMethod?: boolean) => void;
   baseURL: string;
   history: boolean;
   find: any;
@@ -29,30 +90,52 @@ class RouterAPI {
   searchArgs: any;
   _current: any;
 
+  /**
+   * Gets the current route view.
+   *
+   * @readonly
+   * @returns {string | null} - The current route view.
+   */
   constructor(options: NavigatorOptions) {
-    this.routerHandler = () => {
-      const nextRouter = this.find();
-      const isDiff = checkDiff({ ...this._current.value }, nextRouter);
-      // Update IF Changes only
-      if (isDiff) {
-        this._current.value = nextRouter;
-        if (typeof options.callback === "function") {
-          options.callback(nextRouter);
-        }
+    this.beforeRouter = ({ prevRouter, nextRouter }) => {
+      const commitChanges = (value = true) => (SHOULD_COMMIT = value);
+      if (typeof options.before === "function") {
+        options.before({
+          prev: prevRouter,
+          next: nextRouter,
+          commit: commitChanges,
+        });
+      } else {
+        commitChanges();
       }
     };
-    this.baseURL = options.baseURL || "/";
+    this.routerHandler = (fromGoMethod?) => {
+      // Update IF Changes only
+      const { isDiff, prevRouter, nextRouter } = this.getDiff();
+      if (!fromGoMethod) {
+        this.beforeRouter({ prevRouter, nextRouter });
+      }
+      if (isDiff) {
+        // After Router
+        if (typeof options.after === "function") {
+          options.after({ prev: prevRouter, next: nextRouter });
+        }
+        // Update Current
+        this._current.value = nextRouter;
+      }
+    };
+    this.baseURL = fixURL(options.baseURL || "/");
     this.history = options.history || false;
     this._current = signalXtyle({});
 
     // Set Handler
-    window.onpopstate = this.routerHandler;
+    window.onpopstate = () => this.routerHandler();
 
     // Collect Routes
     if (Array.isArray(options.routes)) {
       const dict = {};
-      options.routes.forEach((key) => {
-        dict[key] = null;
+      options.routes.forEach((urlKey) => {
+        dict[noSuffixSlashURL(urlKey)] = null;
       });
       this.routes = dict;
     } else {
@@ -65,6 +148,13 @@ class RouterAPI {
 
     // Init Router
     this.routerHandler();
+  }
+
+  getDiff(next?: any) {
+    const prevRouter = { ...this._current.value };
+    const nextRouter = next ? this.find(next) : this.find();
+    const isDiff = checkDiff(prevRouter, nextRouter);
+    return { isDiff, prevRouter, nextRouter };
   }
 
   /**
@@ -104,6 +194,22 @@ class RouterAPI {
    * @param {object} [query={}] - The query parameters for the path.
    * @returns {void}
    */
+  redirect(path: string = "", open: boolean = false, query: object = {}): void {
+    const currentPath = pathWithQuery(path, query);
+    if (open) {
+      window.open(currentPath, "_blank");
+    } else {
+      window.location.href = currentPath;
+    }
+  }
+
+  /**
+   * Navigates to the specified path and triggers the router handler.
+   *
+   * @param {string} [path=""] - The path to navigate to.
+   * @param {object} [query={}] - The query parameters for the path.
+   * @returns {void}
+   */
   go(path: string = "", query: object = {}): void {
     const event = window.event;
     if (event) {
@@ -114,22 +220,24 @@ class RouterAPI {
       } catch (e) {}
     }
 
-    path = `${this.baseURL}${path}`;
-    if (!path.startsWith("/")) {
-      path = "/" + path;
-    }
-    path = path.replace("//", "/");
+    // Clean
+    let finalPath = "";
+    const currentPath = pathWithQuery(path, query);
 
-    if (Object.keys(query).length > 0) {
-      path += createSearchParams(query);
-    }
+    // Set Route
     if (this.history) {
-      window.history.pushState({}, "", path);
+      finalPath = noSuffixSlashURL(this.baseURL + currentPath);
     } else {
-      window.history.pushState({}, "", "/#" + path);
+      finalPath = `${this.baseURL}#` + currentPath;
     }
 
-    this.routerHandler();
+    // Change Route
+    const { isDiff, prevRouter, nextRouter } = this.getDiff(currentPath);
+    this.beforeRouter({ prevRouter, nextRouter });
+    if (isDiff && SHOULD_COMMIT) {
+      window.history.pushState({}, "", finalPath);
+      this.routerHandler(true);
+    }
   }
 }
 
@@ -152,6 +260,7 @@ interface RouteResponse {
   arg: RouteParams;
   path: string | null;
   search: RouteParams;
+  route: string | null;
 }
 
 /**
@@ -189,6 +298,13 @@ class RouterView implements RouteResponse {
   search: RouteParams;
 
   /**
+   * The route value in the route response.
+   *
+   * @type {string | null}
+   */
+  route: string | null;
+
+  /**
    * Creates a new RouterView instance.
    *
    * @constructor
@@ -199,6 +315,7 @@ class RouterView implements RouteResponse {
     this.arg = {};
     this.path = null;
     this.search = {};
+    this.route = null;
 
     Object.assign(this, args);
   }
@@ -220,20 +337,6 @@ function extractSearchParams(_path: string): RouteParams {
 }
 
 /**
- * Custom Search Arguments
- */
-function createSearchParamsBackendCustom(keys: any, params: any) {
-  const dict = {};
-  if (keys.includes("$query") && keys.includes("$action")) {
-    dict[BackendKey.action] = params.$action;
-    dict[BackendKey.query] = JSON.stringify(params.$query);
-    delete params.$query;
-    delete params.$action;
-  }
-  return dict;
-}
-
-/**
  * Function to create search parameters from the provided object.
  *
  * @param {any} params - The object containing search parameters.
@@ -242,8 +345,7 @@ function createSearchParamsBackendCustom(keys: any, params: any) {
 function createSearchParams(params: any): string {
   const keys: string[] = Object.keys(params || {});
   if (keys.length > 0) {
-    const dict = createSearchParamsBackendCustom(keys, params);
-    const queryString = new URLSearchParams({ ...dict, ...params }).toString();
+    const queryString = new URLSearchParams({ ...params }).toString();
     return "?" + queryString;
   }
   return "";
@@ -264,7 +366,8 @@ interface Routes {
  * @interface
  */
 interface NavigatorOptions {
-  callback: (next: any) => void;
+  before: (props: { next: any; prev: any; commit: () => any }) => void;
+  after: (props: { next: any; prev: any }) => void;
   history?: boolean;
   baseURL?: string;
   routes?: any;
@@ -344,11 +447,10 @@ function getPath(
       : window.location.hash.slice(1);
   }
 
+  const fullPath = window.location.pathname + window.location.hash;
+
   // Clean
-  let cleanPath = currentPath;
-  if (baseURL !== "/") {
-    cleanPath = currentPath.replace(baseURL, "").replace("//", "/");
-  }
+  const cleanPath = removeBaseURL(currentPath, baseURL);
 
   // Core
   const data = parsePath(cleanPath, routes);
@@ -366,6 +468,10 @@ function getPath(
     data.search = extractSearchParams(window.location.search);
   }
 
+  data.route = routeURL(data.path, baseURL);
+  data.path = fixURL(fullPath, {
+    remove: { prefix: true, suffix: true },
+  });
   return data;
 }
 
@@ -422,8 +528,6 @@ console.log(searchParams);
 router.go("/home", {
   // searchParams
   key: "val",
-  $action: "frontend.project.list.filter",
-  $query: { key: "val" },
 });
 
 // Auto (Current)

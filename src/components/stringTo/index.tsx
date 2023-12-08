@@ -78,6 +78,11 @@ export function stringTitleCase(text: string): string {
   );
 }
 
+export function simpleDocs(code) {
+  const formattedCode = code.trim().replace(/^(.*)$/gm, " * $1");
+  return formattedCode;
+}
+
 /**
  * Object containing methods to convert strings to different formats.
  */
@@ -88,4 +93,5 @@ export default {
   upper: stringUpperCase,
   title: stringTitleCase,
   pascal: stringPascalCase,
+  docs: simpleDocs,
 };

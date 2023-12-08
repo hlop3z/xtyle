@@ -5,6 +5,7 @@ type Props = {
   upper: (value: string) => string;
   title: (value: string) => string;
   pascal: (value: string) => string;
+  docs: (value: string) => string;
 };
 
 export default Props;

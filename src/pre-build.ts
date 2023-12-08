@@ -11,6 +11,9 @@ export { default as theme } from "./components/theme/index.tsx";
 export { default as slot } from "./components/slot/index.tsx";
 export { default as arrayPage } from "./components/arrayPage/index.tsx";
 export { default as string } from "./components/string/index.tsx";
+export { default as build } from "./components/build/index.tsx";
+export { default as api } from "./components/api/index.tsx";
+export { default as cleanObject } from "./components/cleanObject/index.tsx";
 
 // (i18n) Translations
 import i18nAdmin from "./components/i18n/index.tsx";
@@ -37,6 +40,16 @@ import * as Core from "./components/base/index.tsx";
 import ROUTER from "./components/router/index.tsx";
 export let router = {};
 
+// Plugins
+import {
+  pluginRouter,
+  beforeInit,
+  afterInit,
+  addPlugin,
+} from "./components/use/index.tsx";
+
+export const use = addPlugin(Core);
+
 // Tool Wrappers
 export const h = Core.h;
 export const element = Core.element;
@@ -57,75 +70,52 @@ export function generateRoutes(routePath: string) {
     currentPath += `/${part}`;
     routeHierarchy.push(currentPath);
   }
-  return ["/", ...routeHierarchy];
+  return routeHierarchy;
 }
-
-// Plugins Routes
-const pluginRoutes: any = new Set();
-const afterInit: any = [];
-
-// Custom Plugins
-export const use = (options: any = {}) => {
-  const config = options || {};
-  if (config.elements) {
-    Object.keys(config.elements).forEach((key) => {
-      Core.element(key)(config.elements[key]);
-    });
-  }
-  if (config.directives) {
-    Object.keys(config.directives).forEach((key) => {
-      Core.directive(key)(config.directives[key]);
-    });
-  }
-  if (config.globals) {
-    Core.globalProps(config.globals);
-  }
-  if (config.store) {
-    Core.globalStore(config.store);
-  }
-  if (config.routes && Array.isArray(config.routes)) {
-    config.routes.forEach((key) => {
-      pluginRoutes.add(key);
-    });
-  }
-  if (config.init && Array.isArray(config.init)) {
-    afterInit.push(...config.init);
-  }
-};
-
-// Components in Pascal-Case to Kebab-Case
-function pascalToKebab(str: string) {
-  return str
-    .replace(/([a-z0-9])([A-Z])/g, "$1-$2") // Convert uppercase letters to kebab-case
-    .toLowerCase(); // Convert the whole string to lowercase
-}
-
-export const build = (
-  options: any = {},
-  title: string | undefined = undefined
-) => {
-  const dict = {};
-  Object.keys(options).forEach((key) => {
-    const name = (title ? `${title}-` : "") + pascalToKebab(key);
-    dict[name] = options[key];
-  });
-  return dict;
-};
 
 // Run Project
-export function init(app: any, renderTo: any, options: any) {
-  options = options || {};
+export function init(app: any, renderTo: any, routerOptions: any) {
+  routerOptions = routerOptions || {};
+
+  // Collect Routes
+  const routes = new Set(routerOptions.routes || []);
+  const uniqueRoutes = new Set([...routes, ...pluginRouter.routes]);
+  routerOptions.routes = Array.from(uniqueRoutes);
+
+  console.log(pluginRouter.routes);
 
   // Init Router
-  const routes = new Set(options.routes || []);
-  options.routes = [...Array.from(routes), ...Array.from(pluginRoutes)];
-  Router(options);
+  Router({
+    ...routerOptions,
+    before: (data) => {
+      pluginRouter.before.forEach((method) => {
+        method(data);
+      });
+      if (routerOptions.before) {
+        routerOptions.before(data);
+      }
+      if (!routerOptions.before && pluginRouter.before.length === 0) {
+        data.commit();
+      }
+    },
+    after: (data) => {
+      pluginRouter.after.forEach((method) => {
+        method(data);
+      });
+      if (routerOptions.after) routerOptions.after(data);
+    },
+  });
 
   // GET Mount Point
   let element: any = renderTo;
   if (typeof renderTo === "string") {
     element = document.querySelector(renderTo);
   }
+
+  // afterInit
+  beforeInit.forEach((method: any) => {
+    method();
+  });
 
   // Init App
   preact.render(preact.h(app), element);

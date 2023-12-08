@@ -1,0 +1,123 @@
+tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+.color-bg-1 {
+  background-color: #3f51b5 !important;
+}
+.color-bg-1-light {
+  background-color: #6c80f5 !important;
+}
+.color-tx-1 {
+  color: #3f51b5 !important;
+}
+.color-tx-1-light {
+  color: #6c80f5 !important;
+}
+.color-br-1 {
+  border-color: #3f51b5 !important;
+}
+.color-br-1-light {
+  border-color: #6c80f5 !important;
+}
+.color-tb-1 tbody tr:nth-child(even) {
+  background-color: #3f51b5;
+}
+.color-tb-1-light tbody tr:nth-child(even) {
+  background-color: #6c80f5;
+}
+.color-bg-none {
+  background-color: transparent !important;
+}
+.color-tx-none {
+  color: transparent !important;
+}
+.color-br-none {
+  border-color: transparent !important;
+}
+.color-tb-none tbody tr:nth-child(even) {
+  background-color: transparent;
+}
+.color-bg-white {
+  background-color: #fff !important;
+}
+.color-tx-white {
+  color: #fff !important;
+}
+.color-br-white {
+  border-color: #fff !important;
+}
+.color-tb-white tbody tr:nth-child(even) {
+  background-color: #fff;
+}
+.color-bg-black {
+  background-color: #000 !important;
+}
+.color-tx-black {
+  color: #000 !important;
+}
+.color-br-black {
+  border-color: #000 !important;
+}
+.color-tb-black tbody tr:nth-child(even) {
+  background-color: #000;
+}
+.color-bg-gray {
+  background-color: #808080 !important;
+}
+.color-tx-gray {
+  color: #808080 !important;
+}
+.color-br-gray {
+  border-color: #808080 !important;
+}
+.color-tb-gray tbody tr:nth-child(even) {
+  background-color: #808080;
+}
+.color-bg-success {
+  background-color: #4caf50 !important;
+}
+.color-tx-success {
+  color: #4caf50 !important;
+}
+.color-br-success {
+  border-color: #4caf50 !important;
+}
+.color-tb-success tbody tr:nth-child(even) {
+  background-color: #4caf50;
+}
+.color-bg-danger {
+  background-color: #f44336 !important;
+}
+.color-tx-danger {
+  color: #f44336 !important;
+}
+.color-br-danger {
+  border-color: #f44336 !important;
+}
+.color-tb-danger tbody tr:nth-child(even) {
+  background-color: #f44336;
+}
+.color-bg-warning {
+  background-color: #ff9800 !important;
+}
+.color-tx-warning {
+  color: #ff9800 !important;
+}
+.color-br-warning {
+  border-color: #ff9800 !important;
+}
+.color-tb-warning tbody tr:nth-child(even) {
+  background-color: #ff9800;
+}
+.color-bg-info {
+  background-color: #2196f3 !important;
+}
+.color-tx-info {
+  color: #2196f3 !important;
+}
+.color-br-info {
+  border-color: #2196f3 !important;
+}
+.color-tb-info tbody tr:nth-child(even) {
+  background-color: #2196f3;
+}

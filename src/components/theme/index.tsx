@@ -1,70 +1,121 @@
+// can you make this code cleaner
+
 import { injectCSS } from "../../utils";
 
-export default function createTheme({ theme, light, dark }) {
-  const cssCode = themeColors({ theme, light, dark });
-  injectCSS(cssCode, "theme-colors");
-  // @ts-ignore
-  this.config = { theme, light, dark };
-  return cssCode;
-}
+class ThemeCreator {
+  theme: any;
+  light: any;
+  dark: any;
 
-const bgColor = (color) => `background-color: ${color} !important;`;
-const brColor = (color) => `border-color: ${color} !important;`;
-const txColor = (color) => `color: ${color} !important;`;
-const colorDefaultTableZebra = (color) =>
-  `tbody tr:nth-child(odd) { background-color: ${color}; }`;
+  constructor({ theme, light = {}, dark = {} }) {
+    this.theme = theme;
+    this.light = light;
+    this.dark = dark;
+  }
 
-const Color = {
-  background: (name, color) => `.color-bg-${name} { ${bgColor(color)} }\n`,
-  border: (name, color) => `.color-br-${name} { ${brColor(color)} }\n`,
-  text: (name, color) => `.color-tx-${name} { ${txColor(color)} }\n`,
-  table: (name, color) =>
-    `.color-tb-${name} tbody tr:nth-child(even) { background-color: ${color}; }`,
-  build(group, { name, color, lightVariant, darkVariant }) {
+  createTheme() {
+    const cssCode = this.generateThemeColors();
+    injectCSS(cssCode, "theme-colors");
+    return cssCode;
+  }
+
+  generateThemeColors() {
     let css = "";
-    const method = this[group];
+
+    // Default Table Color (ODDS)
+    css += this.colorDefaultTableZebra("#ffffff");
+
+    // Generate Theme Colors
+    Object.entries(this.theme).forEach(([name, color]) => {
+      // Check for light and dark variants
+      const lightVariant = this.light[name];
+      const darkVariant = this.dark[name];
+
+      css += this.buildColorStyles(
+        "background",
+        name,
+        color,
+        lightVariant,
+        darkVariant
+      );
+      css += this.buildColorStyles(
+        "text",
+        name,
+        color,
+        lightVariant,
+        darkVariant
+      );
+      css += this.buildColorStyles(
+        "border",
+        name,
+        color,
+        lightVariant,
+        darkVariant
+      );
+      css += this.buildColorStyles(
+        "table",
+        name,
+        color,
+        lightVariant,
+        darkVariant
+      );
+    });
+
+    return css;
+  }
+
+  buildColorStyles(group, name, color, lightVariant, darkVariant) {
+    const method = Color[group];
+    let css = "";
     css += method(name, color);
     if (lightVariant) css += method(`${name}-light`, lightVariant);
     if (darkVariant) css += method(`${name}-dark`, darkVariant);
     return css;
-  },
+  }
+
+  colorDefaultTableZebra(color) {
+    return `tbody tr:nth-child(odd) { background-color: ${color}; }\n`;
+  }
+}
+
+function getClass(name, type) {
+  const util = {
+    background: (name) => `color-bg-${name}`,
+    border: (name) => `color-br-${name}`,
+    text: (name) => `color-tx-${name}`,
+    table: (name) => `color-tb-${name}`,
+  };
+  return util[type](name);
+}
+
+const ColorBase = {
+  background: (color) => `background-color: ${color} !important;`,
+  border: (color) => `border-color: ${color} !important;`,
+  text: (color) => `color: ${color} !important;`,
+  table: (color) =>
+    `tbody tr:nth-child(even) { background-color: ${color}; }\n`,
 };
 
-function themeColors({ theme, light, dark }) {
-  // INIT
-  let css = "";
-  light = light || {};
-  dark = dark || {};
+const generateStyle = (group, name, color) => {
+  if (group === "table") {
+    return `.${getClass(name, group)} ${ColorBase[group](color)}\n`;
+  } else {
+    return `.${getClass(name, group)} { ${ColorBase[group](color)} }\n`;
+  }
+};
 
-  // Default Table Color (ODDS)
-  colorDefaultTableZebra("#ffffff");
+const Color = {
+  background: (name, color) => generateStyle("background", name, color),
+  border: (name, color) => generateStyle("border", name, color),
+  text: (name, color) => generateStyle("text", name, color),
+  table: (name, color) => generateStyle("table", name, color),
+};
 
-  // Generate Theme Colors
-  Object.entries(theme).forEach(([name, color]) => {
-    // Check for light and dark variants
-    const lightVariant = light[name];
-    const darkVariant = dark[name];
-
-    const builder = (group) =>
-      Color.build(group, {
-        name,
-        color,
-        lightVariant,
-        darkVariant,
-      });
-
-    // Background
-    css += builder("background");
-
-    // Text
-    css += builder("text");
-
-    // Border
-    css += builder("border");
-
-    // Table
-    css += builder("table");
-  });
-
-  return css;
+function createTheme(args) {
+  const current = new ThemeCreator(args);
+  current.createTheme();
 }
+
+createTheme.color = getClass;
+
+export default createTheme;

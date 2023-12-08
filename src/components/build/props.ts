@@ -1,4 +1,8 @@
-type Props = (elements: Record<string, any>, title?: string) => void;
+type Props = (
+  elements: Record<string, any>,
+  title?: string,
+  ignore?: string[]
+) => void;
 
 export default Props;
 /* 
