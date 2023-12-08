@@ -83,7 +83,7 @@ export const signalXtyle: Function = (base: any) => valueState(base, false);
 /**
  * Signal for window size
  */
-export const device: any = signalXtyle({
+export const device: any = signal({
   x: window.innerWidth,
   y: window.innerHeight,
 });

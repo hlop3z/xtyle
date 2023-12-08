@@ -61,4 +61,4 @@ function attachPlugin(core: any, plugin: any, options: any = {}) {
   }
 }
 
-export default addPlugin;
+export default attachPlugin;

@@ -1,7 +1,7 @@
 // Tools
-export { device } from "./store";
-export { useSignalXtyle as useSignal } from "./store";
-export { signalXtyle as signal } from "./store";
+export { device } from "./components/store/index.tsx";
+export { useSignalXtyle as useSignal } from "./components/store/index.tsx";
+export { signalXtyle as signal } from "./components/store/index.tsx";
 export { default as util } from "./utils.ts";
 export { default as validator } from "./components/validator/index.tsx";
 export { default as stringTo } from "./components/stringTo/index.tsx";
@@ -81,8 +81,6 @@ export function init(app: any, renderTo: any, routerOptions: any) {
   const routes = new Set(routerOptions.routes || []);
   const uniqueRoutes = new Set([...routes, ...pluginRouter.routes]);
   routerOptions.routes = Array.from(uniqueRoutes);
-
-  console.log(pluginRouter.routes);
 
   // Init Router
   Router({

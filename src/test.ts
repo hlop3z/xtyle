@@ -10,13 +10,6 @@ console.log(preact.util);
 
 window.h = xtyle.h;
 
-var ROUTER = {
-  route: "about-us/sub-page",
-  history: true,
-  baseURL: "/apps/frontend",
-  routes: { "home/depot": "Home" },
-};
-
 // Plugin
 const Plugin = {
   install() {
@@ -24,6 +17,11 @@ const Plugin = {
     return {
       router: {
         routes: ["{a}/{b}"],
+        before(route) {
+          console.log("Plugin Router");
+          route.commit();
+          // route.redirect("/login");
+        },
       },
     };
   },
@@ -39,7 +37,7 @@ const router = {
   baseURL: null,
   routes: xtyle.generateRoutes("/{view}/{section}"),
   before(route) {
-    console.log(route);
+    console.log("MAIN ROUTER");
     //route.commit();
   },
   after(route) {

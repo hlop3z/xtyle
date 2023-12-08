@@ -1,4 +1,8 @@
-import { signalXtyle } from "../../store";
+const { signal, effect, computed } = preact;
+
+let NEXT_PATH: any = "";
+let SHOULD_COMMIT: boolean = false;
+let SHOULD_REDIRECT: boolean = false;
 
 function checkDiff(obj1: any, obj2: any) {
   return JSON.stringify(obj1) !== JSON.stringify(obj2);
@@ -67,8 +71,6 @@ function pathWithQuery(path, query = {}) {
   return currentPath;
 }
 
-let SHOULD_COMMIT = false;
-
 /**
  * RouterAPI class for handling routing and providing route-related functionality.
  *
@@ -99,11 +101,19 @@ class RouterAPI {
   constructor(options: NavigatorOptions) {
     this.beforeRouter = ({ prevRouter, nextRouter }) => {
       const commitChanges = (value = true) => (SHOULD_COMMIT = value);
+      const redirectChanges = (path: string = "", query: object = {}) => {
+        if (path) {
+          const build: any = this._buildGoQuery(path, query);
+          NEXT_PATH = build.path;
+          SHOULD_REDIRECT = true;
+        }
+      };
       if (typeof options.before === "function") {
         options.before({
           prev: prevRouter,
           next: nextRouter,
           commit: commitChanges,
+          redirect: redirectChanges,
         });
       } else {
         commitChanges();
@@ -126,7 +136,7 @@ class RouterAPI {
     };
     this.baseURL = fixURL(options.baseURL || "/");
     this.history = options.history || false;
-    this._current = signalXtyle({});
+    this._current = signal({});
 
     // Set Handler
     window.onpopstate = () => this.routerHandler();
@@ -174,7 +184,7 @@ class RouterAPI {
    * @returns {any} - The computed value.
    */
   computed(...args: any): any {
-    return this._current.computed(...args);
+    return computed(...args);
   }
 
   /**
@@ -184,7 +194,7 @@ class RouterAPI {
    * @returns {any} - The effect.
    */
   effect(...args: any): any {
-    return this._current.effect(...args);
+    return effect(...args);
   }
 
   /**
@@ -221,6 +231,21 @@ class RouterAPI {
     }
 
     // Clean
+    const build: any = this._buildGoQuery(path, query);
+
+    // Change Route
+    const { isDiff, prevRouter, nextRouter } = this.getDiff(build.pathDiff);
+    this.beforeRouter({ prevRouter, nextRouter });
+    if ((isDiff && SHOULD_COMMIT) || SHOULD_REDIRECT) {
+      if (!SHOULD_REDIRECT) {
+        NEXT_PATH = build.path;
+      }
+      window.history.pushState({}, "", NEXT_PATH);
+      this.routerHandler(true);
+    }
+  }
+
+  _buildGoQuery(path: string = "", query: object = {}): object {
     let finalPath = "";
     const currentPath = pathWithQuery(path, query);
 
@@ -230,14 +255,10 @@ class RouterAPI {
     } else {
       finalPath = `${this.baseURL}#` + currentPath;
     }
-
-    // Change Route
-    const { isDiff, prevRouter, nextRouter } = this.getDiff(currentPath);
-    this.beforeRouter({ prevRouter, nextRouter });
-    if (isDiff && SHOULD_COMMIT) {
-      window.history.pushState({}, "", finalPath);
-      this.routerHandler(true);
-    }
+    return {
+      path: finalPath,
+      pathDiff: finalPath,
+    };
   }
 }
 
@@ -366,7 +387,12 @@ interface Routes {
  * @interface
  */
 interface NavigatorOptions {
-  before: (props: { next: any; prev: any; commit: () => any }) => void;
+  before: (props: {
+    next: any;
+    prev: any;
+    commit: () => any;
+    redirect: () => any;
+  }) => void;
   after: (props: { next: any; prev: any }) => void;
   history?: boolean;
   baseURL?: string;
