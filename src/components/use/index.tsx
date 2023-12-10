@@ -1,6 +1,9 @@
+import deepMerge from "./deepMerge.ts";
+import createActions from "../actions/index.tsx";
+import { models } from "../store/index.tsx";
+
 // Plugins Routes
 export const pluginRouter: any = {
-  routes: new Set(),
   before: [],
   after: [],
 };
@@ -8,6 +11,13 @@ export const pluginRouter: any = {
 // Init Methods
 export const afterInit: any = [];
 export const beforeInit: any = [];
+export let ACTION: any = (params) => params;
+
+ACTION.object = () => {};
+
+const globalActionsDict: any = {};
+
+const mergeActions = (extras) => deepMerge(globalActionsDict, extras);
 
 // Custom Plugins
 export function addPlugin(core) {
@@ -19,6 +29,8 @@ function attachPlugin(core: any, plugin: any, options: any = {}) {
   const config = plugin.install
     ? plugin.install(plugin, options || {}) || {}
     : {};
+
+  // Core
   if (config.elements) {
     Object.keys(config.elements).forEach((key) => {
       core.element(key)(config.elements[key]);
@@ -35,6 +47,30 @@ function attachPlugin(core: any, plugin: any, options: any = {}) {
   if (config.store) {
     core.globalStore(config.store);
   }
+
+  // Actions
+  if (config.actions) {
+    ACTION = createActions(mergeActions(config.actions));
+    ACTION.object = () => ({ ...globalActionsDict });
+  }
+
+  // Models
+  if (config.models) {
+    const subSchema = {};
+    Object.entries(config.models).forEach(([key, plugin]: any) => {
+      if (plugin.$root) {
+        models(plugin);
+      } else {
+        subSchema[key] = plugin;
+      }
+    });
+    if (Object.keys(subSchema).length > 0) {
+      models(subSchema);
+    }
+    //models(config.models);
+  }
+
+  // Router
   if (config.router) {
     // Before
     if (config.router.before) {
@@ -43,12 +79,6 @@ function attachPlugin(core: any, plugin: any, options: any = {}) {
     // After
     if (config.router.after) {
       pluginRouter.after.push(config.router.after);
-    }
-    // Routes
-    if (config.router.routes) {
-      config.router.routes.forEach((key) => {
-        pluginRouter.routes.add(key);
-      });
     }
   }
   if (config.init) {

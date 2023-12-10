@@ -8,7 +8,7 @@ import { h } from "../";
 /**
  * Import statements for required modules and functions.
  */
-import core from "../../../utils";
+import core from "../../util";
 
 import {
   cleanCSS,
@@ -107,7 +107,7 @@ export function handleHTMLElement(tagHTML: any, selfContext: any): any {
  */
 
 export function handleThemeColors(theme: any) {
-  const { color, text, border } = theme;
+  const { color, text, border, table } = theme;
   const css: any = [];
   if (color) {
     css.push(`color-bg-${color}`);
@@ -117,6 +117,9 @@ export function handleThemeColors(theme: any) {
   }
   if (border) {
     css.push(`color-br-${border}`);
+  }
+  if (table) {
+    css.push(`color-tb-${table}`);
   }
   return css;
 }

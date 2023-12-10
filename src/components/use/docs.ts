@@ -32,8 +32,8 @@
  *       },
  *       router: {
  *         before({ prev, next, commit, redirect }) {
- *           route.commit();
- *           // route.redirect("/login");
+ *           commit();
+ *           // redirect("/login");
  *         },
  *         after({ prev, next }) {},
  *       },

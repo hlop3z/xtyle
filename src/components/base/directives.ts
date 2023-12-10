@@ -1,7 +1,7 @@
 /**
  * Import statements.
  */
-import core from "../../utils";
+import core from "../util";
 import ripple from "./ripple.js";
 import validator from "../validator";
 
@@ -116,6 +116,7 @@ export const globalDirectives = {
             value: newValue,
             valid: isValid.length === 0,
             errors: isValid,
+            event: event,
           });
         }
         // On Input (Methods)

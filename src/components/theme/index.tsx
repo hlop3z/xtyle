@@ -1,16 +1,20 @@
 // can you make this code cleaner
 
-import { injectCSS } from "../../utils";
+import { injectCSS } from "../util";
 
 class ThemeCreator {
   theme: any;
   light: any;
   dark: any;
+  disable: any;
+  zebra: string | boolean;
 
-  constructor({ theme, light = {}, dark = {} }) {
+  constructor({ theme, light = {}, dark = {}, disable = [], zebra = true }) {
     this.theme = theme;
     this.light = light;
     this.dark = dark;
+    this.disable = disable;
+    this.zebra = zebra ? "#f2f2f2" : false;
   }
 
   createTheme() {
@@ -21,9 +25,10 @@ class ThemeCreator {
 
   generateThemeColors() {
     let css = "";
+    const isDisable = (value) => this.disable.includes(value);
 
     // Default Table Color (ODDS)
-    css += this.colorDefaultTableZebra("#ffffff");
+    if (this.zebra) css += this.colorDefaultTableZebra(this.zebra);
 
     // Generate Theme Colors
     Object.entries(this.theme).forEach(([name, color]) => {
@@ -31,34 +36,17 @@ class ThemeCreator {
       const lightVariant = this.light[name];
       const darkVariant = this.dark[name];
 
-      css += this.buildColorStyles(
-        "background",
-        name,
-        color,
-        lightVariant,
-        darkVariant
-      );
-      css += this.buildColorStyles(
-        "text",
-        name,
-        color,
-        lightVariant,
-        darkVariant
-      );
-      css += this.buildColorStyles(
-        "border",
-        name,
-        color,
-        lightVariant,
-        darkVariant
-      );
-      css += this.buildColorStyles(
-        "table",
-        name,
-        color,
-        lightVariant,
-        darkVariant
-      );
+      const buildColor = (group) =>
+        this.buildColorStyles(group, name, color, lightVariant, darkVariant);
+
+      const addColorGroup = (group) => {
+        if (!isDisable(group)) css += buildColor(group);
+      };
+
+      addColorGroup("background");
+      addColorGroup("text");
+      addColorGroup("border");
+      addColorGroup("table");
     });
 
     return css;
@@ -74,7 +62,7 @@ class ThemeCreator {
   }
 
   colorDefaultTableZebra(color) {
-    return `tbody tr:nth-child(odd) { background-color: ${color}; }\n`;
+    return `tbody tr:nth-child(even) { background-color: ${color}; }\n`;
   }
 }
 
@@ -93,7 +81,7 @@ const ColorBase = {
   border: (color) => `border-color: ${color} !important;`,
   text: (color) => `color: ${color} !important;`,
   table: (color) =>
-    `tbody tr:nth-child(even) { background-color: ${color}; }\n`,
+    `tbody tr:nth-child(even) { background-color: ${color} !important; }\n`,
 };
 
 const generateStyle = (group, name, color) => {

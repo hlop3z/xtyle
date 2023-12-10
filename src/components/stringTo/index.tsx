@@ -78,6 +78,27 @@ export function stringTitleCase(text: string): string {
   );
 }
 
+/**
+ * Snake a string.
+ * @param {string} str - The input string to slugify.
+ * @param {boolean} numbers - Whether to include numbers in the slug.
+ * @returns {string} - The slugified string.
+ */
+export function stringSnake(str: string, numbers: boolean = true): string {
+  str = str.replace(/^\s+|\s+$/g, "");
+  str = str.toLowerCase();
+  if (numbers) {
+    str = str.replace(/[^a-z0-9 _]/g, "");
+  } else {
+    str = str.replace(/[^a-z _]/g, "");
+  }
+  str = str.replace(/\s+/g, "_").replace(/_+/g, "_");
+  if (str.startsWith("_")) {
+    str = str.slice(1);
+  }
+  return str;
+}
+
 export function simpleDocs(code) {
   const formattedCode = code.trim().replace(/^(.*)$/gm, " * $1");
   return formattedCode;
@@ -94,4 +115,5 @@ export default {
   title: stringTitleCase,
   pascal: stringPascalCase,
   docs: simpleDocs,
+  snake: stringSnake,
 };

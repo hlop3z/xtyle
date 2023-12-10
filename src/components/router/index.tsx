@@ -1,8 +1,45 @@
+import cleanObject from "./cleanObject";
+
 const { signal, effect, computed } = preact;
+
+export const CURRENT_VIEW = signal({});
+
+export const VIEW_UNQUE_ROUTES = {};
+export const VIEW_UNQUE_NAMES = {};
 
 let NEXT_PATH: any = "";
 let SHOULD_COMMIT: boolean = false;
 let SHOULD_REDIRECT: boolean = false;
+
+const valueIs = {
+  dict(value) {
+    return value && typeof value === "object" && value.constructor === Object;
+  },
+  string(value) {
+    return typeof value === "string" || value instanceof String;
+  },
+  list(value) {
+    return value && typeof value === "object" && value.constructor === Array;
+  },
+  function(value) {
+    return typeof value === "function";
+  },
+};
+
+function checkIFRoot(route, baseURL) {
+  let value = route;
+  if (valueIs.string(value)) {
+    value = value.replace(/[#\/]/g, "");
+  }
+  return ["", null, undefined, baseURL].includes(value);
+}
+
+function setNextGlobalView(props) {
+  const { view } = props.next;
+  if (valueIs.function(view)) {
+    CURRENT_VIEW.value = view({ ...props.next, last: props.prev });
+  }
+}
 
 function checkDiff(obj1: any, obj2: any) {
   return JSON.stringify(obj1) !== JSON.stringify(obj2);
@@ -91,6 +128,7 @@ class RouterAPI {
   routes: any;
   searchArgs: any;
   _current: any;
+  page404: any;
 
   /**
    * Gets the current route view.
@@ -100,6 +138,12 @@ class RouterAPI {
    */
   constructor(options: NavigatorOptions) {
     this.beforeRouter = ({ prevRouter, nextRouter }) => {
+      if (!nextRouter.view) {
+        if (options.page404 !== false) {
+          nextRouter.view = options.page404;
+        }
+      }
+
       const commitChanges = (value = true) => (SHOULD_COMMIT = value);
       const redirectChanges = (path: string = "", query: object = {}) => {
         if (path) {
@@ -122,10 +166,15 @@ class RouterAPI {
     this.routerHandler = (fromGoMethod?) => {
       // Update IF Changes only
       const { isDiff, prevRouter, nextRouter } = this.getDiff();
+
+      // Router Admin
       if (!fromGoMethod) {
         this.beforeRouter({ prevRouter, nextRouter });
       }
       if (isDiff) {
+        // View Admin
+        setNextGlobalView({ prev: prevRouter, next: nextRouter });
+
         // After Router
         if (typeof options.after === "function") {
           options.after({ prev: prevRouter, next: nextRouter });
@@ -137,6 +186,7 @@ class RouterAPI {
     this.baseURL = fixURL(options.baseURL || "/");
     this.history = options.history || false;
     this._current = signal({});
+    this.page404 = options.page404;
 
     // Set Handler
     window.onpopstate = () => this.routerHandler();
@@ -153,11 +203,24 @@ class RouterAPI {
     }
 
     // Extra Methods
+    this.routes["404"] = this.page404;
     this.find = VirtualRouter(this.routes, this.history, this.baseURL);
     this.searchArgs = createSearchParams;
 
     // Init Router
     this.routerHandler();
+  }
+
+  // NAMESPACE
+  get name() {
+    return Object.freeze(VIEW_UNQUE_NAMES);
+  }
+
+  get views() {
+    //return () => this.page404();
+    return () => {
+      return CURRENT_VIEW.value;
+    };
   }
 
   getDiff(next?: any) {
@@ -171,9 +234,9 @@ class RouterAPI {
    * Gets the current route view.
    *
    * @readonly
-   * @returns {string | null} - The current route view.
+   * @returns {any | null} - The current route view.
    */
-  get current(): string | null {
+  get current(): any | null {
     return this._current.value;
   }
 
@@ -220,7 +283,8 @@ class RouterAPI {
    * @param {object} [query={}] - The query parameters for the path.
    * @returns {void}
    */
-  go(path: string = "", query: object = {}): void {
+  go(path: string | null = null, query: object = {}): void {
+    const nextPath = path || this.current.route || "/";
     const event = window.event;
     if (event) {
       try {
@@ -231,11 +295,11 @@ class RouterAPI {
     }
 
     // Clean
-    const build: any = this._buildGoQuery(path, query);
+    const build: any = this._buildGoQuery(nextPath, query);
 
     // Change Route
     const { isDiff, prevRouter, nextRouter } = this.getDiff(build.pathDiff);
-    this.beforeRouter({ prevRouter, nextRouter });
+    this.beforeRouter({ isDiff, prevRouter, nextRouter });
     if ((isDiff && SHOULD_COMMIT) || SHOULD_REDIRECT) {
       if (!SHOULD_REDIRECT) {
         NEXT_PATH = build.path;
@@ -364,9 +428,10 @@ function extractSearchParams(_path: string): RouteParams {
  * @returns {string} - The search parameters as a string.
  */
 function createSearchParams(params: any): string {
-  const keys: string[] = Object.keys(params || {});
+  const query = cleanObject({ ...params });
+  const keys: string[] = Object.keys(query || {});
   if (keys.length > 0) {
-    const queryString = new URLSearchParams({ ...params }).toString();
+    const queryString = new URLSearchParams(query).toString();
     return "?" + queryString;
   }
   return "";
@@ -397,6 +462,7 @@ interface NavigatorOptions {
   history?: boolean;
   baseURL?: string;
   routes?: any;
+  page404: any;
 }
 
 /**
@@ -414,7 +480,9 @@ function parsePath(
   if (inputPath.includes("?")) {
     inputPath = inputPath.split("?")[0];
   }
-
+  inputPath = fixURL(inputPath, {
+    remove: { prefix: true, suffix: true },
+  });
   for (const pattern in routes) {
     const param: RouteParams = {};
     const regex = pattern.replace(
@@ -443,6 +511,7 @@ function parsePath(
           }
         });
       }
+
       const view = routes[pattern];
       const routerInfo = new RouterView({ view: view, arg: param });
       return routerInfo;
@@ -481,7 +550,6 @@ function getPath(
   // Core
   const data = parsePath(cleanPath, routes);
   const parts = currentPath.split("?");
-
   // Extract Path
   data.path = parts[0];
   if (!data.path) data.path = "/";
@@ -494,10 +562,20 @@ function getPath(
     data.search = extractSearchParams(window.location.search);
   }
 
+  const cleaner = (thePath) =>
+    fixURL(thePath, {
+      remove: { prefix: true, suffix: true },
+    });
+
   data.route = routeURL(data.path, baseURL);
-  data.path = fixURL(fullPath, {
-    remove: { prefix: true, suffix: true },
-  });
+  data.path = cleaner(fullPath);
+
+  // ROOT VIEW
+  const isRootView = checkIFRoot(data.route, cleaner(baseURL));
+  if (isRootView) {
+    data.view = routes["/"];
+  }
+
   return data;
 }
 
@@ -536,9 +614,6 @@ const patternDict: any = {
 const patternList: any = ["/", "/a/b/{?key}", "/a/b/key-{name}/{path*}"];
 
 const router = new RouterAPI({
-  callback: () => {
-    console.log("Changed");
-  },
   history: false,
   baseURL: "/",
   routes: patternList, // patternDict

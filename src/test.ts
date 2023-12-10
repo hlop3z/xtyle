@@ -1,7 +1,10 @@
 // @ts-nocheck
 /* Theme */
-import App from "./tests/app";
+import test from "./tests";
 import * as xtyle from "./pre-build";
+
+//
+const DOCS = (txt) => console.log(xtyle.stringTo.docs(txt));
 
 /*
 console.log(preact.$keys);
@@ -10,24 +13,23 @@ console.log(preact.util);
 
 window.h = xtyle.h;
 
-// Plugin
-const Plugin = {
-  install() {
-    console.log("install");
-    return {
-      router: {
-        routes: ["{a}/{b}"],
-        before(route) {
-          console.log("Plugin Router");
-          route.commit();
-          // route.redirect("/login");
-        },
-      },
-    };
-  },
-};
+xtyle.action("namespace.method");
 
-xtyle.use(Plugin);
+xtyle.use(test.Models);
+
+/**
+ * @View
+ */
+const DemoView =
+  (name) =>
+  ({ search, arg }) => {
+    console.log("Request:", search, arg);
+    return h(
+      "h1",
+      null,
+      "View " + name + ` ${JSON.stringify(search)} | ${JSON.stringify(arg)}`
+    );
+  };
 
 /**
  * @Router
@@ -35,70 +37,56 @@ xtyle.use(Plugin);
 const router = {
   history: false,
   baseURL: null,
-  routes: xtyle.generateRoutes("/{view}/{section}"),
+  // "/{app}/{package}/{module}/{method}"
+  404: (route) => {
+    return preact.h("h1", null, "ERROR 404");
+  },
+
   before(route) {
-    console.log("MAIN ROUTER");
-    //route.commit();
+    route.commit();
   },
   after(route) {
     console.log(route);
   },
 };
 
+xtyle.view("/", DemoView("Root"));
+xtyle.view("home", "home", DemoView("Home"));
+xtyle.view("about-us/{path*}", "app.view.name", DemoView("About Us"));
+
 /**
  * @Render
  */
-xtyle.init(App, document.body, router);
-
-/**
- * @Preview
- */
-
-/* Directives Keys */
-console.log("Directives: ", Object.keys(xtyle.allDirectives));
-
-/* Globals */
-console.log("Globals: ", xtyle.global);
-
-/* Store */
-console.log("Store: ", xtyle.store);
+xtyle.init(test.App, document.body, router);
 
 /* Routes */
+console.log(`Views:`, xtyle.router.name);
 console.log("Routes: ", Object.keys(xtyle.router.routes));
-
-/* Router Effect */
-// xtyle.router.go("/home/about-us");
-// xtyle.router.redirect("/home/about-us");
-xtyle.router.effect(() => {
-  setTimeout(() => {
-    console.log(xtyle.router.current);
-  });
-}, 1000);
+// xtyle.router.name["app.view.name"].go({ path: "extra/path" }, { q: 1 })
 
 /**
- * @Theme
+ * @Models
  */
-const Theme = {
-  theme: {
-    // Base
-    none: "transparent",
-    white: "#fff",
-    black: "#000",
-    gray: "#808080",
-    success: "#4CAF50",
-    danger: "#f44336",
-    warning: "#ff9800",
-    info: "#2196F3",
-    // Theme
-    1: "#3f51b5",
-  },
-  light: {
-    1: "#6c80f5",
-  },
-  dark: {},
-};
+console.log(`Models:`);
 
-xtyle.theme(Theme);
+console.log(xtyle.models.keys());
+console.log(xtyle.models.get("modelOne"));
 
-/* Theme */
-console.log("Theme-Color: ", xtyle.theme.color("danger", "border"));
+xtyle.models.get("modelOne").instance.key.value = "Value";
+console.log(xtyle.models.get("modelOne").instance.key.value);
+
+console.log(xtyle.models.get("appOne.modelOne").instance.message.value);
+
+/*
+xtyle.models(schemaTwo);
+xtyle.models(schemaOne);
+
+console.log(xtyle.models.keys());
+console.log(xtyle.models.get("modelOne"));
+
+xtyle.models.get("modelOne").instance.key.value = "Value";
+console.log(xtyle.model.get("modelOne").instance.key.value);
+
+console.log(xtyle.models.get("appOne.modelOne").instance.message.value);
+
+*/

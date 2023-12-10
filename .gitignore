@@ -98,3 +98,5 @@ docs/.pdm-python
 docs/.pdm-python
 
 vite.config.js.*
+src/tests/path-dict/
+src/tests/ideas

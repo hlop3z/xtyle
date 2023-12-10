@@ -1,29 +1,34 @@
-function actionCore(options, group: string | null | undefined = undefined) {
-  const groupName = group ? group + ":" : "";
+function actionCore(root): any {
+  return (key) =>
+    key.split(".").reduce((o, i) => {
+      if (o) return o[i];
+    }, root);
+}
+
+export default function actions(root) {
+  const admin: any = actionCore(root);
   return (name: string, args: any): any => {
-    if (options[name]) {
-      return options[name](args);
+    const method = admin(name);
+    if (method) {
+      return method(args);
     } else {
-      console.error(`Method { ${groupName}${name} } Not Found`);
+      console.error(`Method { ${name} } Not Found`);
     }
   };
 }
 
-function actionGroup(root) {
-  const adminAPI = {};
-  Object.entries(root).forEach(([group, options]) => {
-    adminAPI[group] = actionCore(options, group);
-  });
-  return (actionURI: string, args: any): any => {
-    const [action, group] = actionURI.split(":");
-    if (adminAPI[group]) {
-      return adminAPI[group](action, args);
-    } else {
-      console.error(`Action Group { ${group} } Not Found`);
-    }
-  };
-}
+/*
+const action: any = actions({
+  app: {
+    model: {
+      method() {
+        console.log("Hello from <app.model.method>");
+      },
+    },
+  },
+});
 
-export default function actions(options, groups: boolean = false) {
-  return groups ? actionGroup(options) : actionCore(options);
-}
+action("app.model.method");
+action("namespace.not.found");
+
+*/

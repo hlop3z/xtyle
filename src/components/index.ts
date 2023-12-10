@@ -3,7 +3,6 @@ export { default as api } from "./api/index.tsx";
 export { default as arrayPage } from "./arrayPage/index.tsx";
 export { default as base } from "./base/index.tsx";
 export { default as build } from "./build/index.tsx";
-export { default as cleanObject } from "./cleanObject/index.tsx";
 export { default as Router } from "./createRouter/index.tsx";
 export { default as device } from "./device/index.tsx";
 export { default as generateRoutes } from "./generateRoutes/index.tsx";

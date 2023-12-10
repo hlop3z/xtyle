@@ -1,4 +1,15 @@
-type Props = any;
+type Props = (
+  app: Function,
+  renderTo: HTMLElement | string,
+  routerOptions: {
+    history?: boolean;
+    baseURL?: string;
+    routes?: any;
+    page404?: Function | boolean;
+    before?: (data: any) => void;
+    after?: (data: any) => void;
+  }
+) => void;
 
 export default Props;
 
