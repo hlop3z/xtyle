@@ -1,3 +1,3 @@
 /**
- * (i18n) Internationalization & Localization
+ * Views Component Creator
  */

@@ -13,23 +13,25 @@ console.log(preact.util);
 
 window.h = xtyle.h;
 
-xtyle.action("namespace.method");
-
 xtyle.use(test.Models);
 
 /**
  * @View
  */
-const DemoView =
-  (name) =>
-  ({ search, arg }) => {
-    console.log("Request:", search, arg);
-    return h(
-      "h1",
-      null,
-      "View " + name + ` ${JSON.stringify(search)} | ${JSON.stringify(arg)}`
-    );
-  };
+const DemoView = (name) => (request) => {
+  console.log("request:", request);
+  console.log("context:", request.ctx.keys);
+  request.ctx.action("method");
+  request.ctx.action("app.method");
+
+  return h(
+    "h1",
+    null,
+    "View " +
+      name +
+      ` ${JSON.stringify(request.search)} | ${JSON.stringify(request.arg)}`
+  );
+};
 
 /**
  * @Router
@@ -50,8 +52,10 @@ const router = {
   },
 };
 
-xtyle.view("/", DemoView("Root"));
-xtyle.view("home", "home", DemoView("Home"));
+xtyle.action("namespace.method");
+
+xtyle.view(["/", "home"], DemoView("Root"));
+// xtyle.view("/home/", "home", DemoView("Home"));
 xtyle.view("about-us/{path*}", "app.view.name", DemoView("About Us"));
 
 /**
@@ -90,3 +94,35 @@ console.log(xtyle.model.get("modelOne").instance.key.value);
 console.log(xtyle.models.get("appOne.modelOne").instance.message.value);
 
 */
+
+const inputSchema = {
+  keyOneA$: Object,
+  keyTwoA: Array,
+  keyOneB: null,
+  keyTwoB: {
+    type: [
+      Object,
+      Number,
+      String,
+      Boolean,
+      // undefined,
+      // null,
+      Array,
+      Function,
+      Symbol,
+      BigInt,
+    ],
+    default: () => "Hello World",
+  },
+};
+const demoPROPS = xtyle.props(inputSchema);
+// console.log(demoPROPS);
+/*
+console.log("PROPS", demoPROPS.props({ keyTwoB: "hell yeah" }));
+Object.entries(demoPROPS).forEach(([key, value]) => {
+  console.log(key, value);
+});
+*/
+// function ButtonComponent() {}
+// xtyle.slot({ key: null }, ButtonComponent);
+// xtyle.slot({ key: null }, "namespace", () => {});

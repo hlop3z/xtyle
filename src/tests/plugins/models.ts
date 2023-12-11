@@ -28,7 +28,28 @@ const Plugin = {
   install() {
     console.log("install", allModels);
     return {
+      // Core
+      globals: {
+        key: "value",
+      },
+      store: {
+        title: preact.signal(null),
+      },
+
+      // MODELS
       models: allModels,
+
+      // ACTIONS
+      actions: {
+        method() {
+          console.log(`Core Method`);
+        },
+        app: {
+          method() {
+            console.log(`Sub Method`);
+          },
+        },
+      },
     };
   },
 };

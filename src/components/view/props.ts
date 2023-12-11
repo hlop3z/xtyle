@@ -1,4 +1,8 @@
-type Props = (path: string) => string | undefined;
+type Props = (
+  path: string | string[],
+  nameOrMethod: string | Function,
+  component?: Function | undefined
+) => void;
 
 export default Props;
 /* 

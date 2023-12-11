@@ -5,6 +5,8 @@ type Props = {
   store?: Record<string, any>;
   init?: { before?: any[]; after?: any[] };
   router?: { before?: (data: any) => void; after?: (data: any) => void };
+  models?: Record<string, any>;
+  actions?: Record<string, any>;
 };
 
 export default Props;

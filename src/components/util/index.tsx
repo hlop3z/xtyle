@@ -71,7 +71,7 @@ function injectCSSBase({ code, id }: { code: string; id: string }) {
  * @param {string} id - The ID of the style element to retrieve or create.
  * @returns {HTMLElement} - The style element with the specified ID.
  */
-function getStyle(id: string): HTMLElement {
+export function getStyle(id: string): HTMLElement {
   const found = window.document.querySelectorAll(`[${prefixCSS}="${id}"]`);
   if (found.length > 0) {
     return found[0] as HTMLElement;
@@ -100,7 +100,7 @@ export function removeSpace(text: string): string {
  * @param {any} input - The CSS object to transform.
  * @returns {string} - The space-separated class string.
  */
-const objectToClass = (input: any): string => {
+export const objectToClass = (input: any): string => {
   if (typeof input === "string") {
     return input.trim();
   } else if (typeof input === "object") {
@@ -121,7 +121,7 @@ const objectToClass = (input: any): string => {
  * @param {any} input - The CSS object to transform.
  * @returns {string} - The style string.
  */
-function objectToStyle(input: any): string {
+export function objectToStyle(input: any): string {
   if (typeof input === "string") {
     input = input.trim();
     if (input.endsWith(";;")) {
@@ -147,59 +147,13 @@ function objectToStyle(input: any): string {
  * @param {any} kwargs - The object whose keys need to be transformed to camelCase.
  * @returns {object} - The object with camelCase keys.
  */
-const camelProps = (kwargs: any): object => {
+export const camelProps = (kwargs: any): object => {
   const dict: { [key: string]: any } = {};
   Object.entries(kwargs).map(
     ([key, value]) => (dict[stringCamelCase(key)] = value)
   );
   return dict;
 };
-
-/**
- * Transforms children to named slots.
- * @param {object} props - Props from JSX.
- * @param {string} key - The key used to identify slots in the children.
- * @returns {object} - An object representing the named slots.
- */
-function createSlots(
-  props: { children?: any },
-  key: string = "slot"
-): {
-  [key: string]: any;
-  $: (slot: string) => any;
-  $all: any[];
-  $keys: string[];
-} {
-  const slots: any = {};
-  if (props.children) {
-    const childrenArray = Array.isArray(props.children)
-      ? props.children
-      : [props.children];
-
-    childrenArray.forEach((el) => {
-      if (typeof el === "object" && el && el.props) {
-        const slotName = el.props[key];
-        if (!slotName) {
-          slots["default"] = el;
-        } else {
-          slots[stringCamelCase(slotName)] = el;
-        }
-      }
-    });
-  }
-  slots.$ = (slot: any) => {
-    const current = slots[slot] || {};
-    if (current.props && current.props.children) {
-      return current.props.children;
-    }
-    return null;
-  };
-  slots.$all = Object.values(slots);
-  slots.$keys = Object.keys(slots).filter(
-    (key) => !["$", "$all"].includes(key)
-  );
-  return slots;
-}
 
 /**
  * Event listener helper function for handling events with useEffect.
@@ -232,7 +186,7 @@ function eventListener(
  * @param {object} obj - The input object.
  * @returns {object} - The new object with the executed function results.
  */
-export function createForm(obj: { [key: string]: any }): object {
+export function createDefaultForm(obj: { [key: string]: any }): object {
   const newObj: { [key: string]: any } = {};
 
   for (const key in obj) {
@@ -287,12 +241,11 @@ export function getMilliseconds({
 export default {
   timer: getMilliseconds,
   inject: injectCSS,
-  form: createForm,
+  form: createDefaultForm,
   // Preact plugins
   class: objectToClass,
   style: objectToStyle,
   props: camelProps,
-  slots: createSlots,
   event: eventListener,
   events: Object.freeze(events),
 };

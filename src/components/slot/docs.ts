@@ -1,3 +1,3 @@
 /**
- * Slots Util For Easier "children" Management
+ * Slots util for "children" element(s) management
  */

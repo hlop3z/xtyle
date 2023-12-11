@@ -1,8 +1,4 @@
-type Props = (
-  props: object,
-  nameOrMethod: string | Function,
-  component?: Function | undefined
-) => void;
+type Props = (expectedProps: string[], parentProps?: any) => void;
 
 export default Props;
 /* 

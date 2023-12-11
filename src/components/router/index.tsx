@@ -1,8 +1,19 @@
-import cleanObject from "./cleanObject";
+import { CURRENT_VIEW, setNextGlobalView } from "./globalView.ts";
+import {
+  RouteParams,
+  checkForRoot,
+  checkDiff,
+  extractSearchParams,
+  createSearchParams,
+  fixURL,
+  noSuffixSlashURL,
+  removeBaseURL,
+  routeURL,
+  pathWithQuery,
+  collectRoutes,
+} from "./tools.ts";
 
 const { signal, effect, computed } = preact;
-
-export const CURRENT_VIEW = signal({});
 
 export const VIEW_UNQUE_ROUTES = {};
 export const VIEW_UNQUE_NAMES = {};
@@ -10,103 +21,6 @@ export const VIEW_UNQUE_NAMES = {};
 let NEXT_PATH: any = "";
 let SHOULD_COMMIT: boolean = false;
 let SHOULD_REDIRECT: boolean = false;
-
-const valueIs = {
-  dict(value) {
-    return value && typeof value === "object" && value.constructor === Object;
-  },
-  string(value) {
-    return typeof value === "string" || value instanceof String;
-  },
-  list(value) {
-    return value && typeof value === "object" && value.constructor === Array;
-  },
-  function(value) {
-    return typeof value === "function";
-  },
-};
-
-function checkIFRoot(route, baseURL) {
-  let value = route;
-  if (valueIs.string(value)) {
-    value = value.replace(/[#\/]/g, "");
-  }
-  return ["", null, undefined, baseURL].includes(value);
-}
-
-function setNextGlobalView(props) {
-  const { view } = props.next;
-  if (valueIs.function(view)) {
-    CURRENT_VIEW.value = view({ ...props.next, last: props.prev });
-  }
-}
-
-function checkDiff(obj1: any, obj2: any) {
-  return JSON.stringify(obj1) !== JSON.stringify(obj2);
-}
-
-/**
- * Fix URL(s) | URL Cleaner
- */
-function fixURL(value, props = {}) {
-  const defaultOptions = {
-    prefix: true,
-    suffix: true,
-    remove: { prefix: false, suffix: false },
-  };
-  const options = { ...defaultOptions, ...props };
-  const { prefix, suffix, remove } = options;
-
-  if (typeof value !== "string") {
-    throw new Error("Input must be a string");
-  }
-
-  const singleSlash = (str) => "/" + str.replace(/\/+/g, "/");
-  const prefixSlash = (str, ext = "/") => ext + str.replace(/^\/+/, "");
-  const suffixSlash = (str, ext = "/") => str.replace(/\/+$/, "") + ext;
-
-  // Build
-  let output = singleSlash(value);
-  if (prefix) {
-    output = prefixSlash(output, remove.prefix ? "" : "/");
-  }
-  if (suffix) {
-    output = suffixSlash(output, remove.suffix ? "" : "/");
-  }
-  return output;
-}
-
-function noSuffixSlashURL(url) {
-  return fixURL(url, { remove: { suffix: true } });
-}
-
-function removeBaseURL(currentPath, baseURL) {
-  let cleanPath = currentPath;
-  if (baseURL !== "/") {
-    cleanPath = currentPath.replace(baseURL, "");
-  }
-  cleanPath = noSuffixSlashURL(cleanPath);
-  return cleanPath;
-}
-
-function routeURL(path, baseURL) {
-  return fixURL(removeBaseURL(path, baseURL), {
-    remove: { prefix: true, suffix: true },
-  });
-}
-
-function pathWithQuery(path, query = {}) {
-  let currentPath = "";
-  if (path.startsWith("http://") || path.startsWith("https://")) {
-    currentPath = path;
-  } else {
-    currentPath = noSuffixSlashURL(path);
-  }
-  if (Object.keys(query).length > 0) {
-    currentPath += createSearchParams(query);
-  }
-  return currentPath;
-}
 
 /**
  * RouterAPI class for handling routing and providing route-related functionality.
@@ -129,6 +43,7 @@ class RouterAPI {
   searchArgs: any;
   _current: any;
   page404: any;
+  ctx: any;
 
   /**
    * Gets the current route view.
@@ -137,6 +52,7 @@ class RouterAPI {
    * @returns {string | null} - The current route view.
    */
   constructor(options: NavigatorOptions) {
+    this.ctx = options.ctx;
     this.beforeRouter = ({ prevRouter, nextRouter }) => {
       if (!nextRouter.view) {
         if (options.page404 !== false) {
@@ -173,7 +89,7 @@ class RouterAPI {
       }
       if (isDiff) {
         // View Admin
-        setNextGlobalView({ prev: prevRouter, next: nextRouter });
+        setNextGlobalView(this, { prev: prevRouter, next: nextRouter });
 
         // After Router
         if (typeof options.after === "function") {
@@ -192,15 +108,9 @@ class RouterAPI {
     window.onpopstate = () => this.routerHandler();
 
     // Collect Routes
-    if (Array.isArray(options.routes)) {
-      const dict = {};
-      options.routes.forEach((urlKey) => {
-        dict[noSuffixSlashURL(urlKey)] = null;
-      });
-      this.routes = dict;
-    } else {
-      this.routes = options.routes || {};
-    }
+
+    this.routes = collectRoutes(options);
+    console.log(Object.keys(this.routes));
 
     // Extra Methods
     this.routes["404"] = this.page404;
@@ -211,16 +121,13 @@ class RouterAPI {
     this.routerHandler();
   }
 
-  // NAMESPACE
+  // NAMESPACES
   get name() {
     return Object.freeze(VIEW_UNQUE_NAMES);
   }
 
   get views() {
-    //return () => this.page404();
-    return () => {
-      return CURRENT_VIEW.value;
-    };
+    return () => CURRENT_VIEW.value;
   }
 
   getDiff(next?: any) {
@@ -267,7 +174,11 @@ class RouterAPI {
    * @param {object} [query={}] - The query parameters for the path.
    * @returns {void}
    */
-  redirect(path: string = "", open: boolean = false, query: object = {}): void {
+  redirect(
+    path: string = "",
+    open: boolean = false,
+    query: object | any = {}
+  ): void {
     const currentPath = pathWithQuery(path, query);
     if (open) {
       window.open(currentPath, "_blank");
@@ -309,7 +220,7 @@ class RouterAPI {
     }
   }
 
-  _buildGoQuery(path: string = "", query: object = {}): object {
+  _buildGoQuery(path: string = "", query: object | any = {}): object {
     let finalPath = "";
     const currentPath = pathWithQuery(path, query);
 
@@ -324,15 +235,6 @@ class RouterAPI {
       pathDiff: finalPath,
     };
   }
-}
-
-/**
- * Interface for the route parameters in the RouterAPI class.
- *
- * @interface
- */
-interface RouteParams {
-  [key: string]: string | undefined;
 }
 
 /**
@@ -407,37 +309,6 @@ class RouterView implements RouteResponse {
 }
 
 /**
- * Function to extract search parameters from the path.
- *
- * @param {string} _path - The path containing search parameters.
- * @returns {RouteParams} - The extracted search parameters.
- */
-function extractSearchParams(_path: string): RouteParams {
-  const searchParams = new URLSearchParams(_path);
-  const obj: RouteParams = {};
-  searchParams.forEach((value, key) => {
-    obj[key] = value;
-  });
-  return obj;
-}
-
-/**
- * Function to create search parameters from the provided object.
- *
- * @param {any} params - The object containing search parameters.
- * @returns {string} - The search parameters as a string.
- */
-function createSearchParams(params: any): string {
-  const query = cleanObject({ ...params });
-  const keys: string[] = Object.keys(query || {});
-  if (keys.length > 0) {
-    const queryString = new URLSearchParams(query).toString();
-    return "?" + queryString;
-  }
-  return "";
-}
-
-/**
  * Interface for defining route patterns in the RouterAPI class.
  *
  * @interface
@@ -463,6 +334,7 @@ interface NavigatorOptions {
   baseURL?: string;
   routes?: any;
   page404: any;
+  ctx: any;
 }
 
 /**
@@ -571,7 +443,7 @@ function getPath(
   data.path = cleaner(fullPath);
 
   // ROOT VIEW
-  const isRootView = checkIFRoot(data.route, cleaner(baseURL));
+  const isRootView = checkForRoot(data.route, cleaner(baseURL));
   if (isRootView) {
     data.view = routes["/"];
   }

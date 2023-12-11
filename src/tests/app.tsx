@@ -8,13 +8,19 @@ export default function App(props: any) {
   return (
     <div x-html>
       <xtyle.router.views />
+
       <x-slot x-if={true}>
         {/* <HelloWorld /> */}
         <br />
         <br />
-        <button x-html on-click={() => xtyle.router.go("/")}>
-          Go Home
-        </button>
+        <x-slot
+          x-for={(item) => (
+            <button x-html on-click={() => xtyle.router.go(item)}>
+              Go {item}
+            </button>
+          )}
+          x-in={["/", "home", "not-found-1", "not-found-2", "not-found-3"]}
+        ></x-slot>
         <button x-html on-click={() => xtyle.router.go("/home")}>
           Go To Route
         </button>

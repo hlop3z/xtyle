@@ -6,7 +6,7 @@ type Props = {
   current: any;
   baseURL: any;
   history: any;
-  page404: any;
+  views: any;
 };
 
 export default Props;

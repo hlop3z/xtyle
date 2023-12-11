@@ -12,6 +12,10 @@ export { default as util } from "./components/util/index.tsx";
 export { default as validator } from "./components/validator/index.tsx";
 export { default as timer } from "./components/timer/index.tsx";
 
+// Props
+export { default as props } from "./components/props/index.tsx";
+export { default as slotProps } from "./components/slotProps/index.tsx";
+
 // Actions
 export { ACTION as action } from "./components/use/index.tsx";
 
@@ -59,9 +63,27 @@ export const directive = Core.directive;
 // Router
 let router: any = {};
 import ROUTER from "./components/router/index.tsx";
+import { allProps, allStates } from "./components/base/index.tsx";
+import { models } from "./components/store/index.tsx";
+import { ACTION } from "./components/use/index.tsx";
 
 export const Router = (args: any) => {
   if (Object.keys(router).length === 0) {
+    args.ctx = {
+      keys: ["action", "global", "store", "models"],
+      get global() {
+        return allProps;
+      },
+      get store() {
+        return allStates;
+      },
+      get models() {
+        return models;
+      },
+      get action() {
+        return ACTION;
+      },
+    };
     router = ROUTER(args);
   }
   return router;

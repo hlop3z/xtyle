@@ -104,6 +104,15 @@ export function simpleDocs(code) {
   return formattedCode;
 }
 
+export const camelToTitleCase = (text) => {
+  const _text = text.replace(/-/g, " "); // Use a global replace to replace all occurrences
+  return _text
+    .toLowerCase()
+    .split(" ")
+    .map((e) => e.charAt(0).toUpperCase() + e.slice(1))
+    .join("");
+};
+
 /**
  * Object containing methods to convert strings to different formats.
  */
