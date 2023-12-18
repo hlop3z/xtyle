@@ -2,22 +2,20 @@ const { signal } = preact;
 
 export const CURRENT_VIEW = signal({});
 
-export function setNextGlobalView(routerAPI, props) {
+export async function setNextGlobalView(routerAPI, props) {
   const { view } = props.next;
+  const setView = (nextView, config) =>
+    (CURRENT_VIEW.value = () => nextView(config));
+  const reqConfig = {
+    ...props.next,
+    last: props.prev,
+    ctx: routerAPI.ctx,
+    router: routerAPI,
+  };
   if (typeof view === "function") {
-    CURRENT_VIEW.value = view({
-      ...props.next,
-      last: props.prev,
-      ctx: routerAPI.ctx,
-      router: routerAPI,
-    });
+    setView(view, reqConfig);
   } else {
-    CURRENT_VIEW.value = routerAPI.page404({
-      ...props.next,
-      last: props.prev,
-      ctx: routerAPI.ctx,
-      router: routerAPI,
-    });
+    setView(routerAPI.page404, reqConfig);
   }
 }
 

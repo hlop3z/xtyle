@@ -1,12 +1,4 @@
-type Props = {
-  keys: () => string[];
-  get: (key: string) => {
-    model: string;
-    namespace: string;
-    instance: any;
-    objects: any[];
-  };
-};
+type Props = any;
 
 export default Props;
 /* 

@@ -72,10 +72,9 @@ export function stringUpperCase(text: string): string {
  * @returns {string} The title case representation of the input string.
  */
 export function stringTitleCase(text: string): string {
-  return text.replace(
-    /\w\S*/g,
-    (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-  );
+  return text.toLowerCase().replace(/(^|[\s-_])\S/g, function (t) {
+    return t.toUpperCase();
+  });
 }
 
 /**
@@ -104,7 +103,7 @@ export function simpleDocs(code) {
   return formattedCode;
 }
 
-export const camelToTitleCase = (text) => {
+export const kebabToTitleCase = (text) => {
   const _text = text.replace(/-/g, " "); // Use a global replace to replace all occurrences
   return _text
     .toLowerCase()
@@ -125,4 +124,6 @@ export default {
   pascal: stringPascalCase,
   docs: simpleDocs,
   snake: stringSnake,
+  slot: kebabToTitleCase,
+  cut: (text, size) => text.substring(0, size),
 };

@@ -1,5 +1,5 @@
 import { findDirectives } from "../base/element/utils";
-import { camelToTitleCase } from "../stringTo";
+import { kebabToTitleCase } from "../stringTo";
 // import { camelProps } from "../util";
 
 function slotProps(expectedSlots, parentProps) {
@@ -10,11 +10,13 @@ function slotProps(expectedSlots, parentProps) {
     if (!found) {
       slots[key] = () => "";
     }
-    outschema[camelToTitleCase(key)] = (slot) => {
+    outschema[kebabToTitleCase(key)] = (slot, data) => {
       let slotMethod: any = (props) => slot.render(parentProps, props);
       return slots[key]({
         Slot: slotMethod,
         info: slot,
+        data: data,
+        self: parentProps,
       });
     };
   });

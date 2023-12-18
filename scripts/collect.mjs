@@ -84,7 +84,7 @@ async function collectTSXFiles() {
     // Files
     comps_file: path.join(folderPath, "index.ts"),
     types_file: path.join(outPath, `${ProjectName}.d.ts`),
-    docs_file: path.join(outPath, `types.d.ts`),
+    // docs_file: path.join(outPath, `types.d.ts`),
     // Text
     docs: listDocs.join("\n\n"),
     types: listFunc.join("\n\n"),
@@ -97,7 +97,7 @@ async function collectTSXFiles() {
 
   await writeFile(code.comps_file, code.comps, "utf-8");
   await writeFile(code.types_file, xtyleDocumentation, "utf-8");
-  await writeFile(code.docs_file, code.docs, "utf-8");
+  //await writeFile(code.docs_file, code.docs, "utf-8");
 }
 
 collectTSXFiles();

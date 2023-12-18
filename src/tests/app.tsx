@@ -5,8 +5,12 @@
 import * as xtyle from "../pre-build";
 
 export default function App(props: any) {
+  const demoSignal = preact.useSignal("hello_world");
+  preact.useEffect(() => {
+    console.log(demoSignal);
+  }, [demoSignal.value]);
   return (
-    <div x-html>
+    <div x-html x-demo>
       <xtyle.router.views />
 
       <x-slot x-if={true}>
@@ -19,7 +23,14 @@ export default function App(props: any) {
               Go {item}
             </button>
           )}
-          x-in={["/", "home", "not-found-1", "not-found-2", "not-found-3"]}
+          x-in={[
+            "/",
+            "about-us",
+            "home",
+            "not-found-1",
+            "not-found-2",
+            "not-found-3",
+          ]}
         ></x-slot>
         <button x-html on-click={() => xtyle.router.go("/home")}>
           Go To Route
@@ -48,6 +59,11 @@ export default function App(props: any) {
           Redirect External
         </a>
 
+        <br />
+        <br />
+        <div>
+          <input x-html type="file" x-value={demoSignal}></input>
+        </div>
         <br />
         <br />
         <div x-html theme-text="danger-dark">

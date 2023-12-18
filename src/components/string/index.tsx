@@ -1,24 +1,7 @@
 /**
  * Object containing methods to convert strings to different formats.
  */
-import {
-  stringSlugify,
-  stringLowerCase,
-  stringUpperCase,
-  stringTitleCase,
-  stringPascalCase,
-  stringCamelCase,
-} from "../stringTo/index.tsx";
-
-const stringTo = {
-  slug: stringSlugify,
-  lower: stringLowerCase,
-  upper: stringUpperCase,
-  title: stringTitleCase,
-  pascal: stringPascalCase,
-  camel: stringCamelCase,
-  cut: (text, size) => text.substring(0, size),
-};
+import stringTo from "../stringTo/index.tsx";
 
 export default function Slots(props) {
   const { slug, lower, upper, title, filter, cut, ellipsis } = props;

@@ -1,6 +1,6 @@
 {
   "name": "xtyle",
-  "version": "2.2.9",
+  "version": "2.2.10",
   "description": "Preact Toolkit (Stand-Alone)",
   "author": "hlop3z",
   "license": "MIT",
@@ -8,7 +8,7 @@
   "types": "./dist/index.d.ts",
   "main": "./dist/index.min.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host --port 5190",
     "preview": "vite preview",
     "build:vite": "tsc && vite build",
     "build:rollup": "npx rollup -c",

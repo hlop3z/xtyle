@@ -178,5 +178,9 @@ export function stopListeners(el) {
 
 export default {
   css: cssClass.style,
-  directive: (el, setup) => startListeners(el, setup, false),
+  directive: (el, setup) => {
+    try {
+      startListeners(el, setup, false);
+    } catch (e) {}
+  },
 };

@@ -6,6 +6,9 @@ type Props = {
   title: (value: string) => string;
   pascal: (value: string) => string;
   docs: (value: string) => string;
+  snake: (value: string) => string;
+  slot: (value: string) => string;
+  cut: (value: string, size: number) => string;
 };
 
 export default Props;

@@ -1,8 +1,14 @@
-type Props = (props: {
-  theme: Record<string, string>;
-  dark?: Record<string, string>;
-  light?: Record<string, string>;
-}) => string;
+type Props = {
+  set: (props: {
+    theme: Record<string, string>;
+    dark?: Record<string, string>;
+    light?: Record<string, string>;
+  }) => string;
+  class: (props: {
+    name: string;
+    type?: "background" | "border" | "text" | "table";
+  }) => string;
+};
 
 export default Props;
 /* 

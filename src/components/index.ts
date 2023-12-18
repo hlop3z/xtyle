@@ -1,3 +1,4 @@
+export { default as action } from "./action/index.tsx";
 export { default as actions } from "./actions/index.tsx";
 export { default as api } from "./api/index.tsx";
 export { default as arrayPage } from "./arrayPage/index.tsx";

@@ -172,7 +172,7 @@ export function removeBaseURL(currentPath: string, baseURL: string): string {
     cleanPath = currentPath.replace(baseURL, "");
   }
   cleanPath = noSuffixSlashURL(cleanPath);
-  return cleanPath;
+  return cleanPath.replace(/#/g, "");
 }
 
 /**
@@ -226,4 +226,24 @@ export function collectRoutes(options: any): any {
     groupedRoutes = dict;
   }
   return groupedRoutes;
+}
+
+export function openOrFocusWindow(path: string, openName: string | boolean) {
+  // Use a consistent name for the window
+  const windowName: any = openName === true ? "_blank" : openName;
+
+  // Try to find the existing window
+  const existingWindow = window.open(path, windowName);
+
+  if (existingWindow) {
+    // If the window exists, focus on it
+    existingWindow.focus();
+  } else {
+    // If the window doesn't exist, open a new one
+    const newWindow = window.open(path, windowName);
+    // You can perform additional actions on the new window if needed
+    if (newWindow) {
+      // Do something with the new window
+    }
+  }
 }

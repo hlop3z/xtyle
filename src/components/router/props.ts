@@ -1,5 +1,5 @@
 type Props = {
-  go: (path: string, query?: object) => void;
+  go: (path: string | null, query?: object) => void;
   computed: (props: any) => any;
   effect: (props: any) => void;
   find: (query: string) => any;
@@ -7,6 +7,11 @@ type Props = {
   baseURL: any;
   history: any;
   views: any;
+  redirect: (
+    path?: string,
+    openName?: string | boolean,
+    query?: object | any
+  ) => void;
 };
 
 export default Props;

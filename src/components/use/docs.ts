@@ -26,6 +26,8 @@
  *       directives: {},
  *       globals: {},
  *       store: {},
+ *       models: {},
+ *       actions: {},
  *       init: {
  *         before: [],
  *         after: [],

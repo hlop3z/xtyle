@@ -11,6 +11,7 @@ import {
   routeURL,
   pathWithQuery,
   collectRoutes,
+  openOrFocusWindow,
 } from "./tools.ts";
 
 const { signal, effect, computed } = preact;
@@ -53,10 +54,11 @@ class RouterAPI {
    */
   constructor(options: NavigatorOptions) {
     this.ctx = options.ctx;
+    const routerApi = this;
     this.beforeRouter = ({ prevRouter, nextRouter }) => {
       if (!nextRouter.view) {
-        if (options.page404 !== false) {
-          nextRouter.view = options.page404;
+        if (routerApi.page404 !== false) {
+          nextRouter.view = routerApi.page404;
         }
       }
 
@@ -88,46 +90,51 @@ class RouterAPI {
         this.beforeRouter({ prevRouter, nextRouter });
       }
       if (isDiff) {
-        // View Admin
-        setNextGlobalView(this, { prev: prevRouter, next: nextRouter });
-
         // After Router
         if (typeof options.after === "function") {
           options.after({ prev: prevRouter, next: nextRouter });
         }
         // Update Current
         this._current.value = nextRouter;
+
+        // View Admin
+        setNextGlobalView(this, { prev: prevRouter, next: nextRouter });
       }
     };
     this.baseURL = fixURL(options.baseURL || "/");
     this.history = options.history || false;
     this._current = signal({});
-    this.page404 = options.page404;
+
+    // Collect Routes
+    this.routes = collectRoutes(options);
+    const custom404 = options.routes["404"] || options.routes[404];
+    if (custom404) {
+      this.page404 = custom404;
+      this.routes["404"] = custom404;
+      console.log(custom404);
+    } else {
+      this.page404 = options.page404;
+      this.routes["404"] = options.page404;
+    }
+
+    // Extra Methods
+    this.find = VirtualRouter(this.routes, this.history, this.baseURL);
+    this.searchArgs = createSearchParams;
 
     // Set Handler
     window.onpopstate = () => this.routerHandler();
-
-    // Collect Routes
-
-    this.routes = collectRoutes(options);
-    console.log(Object.keys(this.routes));
-
-    // Extra Methods
-    this.routes["404"] = this.page404;
-    this.find = VirtualRouter(this.routes, this.history, this.baseURL);
-    this.searchArgs = createSearchParams;
 
     // Init Router
     this.routerHandler();
   }
 
   // NAMESPACES
-  get name() {
+  get view() {
     return Object.freeze(VIEW_UNQUE_NAMES);
   }
 
   get views() {
-    return () => CURRENT_VIEW.value;
+    return CURRENT_VIEW.value;
   }
 
   getDiff(next?: any) {
@@ -176,15 +183,19 @@ class RouterAPI {
    */
   redirect(
     path: string = "",
-    open: boolean = false,
+    openName: string | boolean = false,
     query: object | any = {}
   ): void {
     const currentPath = pathWithQuery(path, query);
-    if (open) {
-      window.open(currentPath, "_blank");
+    if (![null, undefined, "", false].includes(openName)) {
+      openOrFocusWindow(currentPath, openName);
     } else {
       window.location.href = currentPath;
     }
+  }
+
+  keys() {
+    return Object.keys(this.routes);
   }
 
   /**
@@ -215,7 +226,7 @@ class RouterAPI {
       if (!SHOULD_REDIRECT) {
         NEXT_PATH = build.path;
       }
-      window.history.pushState({}, "", NEXT_PATH);
+      window.history.pushState({}, "", noSuffixSlashURL(NEXT_PATH));
       this.routerHandler(true);
     }
   }

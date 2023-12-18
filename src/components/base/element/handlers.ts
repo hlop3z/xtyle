@@ -65,7 +65,7 @@ export function handleHTMLElement(tagHTML: any, selfContext: any): any {
 
   // Process Directives
   const dKeys = Object.keys(selfContext.directives.custom);
-  if (dKeys.length > 0) {
+  if (dKeys.length > 0 && selfContext.ref) {
     dKeys.forEach((key) => {
       if (!customCoreDirectives.includes(key)) {
         if (globalDirectives[key]) {

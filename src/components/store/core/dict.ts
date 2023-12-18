@@ -64,21 +64,21 @@ export default function Dict(signalType, inObj): any {
   const getValue = (key) => signalValue[key].value;
   const getKeyValue = () => keys.map((key) => [key, getValue(key)]);
   const setLastValue = (props) => {
-    const inputData = {};
+    const inputData = { ...trackerItem.value };
     Object.keys(props).forEach((key) => (inputData[key] = props[key]));
     trackerItem.value = inputData;
   };
 
   // Set
   const setValues = (props, commitLast = true) => {
-    batch(() =>
+    batch(() => {
       Object.keys(props).forEach(
         (key) => keys.includes(key) && (signalValue[key].value = props[key])
-      )
-    );
-    if (commitLast) {
-      setLastValue(props);
-    }
+      );
+      if (commitLast) {
+        setLastValue(props);
+      }
+    });
   };
 
   const resetValues = () => setValues(initDefaultData());
@@ -92,16 +92,19 @@ export default function Dict(signalType, inObj): any {
   // Get Diff
   const getDiff = (withID = true) => {
     const current = { ...trackerItem.value };
-    const cleanInput: any = {};
+    const outDict: any = {};
     keys.forEach((key) => {
       const value = signalValue[key].value;
       const isDiff = checkDiff(value, current[key]);
-      if (isDiff) cleanInput[key] = value;
+      if (isDiff) outDict[key] = value;
     });
-    if (withID && current.id && Object.keys(cleanInput).length > 0) {
-      cleanInput.id = current.id;
+    if (withID && current.id && Object.keys(outDict).length > 0) {
+      outDict.id = current.id;
     }
-    return cleanInput;
+    if (Object.keys(outDict).length > 0) {
+      return { value: outDict, save: () => setLastValue(outDict) };
+    }
+    return null;
   };
 
   // Final Object

@@ -2,7 +2,6 @@
 import dict from "./core/dict.ts";
 import { list, set } from "./core/list.ts";
 // import model from "./core/model.ts";
-import "./model.ts";
 
 /**
  * Import statements for signals and hooks from preact library

@@ -17,11 +17,11 @@
  *       danger: "#B71C1C",
  *     },
  *     disable: [
- *       // string: ("text", "color", "border", "table")
+ *       // string: ["text", "color", "border", "table"]
  *     ],
  *   };
  *
- *   xtyle.theme(Theme);
+ *   xtyle.theme.set(Theme);
  *
  * @example
  * <!-- theme-(text, color, border) -->

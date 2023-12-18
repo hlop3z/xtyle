@@ -82,51 +82,90 @@ export const globalDirectives = {
     }, [self.ref]);
   },
   value: (self: any, props: any) => {
-    const xTag = self.directives.custom["tag"];
-    const state = self.directives.custom["value"];
-    const filter = self.directives.custom["value-clean"];
-    const validators = self.directives.custom["value-validators"];
-    const xInput = self.directives.custom["input"];
-    const disabled = self.directives.custom["value-disabled"];
+    const {
+      directives: {
+        custom: {
+          tag: xTag,
+          value: state,
+          "value-clean": filter,
+          "value-validators": validators,
+          input: xInput,
+          "value-disabled": disabled,
+        },
+      },
+    } = self;
 
-    const { onInput } = props;
+    const { onInput, onChange } = props;
+
     if (["input", "textarea", "select", "progress"].includes(xTag)) {
-      props.onInput = (event: any) => {
-        let newValue = "";
-        // Set New-Value
-        if (disabled) {
-          event.target.value = state.value;
-        } else {
-          // Clean Value
-          if (filter && typeof filter === "function") {
-            newValue = filter(event.target.value);
-            event.target.value = newValue;
-          } else {
-            newValue = event.target.value;
+      const isFileInput = props.type === "file";
+      if (isFileInput) {
+        props.onChange = (event: any) => {
+          const input = event.target;
+          if (input.files && input.files.length > 0) {
+            state.value = input.files;
+            // input.files.map((file) => file);
+            // On Input (Methods)
+            if (xInput && typeof xInput === "function") {
+              xInput({
+                value: input.files,
+                valid: true,
+                errors: false,
+                event,
+              });
+            }
+            if (onChange) {
+              onChange(event);
+            }
           }
-          state.value = newValue;
-        }
-        // Validators
-        let isValid: any[] = [];
-        if (validators && typeof Array.isArray(validators)) {
-          isValid = validator(newValue, validators);
-        }
-        if (xInput && typeof xInput === "function") {
-          xInput({
-            value: newValue,
-            valid: isValid.length === 0,
-            errors: isValid,
-            event: event,
-          });
-        }
-        // On Input (Methods)
-        if (onInput) {
-          onInput(event);
-        }
-      };
+        };
+      } else {
+        props.onInput = (event: any) => {
+          let newValue = "";
+
+          // Set New Value
+          if (disabled) {
+            event.target.value = state.value;
+          } else {
+            // Clean Value
+            if (filter && typeof filter === "function") {
+              newValue = filter(event.target.value);
+              event.target.value = newValue;
+            } else {
+              newValue = event.target.value;
+            }
+            state.value = newValue;
+          }
+
+          // Validators
+          let isValid: any[] = [];
+          if (validators && Array.isArray(validators)) {
+            isValid = validator(newValue, validators);
+          }
+
+          // Callback for xInput
+          if (xInput && typeof xInput === "function") {
+            xInput({
+              value: newValue,
+              valid: isValid.length === 0,
+              errors: isValid,
+              event,
+            });
+          }
+
+          // On Input (Methods)
+          if (onInput) {
+            onInput(event);
+          }
+        };
+      }
+
+      // Using useEffect for setting initial value
       useEffect(() => {
-        self.ref.current.value = state.value;
-      }, [self.ref, state]);
+        if (!isFileInput) {
+          self.ref.current.value = state.value;
+        }
+      }, [self.ref, state.value]);
     }
   },
   scroll: (self: any, props: any) => {

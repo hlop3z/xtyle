@@ -100,11 +100,9 @@ console.log("Store: ", xtyle.store);
 console.log("Routes: ", Object.keys(xtyle.router.routes));
 
 /* Router Effect */
-// xtyle.router.go("/home/about-us");
-// xtyle.router.redirect("/home/about-us");
 xtyle.router.effect(() => {
   console.log("xtyle.router.effect =>", xtyle.router.current);
-}, 1000);
+}, []);
 
 /**
  * @Theme

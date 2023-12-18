@@ -5,6 +5,21 @@ function actionCore(root): any {
     }, root);
 }
 
+export function flattenActions(obj, path = "") {
+  let result: any = [];
+  for (const key in obj) {
+    const newPath = path ? `${path}.${key}` : key;
+    if (typeof obj[key] === "function") {
+      result.push(newPath);
+    } else if (typeof obj[key] === "object" && obj[key] !== null) {
+      result = result.concat(flattenActions(obj[key], newPath));
+    } else {
+      result.push(newPath);
+    }
+  }
+  return result;
+}
+
 export default function actions(root) {
   const admin: any = actionCore(root);
   return (name: string, args: any): any => {
@@ -12,7 +27,8 @@ export default function actions(root) {
     if (method) {
       return method(args);
     } else {
-      console.error(`Method { ${name} } Not Found`);
+      const errorMessage = `Method { ${name} } Not Found`;
+      throw new Error(errorMessage);
     }
   };
 }

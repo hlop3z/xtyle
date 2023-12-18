@@ -53,4 +53,7 @@ class Timer {
 
 getMilliseconds.start = () => new Timer();
 
-export default getMilliseconds;
+export default {
+  get: getMilliseconds,
+  start: () => new Timer(),
+};

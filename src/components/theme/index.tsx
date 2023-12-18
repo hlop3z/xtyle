@@ -104,6 +104,7 @@ function createTheme(args) {
   current.createTheme();
 }
 
-createTheme.color = getClass;
-
-export default createTheme;
+export default {
+  set: createTheme,
+  class: getClass,
+};

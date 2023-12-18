@@ -1,5 +1,4 @@
 // Tools
-export { default as actions } from "./components/actions/index.tsx";
 export { default as api } from "./components/api/index.tsx";
 export { default as arrayPage } from "./components/arrayPage/index.tsx";
 export { default as build } from "./components/build/index.tsx";
@@ -17,6 +16,7 @@ export { default as props } from "./components/props/index.tsx";
 export { default as slotProps } from "./components/slotProps/index.tsx";
 
 // Actions
+export { default as actions } from "./components/actions/index.tsx";
 export { ACTION as action } from "./components/use/index.tsx";
 
 // Store
@@ -98,5 +98,5 @@ export const init = AppINIT(Router);
 
 import attachView from "./components/view/index.tsx";
 export const view = attachView({
-  get: () => router,
+  router: () => router,
 });

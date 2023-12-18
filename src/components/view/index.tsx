@@ -7,10 +7,11 @@ function attachView(routerAPI, path, namespace, method) {
   method.uri = namespace;
   VIEW_UNQUE_ROUTES[finalPath] = method;
   VIEW_UNQUE_NAMES[namespace] = {
+    namespace: namespace,
     path: finalPath,
     args: paramHelper.extract(finalPath),
     go: (val, search) =>
-      routerAPI.get().go(paramHelper.build(finalPath, val), search || {}),
+      routerAPI.router().go(paramHelper.build(finalPath, val), search || {}),
   };
   return VIEW_UNQUE_ROUTES;
 }

@@ -1,6 +1,7 @@
 import deepMerge from "./deepMerge.ts";
 import createActions from "../actions/index.tsx";
-import { models } from "../store/index.tsx";
+import { createModels } from "../store/model.ts";
+import { flattenActions } from "../actions/index.tsx";
 
 // Plugins Routes
 export const pluginRouter: any = {
@@ -14,8 +15,10 @@ export const beforeInit: any = [];
 export let ACTION: any = (params) => params;
 
 ACTION.object = () => {};
+ACTION.keys = () => [];
 
 const globalActionsDict: any = {};
+const globalActionsSet: any = new Set();
 
 const mergeActions = (extras) => deepMerge(globalActionsDict, extras);
 
@@ -50,23 +53,15 @@ function attachPlugin(core: any, plugin: any, options: any = {}) {
 
   // Actions
   if (config.actions) {
+    flattenActions(config.actions).map((x) => globalActionsSet.add(x));
     ACTION = createActions(mergeActions(config.actions));
     ACTION.object = () => ({ ...globalActionsDict });
+    ACTION.keys = () => Array.from(globalActionsSet);
   }
 
   // Models
   if (config.models) {
-    const subSchema = {};
-    Object.entries(config.models).forEach(([key, plugin]: any) => {
-      if (plugin.$root) {
-        models(plugin);
-      } else {
-        subSchema[key] = plugin;
-      }
-    });
-    if (Object.keys(subSchema).length > 0) {
-      models(subSchema);
-    }
+    createModels(config);
     //models(config.models);
   }
 
