@@ -4,7 +4,7 @@ type Props = {
     model: string;
     namespace: string;
     instance: any;
-    objects: any[];
+    objects: any;
   };
 };
 
@@ -23,7 +23,7 @@ export default Props;
   string
   
   // Array<string>
-  string[]          
+  string          
   
   // tuple
   [string, number]
