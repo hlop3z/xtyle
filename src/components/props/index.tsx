@@ -32,7 +32,7 @@ function getValueInfo(value) {
 function getKeyInfo(value) {
   value = value || "";
   const required = !value.includes("$");
-  const name = value.replace(/[^a-zA-Z0-9]/g, "");
+  const name = value.replace(/[^a-zA-Z0-9-]/g, "");
   return {
     name,
     required,

@@ -1,4 +1,4 @@
-type Props = (expectedProps: string[], parentProps?: any) => void;
+type Props = (expectedProps: string[], parentProps?: any) => any;
 
 export default Props;
 /* 

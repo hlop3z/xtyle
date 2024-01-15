@@ -1,4 +1,5 @@
 import Props from "../props";
+import { camelProps } from "../util";
 
 function Slots(props, name, component) {
   const method = component ? component : name;
@@ -7,7 +8,7 @@ function Slots(props, name, component) {
   const propsAdmin: any = Props(props);
   propsAdmin.name = namespace;
   propsAdmin.render = (parentProps, data) => {
-    const context: any = propsAdmin.props(data || {});
+    const context: any = camelProps(propsAdmin.props(data || {}));
     context.$root = parentProps;
     return method(context);
   };
