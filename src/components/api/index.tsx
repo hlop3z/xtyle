@@ -4,7 +4,7 @@ class API {
 
   constructor(baseURL: string, options: any) {
     this.baseURL = baseURL.endsWith("/") ? baseURL : baseURL + "/";
-    this.options = options;
+    this.options = options || {};
   }
 
   private formatURL(path: string): string {
@@ -31,7 +31,7 @@ class API {
       ...this.options,
       method: "POST",
       headers: {
-        ...this.options.headers,
+        ...(this.options.headers || {}),
         "Content-Type": "application/json; charset=UTF-8",
       },
       body: JSON.stringify(args),

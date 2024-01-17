@@ -59,8 +59,8 @@ async function collectTSXFiles() {
               .slice(0, -1);
             // Builder
             if (componentName === "base") {
-              outFunc = `${componentName}: (props: ${outType}) => object;`;
-              outDocs = `declare const ${componentName}: (props: ${outType}) => object;`;
+              outFunc = `${componentName}: (props: ${outType}) => any;`;
+              outDocs = `declare const ${componentName}: (props: ${outType}) => any;`;
             } else {
               outFunc = `${componentName}: ${outType}`;
               outDocs = `declare const ${componentName}: ${outType}`;

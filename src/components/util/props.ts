@@ -1,10 +1,10 @@
 type Props = {
   inject: (code: string, id?: string) => void;
-  form: (obj: { [key: string]: any }) => object;
+  form: (obj: { [key: string]: any }) => any;
   // Preact plugins
   class: (input: any) => string;
   style: (input: any) => string;
-  props: (kwargs: any) => object;
+  props: (kwargs: any) => any;
   events: object;
   event: (args: {
     el: any;

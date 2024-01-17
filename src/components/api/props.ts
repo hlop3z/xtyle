@@ -1,4 +1,4 @@
-type Props = (baseURL: string, options?: any) => object;
+type Props = (baseURL: string, options?: any) => any;
 
 export default Props;
 /* 
