@@ -104,7 +104,7 @@ export default function Dict(signalType, inObj): any {
     if (Object.keys(outDict).length > 0) {
       return { value: outDict, save: () => setLastValue(outDict) };
     }
-    return null;
+    return {};
   };
 
   // Final Object

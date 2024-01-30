@@ -129,7 +129,7 @@ export const globalDirectives = {
           } else {
             // Clean Value
             if (filter && typeof filter === "function") {
-              newValue = filter(event.target.value);
+              newValue = filter(event.target.value, event);
               event.target.value = newValue;
             } else {
               newValue = event.target.value;

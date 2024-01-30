@@ -15,7 +15,7 @@
 !!! tip "x-input"
 
         Useful for **extending** an **input** component.
-        
+
         - Get the **current `value`**
         - Submit if the value **is `valid`**
         - Present **`errors`** to the client
@@ -32,7 +32,7 @@ function Component(props) {
       x-value={text}
       x-value-clean={(value) => value.toLowerCase()}
       x-value-validators={[
-        (v) => v.length === 0 || "Required Field!",
+        (v) => !!v || "Required Field!",
         (v) => v.length >= 8 || "At least 8 characters long",
       ]}
     />
