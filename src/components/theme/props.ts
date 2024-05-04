@@ -4,10 +4,10 @@ type Props = {
     dark?: Record<string, string>;
     light?: Record<string, string>;
   }) => string;
-  class: (props: {
-    name: string;
-    type?: "background" | "border" | "text" | "table";
-  }) => string;
+  class: (
+    name: string,
+    type: "background" | "border" | "text" | "table"
+  ) => string;
 };
 
 export default Props;

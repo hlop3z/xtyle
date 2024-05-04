@@ -85,6 +85,7 @@ export function handleHTMLElement(tagHTML: any, selfContext: any): any {
   const classConfigCSS: any = [
     ...handleThemeColors(selfContext.directives.theme),
   ];
+
   if (propsHTML.class) {
     classConfigCSS.push(propsHTML.class);
   }

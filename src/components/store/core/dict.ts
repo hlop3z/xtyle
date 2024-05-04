@@ -65,6 +65,7 @@ export default function Dict(signalType, inObj): any {
   const getKeyValue = () => keys.map((key) => [key, getValue(key)]);
   const setLastValue = (props) => {
     const inputData = { ...trackerItem.value };
+    Object.keys(inputData).forEach((key) => (inputData[key] = null));
     Object.keys(props).forEach((key) => (inputData[key] = props[key]));
     trackerItem.value = inputData;
   };

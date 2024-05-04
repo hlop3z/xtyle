@@ -66,16 +66,6 @@ class ThemeCreator {
   }
 }
 
-function getClass(name, type) {
-  const util = {
-    background: (name) => `color-bg-${name}`,
-    border: (name) => `color-br-${name}`,
-    text: (name) => `color-tx-${name}`,
-    table: (name) => `color-tb-${name}`,
-  };
-  return util[type](name);
-}
-
 const ColorBase = {
   background: (color) => `background-color: ${color} !important;`,
   border: (color) => `border-color: ${color} !important;`,
@@ -102,6 +92,16 @@ const Color = {
 function createTheme(args) {
   const current = new ThemeCreator(args);
   current.createTheme();
+}
+
+function getClass(name, type) {
+  const util = {
+    background: (name) => `color-bg-${name}`,
+    border: (name) => `color-br-${name}`,
+    text: (name) => `color-tx-${name}`,
+    table: (name) => `color-tb-${name}`,
+  };
+  return util[type](name);
 }
 
 export default {

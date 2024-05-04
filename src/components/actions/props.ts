@@ -1,4 +1,4 @@
-type Props = (options: any, group: boolean) => any;
+type Props = (options: any) => any;
 
 export default Props;
 /* 

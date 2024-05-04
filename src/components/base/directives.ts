@@ -229,7 +229,9 @@ export const globalDirectives = {
         directive(dirConfig);
       }
     };
-    core.event(document, "click", handler, [self.ref, directive, props]);
+    if (directive) {
+      core.event(document, "click", handler, [self.ref, directive, props]);
+    }
   },
 };
 

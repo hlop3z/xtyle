@@ -102,6 +102,19 @@ export default function App(props: any) {
           </tbody>
         </table>
       </x-slot>
+      <div
+        x-html
+        x-click-outside={() => console.log("clicked outside")}
+        style="border: 2px solid black;"
+        key={JSON.stringify(xtyle.device)}
+      >
+        {JSON.stringify(xtyle.device)}
+        <h2>Click Outside</h2>
+        <div>
+          Child
+          <div>Sub-Child</div>
+        </div>
+      </div>
     </div>
   );
 }
