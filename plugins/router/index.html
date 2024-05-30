@@ -8,20 +8,20 @@
       
       
       
-        <link rel="canonical" href="https://hlop3z.github.io/xtyle/directives/ripple/">
+        <link rel="canonical" href="https://hlop3z.github.io/xtyle/plugins/router/">
       
       
-        <link rel="prev" href="../swipe/">
+        <link rel="prev" href="../models/">
       
       
-        <link rel="next" href="../resize/">
+        <link rel="next" href="../globals/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.1, mkdocs-material-9.1.21">
     
     
       
-        <title>x-ripple - Xtyle</title>
+        <title>Router - Xtyle</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#x-ripple" class="md-skip">
+        <a href="#router" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              x-ripple
+              Router
             
           </span>
         </div>
@@ -339,16 +339,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-        
-      
-      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
       
       
       
@@ -357,7 +357,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           Plugins
@@ -370,7 +370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         Install
       </a>
     </li>
@@ -384,7 +384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/init/" class="md-nav__link">
+      <a href="../init/" class="md-nav__link">
         Init
       </a>
     </li>
@@ -398,7 +398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/actions/" class="md-nav__link">
+      <a href="../actions/" class="md-nav__link">
         Actions
       </a>
     </li>
@@ -412,7 +412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/directives/" class="md-nav__link">
+      <a href="../directives/" class="md-nav__link">
         Directives
       </a>
     </li>
@@ -426,7 +426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/models/" class="md-nav__link">
+      <a href="../models/" class="md-nav__link">
         Models
       </a>
     </li>
@@ -438,11 +438,94 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../plugins/router/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Router
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Router
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-path-patterns" class="md-nav__link">
+    Dynamic Path Patterns
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-example" class="md-nav__link">
+    Configuration (Example)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register-a-view" class="md-nav__link">
+    Register a View
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-views" class="md-nav__link">
+    Display Views
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-routes-aka-views" class="md-nav__link">
+    Change Routes (aka: Views)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utils-xtylerouter" class="md-nav__link">
+    Utils xtyle.router
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utils-xtyleroutercurrent" class="md-nav__link">
+    Utils xtyle.router.current
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -454,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/globals/" class="md-nav__link">
+      <a href="../globals/" class="md-nav__link">
         Globals
       </a>
     </li>
@@ -468,7 +551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/store/" class="md-nav__link">
+      <a href="../store/" class="md-nav__link">
         Store
       </a>
     </li>
@@ -581,16 +664,16 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
       
       
       
@@ -599,7 +682,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
           Built-in Directives
@@ -612,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ref/" class="md-nav__link">
+      <a href="../../directives/ref/" class="md-nav__link">
         x-ref
       </a>
     </li>
@@ -626,7 +709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../value/" class="md-nav__link">
+      <a href="../../directives/value/" class="md-nav__link">
         x-value
       </a>
     </li>
@@ -640,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hover/" class="md-nav__link">
+      <a href="../../directives/hover/" class="md-nav__link">
         x-hover
       </a>
     </li>
@@ -654,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../scroll/" class="md-nav__link">
+      <a href="../../directives/scroll/" class="md-nav__link">
         x-scroll
       </a>
     </li>
@@ -668,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../swipe/" class="md-nav__link">
+      <a href="../../directives/swipe/" class="md-nav__link">
         x-swipe
       </a>
     </li>
@@ -680,21 +763,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../directives/ripple/" class="md-nav__link">
         x-ripple
       </a>
-      
     </li>
   
 
@@ -706,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resize/" class="md-nav__link">
+      <a href="../../directives/resize/" class="md-nav__link">
         x-resize
       </a>
     </li>
@@ -720,7 +793,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../click-outside/" class="md-nav__link">
+      <a href="../../directives/click-outside/" class="md-nav__link">
         x-click-outside
       </a>
     </li>
@@ -889,6 +962,63 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-path-patterns" class="md-nav__link">
+    Dynamic Path Patterns
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-example" class="md-nav__link">
+    Configuration (Example)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register-a-view" class="md-nav__link">
+    Register a View
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-views" class="md-nav__link">
+    Display Views
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-routes-aka-views" class="md-nav__link">
+    Change Routes (aka: Views)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utils-xtylerouter" class="md-nav__link">
+    Utils xtyle.router
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utils-xtyleroutercurrent" class="md-nav__link">
+    Utils xtyle.router.current
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -905,31 +1035,128 @@
   
 
 
-<h1 id="x-ripple"><strong>x-ripple</strong></h1>
-<div class="admonition tip">
-<p class="admonition-title">x-ripple<p>A delightful utility that adds an elegant ripple effect to elements, enhancing visual feedback and interactivity. With <strong><code>x-ripple</code></strong>, you can effortlessly elevate the user experience by providing a subtle animation when elements are interacted with. Create a more engaging and polished interface with the power of <strong><code>x-ripple</code></strong>.</p>
-</p>
+<h1 id="router">Router</h1>
+<p>The <strong><code>router</code></strong> section is dedicated to configuring routing behaviors within your application. This encompasses defining rules for redirection when a user attempts to access a view they are not authorized to see, as well as loading data before presenting the page to the user.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cm">/* Plugin Install */</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">install</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span><span class="w"> </span><span class="nx">option</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nx">router</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="nx">before</span><span class="p">({</span><span class="w"> </span><span class="nx">commit</span><span class="p">,</span><span class="w"> </span><span class="nx">redirect</span><span class="p">,</span><span class="w"> </span><span class="nx">prev</span><span class="p">,</span><span class="w"> </span><span class="nx">next</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="c1">// Commits Change</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="nx">commit</span><span class="p">();</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="c1">// OR</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="c1">// Redirect</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="nx">redirect</span><span class="p">(</span><span class="s2">&quot;/login&quot;</span><span class="p">);</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="nx">after</span><span class="p">({</span><span class="w"> </span><span class="nx">prev</span><span class="p">,</span><span class="w"> </span><span class="nx">next</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="c1">// (Info) Prev &amp; Next</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">prev</span><span class="p">);</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">next</span><span class="p">);</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="p">};</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="dynamic-path-patterns"><strong>Dynamic</strong> Path Patterns</h2>
+<p>When defining routes, you can use dynamic path patterns to handle different scenarios:</p>
+<ul>
+<li><strong><code>/{variable}</code></strong>: Encapsulating a word with <code>{}</code> brackets makes it a required path parameter.</li>
+<li><strong><code>/{?variable}</code></strong>: The <code>?</code> at the start indicates that the parameter is optional.</li>
+<li><strong><code>/{variable*}</code></strong>: The <code>*</code> at the end denotes a wildcard parameter, which matches the remaining part of the path.</li>
+</ul>
+<h2 id="configuration-example">Configuration (<strong>Example</strong>)</h2>
+<p>Here's an example of how to initialize the router and configure it with options and route patterns:</p>
+<div class="admonition note">
+<p class="admonition-title">Path Patterns (Examples)</p>
+<ul>
+<li>
+<p><strong><code>/a/some-{key}</code></strong> : This one is <strong>required</strong>!</p>
+</li>
+<li>
+<p><strong><code>/a/b-{?key}</code></strong> : The <strong>"<code>?</code>"</strong> indicates that the parameter <strong><code>key</code></strong> is <strong>optional</strong>.</p>
+</li>
+<li>
+<p><strong><code>/a/b/{path*}</code></strong> : The <strong>"<code>*</code>"</strong> denotes a wildcard parameter named <strong><code>path</code></strong>, which matches the <strong>remaining part of the path</strong>.</p>
+</li>
+</ul>
 </div>
-<p>Example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">html</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="nx">ripple</span><span class="o">&gt;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p">{</span><span class="cm">/*</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cm">  &lt;!-- Content goes here... --&gt;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cm">  */</span><span class="p">}</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="o">&lt;</span><span class="err">/button&gt;</span>
+<h2 id="register-a-view">Register a View</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">View</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">route</span><span class="p">,</span><span class="w"> </span><span class="nx">search</span><span class="p">,</span><span class="w"> </span><span class="nx">arg</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">h</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;My View&quot;</span><span class="p">);</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">};</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">view</span><span class="p">(</span><span class="s2">&quot;/some-page-name&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">View</span><span class="p">);</span>
 </code></pre></div>
-<p>Config Example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">&lt;</span><span class="nx">button</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nx">x</span><span class="o">-</span><span class="nx">html</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nx">x</span><span class="o">-</span><span class="nx">ripple</span><span class="o">=</span><span class="p">{{</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nx">center</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nx">circle</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="kd">class</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;my-class&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="p">}}</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="o">&gt;</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="p">{</span><span class="cm">/* &lt;!-- Content goes here... --&gt; */</span><span class="p">}</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="o">&lt;</span><span class="err">/button&gt;</span>
+<h2 id="display-views">Display Views</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">xtyle.router.views</span> <span class="p">/&gt;</span>
 </code></pre></div>
+<h2 id="change-routes-aka-views">Change Routes (aka: Views)</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// No Parameters</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="s2">&quot;/some-page&quot;</span><span class="p">);</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">// With Parameters</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">go</span><span class="p">(</span><span class="s2">&quot;/some-page&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">search</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;something&quot;</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+<h2 id="utils-xtylerouter">Utils <code>xtyle.router</code></h2>
+<p>The <code>xtyle.router</code> utility provides various methods to manage routing within your application, ensuring smooth navigation and view handling.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>go</code></td>
+<td>Navigates to a specified route or view.</td>
+</tr>
+<tr>
+<td><code>views</code></td>
+<td>Returns a component of the current view in the application.</td>
+</tr>
+<tr>
+<td><code>current</code></td>
+<td>Retrieves information about the current view or route.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="utils-xtyleroutercurrent">Utils <code>xtyle.router.current</code></h2>
+<p>The <code>xtyle.router.current</code> utility offers detailed information about the currently active route, providing insights into the current view and its parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>view</code></td>
+<td>The current view as a function.</td>
+</tr>
+<tr>
+<td><code>arg</code></td>
+<td>URL parameters of the current path. For example <code>/{argOne}/{argTwo}</code></td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td>The full path of the current route.</td>
+</tr>
+<tr>
+<td><code>search</code></td>
+<td>URL search parameters of the route. For example <code>/?arg=1&amp;param=2</code></td>
+</tr>
+<tr>
+<td><code>route</code></td>
+<td>The name or identifier of the current view.</td>
+</tr>
+</tbody>
+</table>
 
 
 
