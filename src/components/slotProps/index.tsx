@@ -2,7 +2,7 @@ import { findDirectives } from "../base/element/utils";
 import { kebabToTitleCase } from "../stringTo";
 // import { camelProps } from "../util";
 
-function slotProps(expectedSlots, parentProps) {
+function slotProps(parentProps, expectedSlots) {
   const slots = findDirectives(parentProps)("slot-");
   const outschema = {};
   expectedSlots.forEach((key) => {
@@ -15,8 +15,8 @@ function slotProps(expectedSlots, parentProps) {
       return slots[key]({
         Slot: slotMethod,
         info: slot,
-        data: data,
-        self: parentProps,
+        args: data || {},
+        parent: parentProps || {},
       });
     };
   });

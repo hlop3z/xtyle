@@ -1,15 +1,8 @@
 Docs for ...
 
-- api
-- actions
 - arrayPage
 - build
-- device
 - generateRoutes
-- slot
-- stringTo
-- theme
-- util.timer
 - cleanObject
 
 Fix Docs for ...

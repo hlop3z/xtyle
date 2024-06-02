@@ -300,18 +300,38 @@ xtyle.init(Main, document.body, router);
 ## (App) **Preview Variables**
 
 ```js
+/**
+ * @Router
+ */
+const router = {
+  history: false,
+  baseURL: null,
+};
+
+/**
+ * @StartApp
+ */
+xtyle.init(Preview, document.body, router);
+
+/**
+ * @Previews
+ */
+
+/* Actions */
+console.log("Actions: ", xtyle.action.keys());
+
+/* Directives */
+console.log("Directives: ", Object.keys(xtyle.allDirectives));
+
 /* Globals */
 console.log("Globals: ", xtyle.global);
 
+/* Models */
+console.log("Models: ", xtyle.models.keys());
+
+/* Routes */
+console.log("Routes: ", xtyle.router.keys());
+
 /* Store */
 console.log("Store: ", xtyle.store);
-
-/* Routes Keys */
-console.log("Routes: ", Object.keys(xtyle.router.routes));
-
-/* Directives Keys */
-console.log("Directives: ", Object.keys(xtyle.allDirectives));
-
-/* Components Keys */
-console.log("Components: ", Object.keys(xtyle.allComponents));
 ```

@@ -204,6 +204,18 @@ export function createDefaultForm(obj: { [key: string]: any }): object {
   return newObj;
 }
 
+/**
+ * Converts a time duration specified in years, months, days, hours, minutes, and seconds into milliseconds.
+ *
+ * @param {Object} duration - An object containing the time duration.
+ * @param {number} [duration.years=0] - The number of years.
+ * @param {number} [duration.months=0] - The number of months (assuming an average month length of 30 days).
+ * @param {number} [duration.days=0] - The number of days.
+ * @param {number} [duration.hours=0] - The number of hours.
+ * @param {number} [duration.minutes=0] - The number of minutes.
+ * @param {number} [duration.seconds=0] - The number of seconds.
+ * @returns {number} The total time duration in milliseconds.
+ */
 export function getMilliseconds({
   years = 0,
   months = 0,

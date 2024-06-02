@@ -5,7 +5,7 @@ function pascalToKebab(str: string) {
     .toLowerCase(); // Convert the whole string to lowercase
 }
 
-// Build Components
+// Filters out components to include only the ones that are not ignored
 function getComponentsOnly(self, ignore: any = null) {
   const components = {};
   const excluded = ignore || [];

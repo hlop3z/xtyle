@@ -6,13 +6,25 @@ copyright: Copyright © Hlop3z
 nav:
   - Introduction: index.md
   - Preact: preact.md
-  - Router: router.md
   - Hooks: hooks.md
   - CSS: css.md
   - Events: on-events.md
-  - Util:
-      - Model: util/models.md
-      - i18n: util/i18n.md
+  - Theme: theme.md
+  - Slots: slots.md
+  - Plugins:
+      - Install: plugins/index.md
+      - Init: plugins/init.md
+      - Actions: plugins/actions.md
+      - Directives: plugins/directives.md
+      - Models: plugins/models.md
+      - Router: plugins/router.md
+      - Globals: plugins/globals.md
+      - Store: plugins/store.md
+  - Tools:
+      - API: tools/api.md
+      - i18n: tools/i18n.md
+      - Device: tools/device.md
+      - Others: tools/others.md
   - Built-in Directives:
       - x-ref: directives/ref.md
       - x-value: directives/value.md

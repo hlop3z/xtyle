@@ -1,6 +1,14 @@
 type Props = {
   inject: (code: string, id?: string) => void;
   form: (obj: { [key: string]: any }) => any;
+  timer: (kwargs: {
+    years?: number;
+    months?: number;
+    days?: number;
+    hours?: number;
+    minutes?: number;
+    seconds?: number;
+  }) => number;
   // Preact plugins
   class: (input: any) => string;
   style: (input: any) => string;
