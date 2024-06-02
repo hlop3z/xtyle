@@ -3,6 +3,8 @@ type Props = {
     theme: Record<string, string>;
     dark?: Record<string, string>;
     light?: Record<string, string>;
+    disable?: string[];
+    zebra?: string | boolean;
   }) => string;
   class: (
     name: string,
