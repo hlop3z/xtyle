@@ -9,15 +9,14 @@
 Example:
 
 ```js
-<x-slot x-for={(item) => <li>{item}</li>} x-in={["one", "two", "three"]}>
-  {/* <!-- Content goes here... --> */}
-</x-slot>
+<x-slot
+  x-for={(item) => <li>{item}</li>}
+  x-in={["one", "two", "three"]}
+></x-slot>
 ```
 
 Range Example:
 
 ```js
-<x-slot x-for={(item) => <li>{item}</li>} x-in={3}>
-  {/* <!-- Content goes here... --> */}
-</x-slot>
+<x-slot x-for={(item) => <li>{item}</li>} x-in={3}></x-slot>
 ```
