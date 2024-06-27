@@ -413,20 +413,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/actions/" class="md-nav__link">
-        Actions
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../plugins/directives/" class="md-nav__link">
         Directives
       </a>
@@ -927,14 +913,13 @@
 </p>
 </div>
 <p>Example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;</span><span class="nx">x</span><span class="o">-</span><span class="nx">slot</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="k">for</span><span class="o">=</span><span class="p">{(</span><span class="nx">item</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/li&gt;} x-in={[&quot;one&quot;, &quot;two&quot;, &quot;three&quot;]}&gt;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p">{</span><span class="cm">/* &lt;!-- Content goes here... --&gt; */</span><span class="p">}</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">&lt;</span><span class="err">/x-slot&gt;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;</span><span class="nx">x</span><span class="o">-</span><span class="nx">slot</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nx">x</span><span class="o">-</span><span class="k">for</span><span class="o">=</span><span class="p">{(</span><span class="nx">item</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/li&gt;}</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nx">x</span><span class="o">-</span><span class="ow">in</span><span class="o">=</span><span class="p">{[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;two&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;three&quot;</span><span class="p">]}</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="o">&gt;&lt;</span><span class="err">/x-slot&gt;</span>
 </code></pre></div>
 <p>Range Example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">&lt;</span><span class="nx">x</span><span class="o">-</span><span class="nx">slot</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="k">for</span><span class="o">=</span><span class="p">{(</span><span class="nx">item</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/li&gt;} x-in={3}&gt;</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p">{</span><span class="cm">/* &lt;!-- Content goes here... --&gt; */</span><span class="p">}</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="o">&lt;</span><span class="err">/x-slot&gt;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">&lt;</span><span class="nx">x</span><span class="o">-</span><span class="nx">slot</span><span class="w"> </span><span class="nx">x</span><span class="o">-</span><span class="k">for</span><span class="o">=</span><span class="p">{(</span><span class="nx">item</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/li&gt;} x-in={3}&gt;&lt;/x-slot&gt;</span>
 </code></pre></div>
 
 
