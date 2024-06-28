@@ -14,7 +14,7 @@ nav:
   - Plugins:
       - Install: plugins/index.md
       - Init: plugins/init.md
-      #- Actions: plugins/actions.md
+      - Actions: plugins/actions.md
       - Directives: plugins/directives.md
       - Models: plugins/models.md
       - Router: plugins/router.md
