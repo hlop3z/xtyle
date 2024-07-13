@@ -69,7 +69,7 @@ function PropsSchemaBuilder(inputSchema, withPythonTypes = false) {
         keyInfo.required = false;
       }
 
-      keyInfo.default = val.default || null;
+      keyInfo.default = val.default !== undefined ? val.default : null;
       keyInfo.types = val.type; //.map((element) => JS_TYPES_REVERSE[element]);
     } else if (type === "any") {
       keyInfo.types = ["any"];
