@@ -43,3 +43,11 @@ Takes a size classification ('xs', 'sm', 'md', 'lg', 'xl') as an argument.
 ```js
 xtyle.device.is("xs", "sm") ? "yes" : "no";
 ```
+
+## Update Classifications
+
+Pass an object with updated values.
+
+```js
+xtyle.device.config({ xs: 100, sm: 300 });
+```
