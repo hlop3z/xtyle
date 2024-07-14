@@ -20,7 +20,7 @@ export { default as actions } from "./components/actions/index.tsx";
 export { ACTION as action } from "./components/use/index.tsx";
 
 // Store
-export { device } from "./components/store/index.tsx";
+export { default as device } from "./components/device/index.tsx";
 export { listX as list } from "./components/store/index.tsx";
 export { setX as set } from "./components/store/index.tsx";
 export { signalX as dict } from "./components/store/index.tsx";

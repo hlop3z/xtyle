@@ -3,27 +3,6 @@ import dict from "./core/dict.ts";
 import { list, set } from "./core/list.ts";
 // import model from "./core/model.ts";
 
-/**
- * Import statements for signals and hooks from preact library
- */
-const { signal } = preact;
-
-/**
- * Signal for window size
- */
-export const device: any = signal({
-  x: window.innerWidth,
-  y: window.innerHeight,
-});
-
-// Window resize event listener
-window.addEventListener("resize", () => {
-  device.value = {
-    x: window.innerWidth,
-    y: window.innerHeight,
-  };
-});
-
 // Dict
 export const useSignalX: any = (inObj: any) => dict("useSignal", inObj);
 export const signalX: any = (inObj: any) => dict("signal", inObj);
