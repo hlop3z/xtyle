@@ -609,6 +609,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#size-classification-size" class="md-nav__link">
+    Size Classification (size)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-mobile-mobile" class="md-nav__link">
+    Is Mobile (mobile)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-specified-classification-is" class="md-nav__link">
+    Is Specified Classification (is)
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -962,6 +983,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#size-classification-size" class="md-nav__link">
+    Size Classification (size)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-mobile-mobile" class="md-nav__link">
+    Is Mobile (mobile)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-specified-classification-is" class="md-nav__link">
+    Is Specified Classification (is)
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -984,11 +1026,25 @@
 <p>The <strong>Device</strong> section provides utilities for accessing the dimensions of the window, allowing you to dynamically respond to changes in window size within your application.</p>
 <h2 id="window-width-x">Window Width (<strong><code>X</code></strong>)</h2>
 <p>Access the current width of the window.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">device</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">device</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="window-height-y">Window Height (<strong><code>Y</code></strong>)</h2>
 <p>Access the current height of the window.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">device</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">device</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="size-classification-size">Size Classification (<strong><code>size</code></strong>)</h2>
+<p>The current size classification of the window ('xs', 'sm', 'md', 'lg', 'xl').</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">device</span><span class="p">.</span><span class="nx">size</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="is-mobile-mobile">Is Mobile (<strong><code>mobile</code></strong>)</h2>
+<p>Indicates if the device is considered mobile based on the width.
+If the classification includes ('xs', 'sm', 'md')</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">device</span><span class="p">.</span><span class="nx">mobile</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="is-specified-classification-is">Is Specified Classification (<strong><code>is</code></strong>)</h2>
+<p>A function to check if the current size matches the specified classification.
+Takes a size classification ('xs', 'sm', 'md', 'lg', 'xl') as an argument.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">xtyle</span><span class="p">.</span><span class="nx">device</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="s2">&quot;xs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sm&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;no&quot;</span><span class="p">;</span>
 </code></pre></div>
 
 
