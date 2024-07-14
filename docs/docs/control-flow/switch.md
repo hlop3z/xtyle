@@ -10,18 +10,16 @@ Example:
 
 ```js
 function View() {
-  const text = preact.useSignal("one");
+  const page = preact.useSignal("one");
+
   return (
-    {/* <!-- x-switch and x-case... --> */}
-    <x-slot x-switch x-case={text.value}>
-      {/* <!-- then... case --> */}
-      <x-slot
-        x-for={(item) => <x-slot case={item}>Page {item}</x-slot>}
-        x-in={["one", "two", "three"]}
-      >
-        {/* <!-- Content goes here... --> */}
-      </x-slot>
-    </x-slot>
+    {/* x-switch and x-case control structure */}
+    <x-slot x-switch x-case={page.value}>
+      {/* render case */}
+      <x-slot case="one">Page One</x-slot>
+      <x-slot case="two">Page Two</x-slot>
+      <x-slot case="three">Page Three</x-slot>
+   </x-slot>
   );
 }
 ```

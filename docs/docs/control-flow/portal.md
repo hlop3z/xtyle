@@ -35,3 +35,9 @@ Example (**Fragment**):
   */}
 </x-slot>
 ```
+
+## Using `slot` instead.
+
+```js
+<x-slot x-portal="#modal" slot={<h1>Hello World<h1>}></x-slot>
+```
