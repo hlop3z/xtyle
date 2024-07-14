@@ -75,6 +75,11 @@ function PropsSchemaBuilder(inputSchema, withPythonTypes = false) {
       keyInfo.types = ["any"];
     }
 
+    // IS Required
+    if (![null, undefined].includes(val.required)) {
+      keyInfo.required = val.required;
+    }
+
     // PYTHON_EQUIVALENTS
     if (withPythonTypes) {
       keyInfo.python = [];
