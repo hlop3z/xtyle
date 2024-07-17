@@ -1,4 +1,5 @@
 type Props = {
+  info: any;
   set: (props: {
     theme: Record<string, string>;
     dark?: Record<string, string>;
@@ -7,8 +8,8 @@ type Props = {
     zebra?: string | boolean;
   }) => string;
   class: (
-    name: string,
-    type: "background" | "border" | "text" | "table"
+    type: "background" | "border" | "text" | "table",
+    name: string
   ) => string;
 };
 

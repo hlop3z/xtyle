@@ -1,5 +1,3 @@
-// can you make this code cleaner
-
 import { injectCSS } from "../util";
 
 class ThemeCreator {
@@ -89,12 +87,16 @@ const Color = {
   table: (name, color) => generateStyle("table", name, color),
 };
 
+// @ts-ignore
+let currentTheme = new ThemeCreator({});
+
 function createTheme(args) {
   const current = new ThemeCreator(args);
   current.createTheme();
+  currentTheme = current;
 }
 
-function getClass(name, type) {
+function getClass(type, name) {
   const util = {
     background: (name) => `color-bg-${name}`,
     border: (name) => `color-br-${name}`,
@@ -107,4 +109,7 @@ function getClass(name, type) {
 export default {
   set: createTheme,
   class: getClass,
+  get info() {
+    return currentTheme;
+  },
 };
