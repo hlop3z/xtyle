@@ -74,9 +74,9 @@ const ColorBase = {
 
 const generateStyle = (group, name, color) => {
   if (group === "table") {
-    return `.${getClass(name, group)} ${ColorBase[group](color)}\n`;
+    return `.${getClass(group, name)} ${ColorBase[group](color)}\n`;
   } else {
-    return `.${getClass(name, group)} { ${ColorBase[group](color)} }\n`;
+    return `.${getClass(group, name)} { ${ColorBase[group](color)} }\n`;
   }
 };
 
